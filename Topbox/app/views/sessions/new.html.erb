@@ -1,0 +1,15 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+
+      <h1>Iniciar sessão</h1>
+
+      <%= form_for(:session, url: login_path) do |f| %>
+          <%= f.email_field :email, :placeholder => 'Email' %>
+          <%= f.password_field :password, :placeholder => 'Senha' %>
+          <%= f.submit 'Entrar', class: 'btn-submit' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+
+      <h1>Crie sua conta</h1>
+      <h3>É gratuito!</h3>
+
+      <%= form_for(@user) do |f| %>
+          <%= f.text_field :first_name, :placeholder => 'Nome' %>
+          <%= f.text_field :last_name, :placeholder => 'Sobrenome' %>
+          <%= f.text_field :username, :placeholder => 'Nome de usuário' %>
+          <%= f.email_field :email, :placeholder => 'Email' %>
+          <%= f.password_field :password, :placeholder => 'Senha' %>
+          <%= f.submit 'Cadastrar-se', class: 'btn-submit' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
