@@ -4,11 +4,11 @@
         <%= image_tag('logo.png', :size => '230x67', :alt => 'logo') %>
     </div></a>
       <%= form_for(@user) do |f| %>
-          <%= f.text_field :first_name, :placeholder => 'Nome' %>
-          <%= f.text_field :last_name, :placeholder => 'Sobrenome' %>
-          <%= f.text_field :username, :placeholder => 'Nome de usuário' %>
-          <%= f.email_field :email, :placeholder => 'Email' %>
-          <%= f.password_field :password, :placeholder => 'Senha' %>
+          <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true %>
+          <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true %>
+          <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true %>
+          <%= f.email_field :email, :placeholder => 'Email', :required => true %>
+          <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true %>
           <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
       <% end %>
 
