@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      redirect_to 'login'
+      flash.now[:error] = "Invalid username/password combination."
+      render :new
     end
   end
 
