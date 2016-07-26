@@ -19,10 +19,9 @@
       <%= f.submit 'Entrar', :class => "btn btn-login" %>
       <% if flash[:error] %>
         <div class="alert alert-danger">Email ou Senha <strong>inválidos</strong>.</div>
-        <%= flash[:notice] %>
       <% end %>
       <p class="message">Não é cadastrado? <a href="signup">Crie uma conta</a></p>
     <% end %>
-    
+
   </div>
 </div>
