@@ -1,16 +1,26 @@
 <div class="login-page">
   <div class="form">
+
+    <!--Logo do app-->
     <a href="/"><div id="logo-container">
         <%= image_tag('logo.png', :size => '230x67', :alt => 'logo') %>
     </div></a>
-      <%= form_for(@user) do |f| %>
-          <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control"%>
-          <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
-          <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true, :class => "form-control" %>
-          <%= f.email_field :email, :placeholder => 'Email', :required => true, :class => "form-control" %>
-          <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
-          <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
+
+    <!--Formulario de login-->
+    <%= form_for(@user) do |f| %>
+      <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control"%>
+      <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
+      <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true, :class => "form-control" %>
+      <%= f.email_field :email, :placeholder => 'Email', :required => true, :class => "form-control" %>
+      <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+
+      <!--Botão de cadastro e mensagem de erro-->
+      <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger">Endereço de <strong>email</strong> já em uso.</div>
       <% end %>
+      
+    <% end %>
 
   </div>
 </div>
