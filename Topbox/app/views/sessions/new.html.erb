@@ -1,9 +1,11 @@
 <body class="login-bg">
-  <div class="login-page">
-    <div class="form">
-      <div id="logo-container">
-          <%= image_tag('logo.png', :size => '230x67', :alt => 'logo') %>
-      </div>
+<div class="login-page">
+  <div class="form">
+
+    <!--Logo do app-->
+    <div id="logo-container">
+        <%= image_tag('logo.png', :size => '230x67', :alt => 'logo') %>
+    </div>
 
       <!--Formulario de login-->
       <%= form_for(:session, url: login_path) do |f| %>
