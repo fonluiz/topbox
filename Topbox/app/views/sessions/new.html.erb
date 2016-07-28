@@ -17,12 +17,12 @@
           <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-lock" style="color:#045FB4"></i></span>
           <%= f.password_field :password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => 'form-control' %>
         </div>
-    <% end %>
 
-    <!--Sign in button-->
-    <%= f.submit 'Entrar', :class => 'btn btn-login' %>
-    <% if flash[:error] %>
-        <div class="alert alert-danger">Email ou Senha <strong>inválidos</strong>.</div>
+        <!--Sign in button-->
+        <%= f.submit 'Entrar', :class => 'btn btn-login' %>
+        <% if flash[:error] %>
+            <div class="alert alert-danger">Email ou Senha <strong>inválidos</strong>.</div>
+        <% end %>
     <% end %>
 
   </div>
