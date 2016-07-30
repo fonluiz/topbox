@@ -20,10 +20,13 @@
 
         <!--Sign in button-->
         <%= f.submit 'Entrar', :class => 'btn btn-login' %>
-        <% if flash[:error] %>
-            <div class="alert alert-danger">Email ou Senha <strong>inválidos</strong>.</div>
+
+        <!--Flash messages-->
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><strong><%= value %></strong></div>
         <% end %>
-        <p class="message">Não é cadastrado? <a href="signup">Crie uma conta</a></p>
+
+        <p class="message">Não é cadastrado? <a href="/signup">Crie uma conta</a></p>
     <% end %>
   </div>
 </div>

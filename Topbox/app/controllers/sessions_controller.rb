@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] ||= @username.id
       redirect_to '/home'
     else
-      flash.now[:error] = 'Invalid username/password combination.'
+      flash[:danger] = 'Usuário e/ou senha invalídos.'
       render :new
     end
   end

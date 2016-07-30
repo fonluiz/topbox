@@ -18,8 +18,10 @@
 
         <!--Submit sign up form button-->
         <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
-        <% if flash[:error] %>
-            <div class="alert alert-danger">Endereço de <strong>email</strong> já em uso.</div>
+
+        <!--Flash messages-->
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
 
     <% end %>
