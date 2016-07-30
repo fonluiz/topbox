@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one :home_folder
+  before_create :build_home_folder
 
   has_secure_password
 

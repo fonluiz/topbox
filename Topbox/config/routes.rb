@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'home' => 'home#new'
+  get 'home_folders' => 'home_folders#new'
 end

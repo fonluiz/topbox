@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         @username && @username.authenticate(params[:session][:password])
       session[:user_id] ||= @user_email.id
       session[:user_id] ||= @username.id
-      redirect_to '/home'
+      redirect_to '/home_folders'
     else
       flash.now[:error] = 'Invalid username/password combination.'
       render :new
