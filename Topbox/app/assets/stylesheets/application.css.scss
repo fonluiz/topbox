@@ -3,7 +3,6 @@
 
 /* universal 
 *= require_self
-*= require 'sessions'
 */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -33,7 +32,6 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #000000;
 }
 
 .login-bg {
@@ -142,7 +140,6 @@ li {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    border:5 solid black;
 }
 
 #sidebar-wrapper {
@@ -185,6 +182,7 @@ li {
 
     #sidebar-wrapper {
         width: 250px;
+        border-right: 1px solid #ddd;
     }
 
     #wrapper.toggled #sidebar-wrapper {
@@ -200,4 +198,38 @@ li {
         position: relative;
         margin-right: 0;
     }
+}
+
+/* User Info */
+
+.avatar {
+    position: relative;
+    top: 5px;
+}
+
+.avatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.user-info {
+  text-align: center;
+}
+
+/* Accordion */
+.list-group-submenu {
+  margin-left:20px;
+}
+.list-group-item {
+  border: none;
+}
+
+.ic {
+  margin-right: 10px;
 }
