@@ -32,13 +32,13 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background: image-url("login_background.jpg");
+  background-size: 100%;
 }
 
 .login-bg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: image-url("bg.jpg");  
-  background-size: 100%;   
 }
 
 .login-page {
