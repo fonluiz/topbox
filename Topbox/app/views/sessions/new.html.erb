@@ -23,7 +23,10 @@
 
         <!--Flash messages-->
         <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><strong><%= value %></strong></div>
+            <div class="alert alert-<%= key %>">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong><%= value %></strong>
+            </div>
         <% end %>
 
         <p class="message">Não é cadastrado? <a href="/signup">Crie uma conta</a></p>

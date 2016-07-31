@@ -12,8 +12,8 @@ class UsersController < ApplicationController
       flash[:success] = 'Conta criada com sucesso!'
       redirect_to '/login'
     else
-      flash[:danger] = 'Email em já em uso.' if used_email?
-      flash[:danger] = 'Nome de usuário já em uso.' if used_username?
+      flash.now[:danger] = 'Email em já em uso.' if used_email?
+      flash.now[:danger] = 'Nome de usuário já em uso.' if used_username?
       render :new
     end
   end
