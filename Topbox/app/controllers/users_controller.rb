@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Conta criada com sucesso!'
       redirect_to '/'
     else
-      flash[:danger] = 'Email em já em uso.' unless used_email?
+      flash[:danger] = 'Email em já em uso.' if used_email?
       flash[:danger] = 'Nome de usuário já em uso.' if used_username?
       render :new
     end
@@ -24,11 +24,11 @@ class UsersController < ApplicationController
   end
 
   def used_email?
-    if User.find_by_email(:email).nil?
-      return false
-    else
-      return true
-    end
+    User.exists?(email: @user.email)
+  end
+
+  def used_username?
+    User.exists?(username: @user.username)
   end
 
 end
