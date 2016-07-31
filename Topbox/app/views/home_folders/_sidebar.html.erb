@@ -5,7 +5,7 @@
   			<div class="avatar">
   				<%= image_tag('user.jpg', :alt => '') %>
 			</div>
-  			Bem-vindo, nome do usuário!
+  			Bem-vindo, nome do usuário! <% current_user.email %>
   		</div>
   		<br>
      		<div class="list-group" id="sidebar">
@@ -29,5 +29,8 @@
           		<a href="" class="list-group-item"><i class="glyphicon glyphicon-file ic"></i>Subitem 1</a>
           	</div>
       	</div>
+      <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
       </div>
-      <!-- /#sidebar-wrapper -->
+
+    <!-- /#sidebar-wrapper -->
+  </div>

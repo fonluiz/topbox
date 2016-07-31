@@ -4,5 +4,4 @@ class HomeFoldersController < ApplicationController
     require_user
   end
 
-
 end
