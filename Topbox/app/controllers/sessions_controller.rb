@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     @user = email_or_username(params[:session][:email_or_username])
 
-    puts @user
     if @user && @user.authenticate(params[:session][:login_password])
-      session[:user_id] = @user.id
+      log_in @user
       redirect_to '/home'
     else
       flash.now[:danger] = 'Usuário e/ou senha invalídos.'
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    log_out
     redirect_to :action => 'new'
   end
 
@@ -28,7 +28,6 @@ class SessionsController < ApplicationController
       user ||= User.find_by_email(email_or_username)
       user ||= User.find_by_username(email_or_username)
     end
-
     return user
   end
 
