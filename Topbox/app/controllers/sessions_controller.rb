@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
+  before_action :save_login_state, only: [:new, :create]
 
   def new
   end
 
   def create
-    @user_email = User.find_by_email(params[:session][:email])
-    @username = User.find_by(params[:session][:username])
-    if @user_email && @user_email.authenticate(params[:session][:password]) ||
-        @username && @username.authenticate(params[:session][:password])
-      session[:user_id] ||= @user_email.id
-      session[:user_id] ||= @username.id
+    @user = email_or_username(params[:session][:email_or_username])
+
+    puts @user
+    if @user && @user.authenticate(params[:session][:login_password])
+      session[:user_id] = @user.id
       redirect_to '/home'
     else
       flash[:danger] = 'Usuário e/ou senha invalídos.'
@@ -19,7 +19,17 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/'
+    redirect_to :action => 'new'
+  end
+
+  private
+  def email_or_username(email_or_username="")
+    if email_or_username != ""
+      user ||= User.find_by_email(email_or_username)
+      user ||= User.find_by_username(email_or_username)
+    end
+
+    return user
   end
 
 end

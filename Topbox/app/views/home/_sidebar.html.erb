@@ -5,7 +5,7 @@
   			<div class="avatar">
   				<%= image_tag('user.jpg', :alt => '') %>
 			</div>
-  			Bem-vindo, nome do usuário!
+  			Bem-vindo, <%= current_user.first_name %> <%= current_user.last_name %>
   		</div>
   		<br>
      		<div class="list-group" id="sidebar">

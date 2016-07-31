@@ -13,4 +13,13 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
+  def save_login_state
+    if session[:user_id]
+      redirect_to(:controller => 'home', :action => 'new')
+      return false
+    else
+      return true
+    end
+  end
+
 end

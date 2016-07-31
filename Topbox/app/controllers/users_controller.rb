@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :save_login_state, only: [:new, :create]
 
   def new
     @user = User.new
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = 'Conta criada com sucesso!'
-      redirect_to '/'
+      redirect_to '/login'
     else
       flash[:danger] = 'Email em já em uso.' if used_email?
       flash[:danger] = 'Nome de usuário já em uso.' if used_username?
