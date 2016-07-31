@@ -1,14 +1,11 @@
 class User < ApplicationRecord
-  has_one :home_folder
-  before_create :build_home_folder
-  
+  has_one :home
+  before_create :build_home
+
   has_secure_password
 
   validates :first_name, :last_name, presence: true
-  validates :username, uniqueness: true, length: { minimum: 6,
-    too_short: "Username needs to have at least %{count} characters." }
+  validates :username, uniqueness: true, length: { in: 6..30 }
   validates :email, presence: true, uniqueness: true
-  validates :password, length: { in: 6..30,
-    wrong_length: "Password size must be between %{count}." }
-
+  validates :password, length: { in: 6..30 }
 end

@@ -13,10 +13,17 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
+  def save_login_state
+    if session[:user_id]
+      redirect_to(:controller => 'homes', :action => 'new')
+      return false
+    else
+      return true
+    end
+  end
+
   def log_out
-    session.delete(:user_id)
-    @current_user = nil
-    #session[:user_id] = nil
+    session[:user_id] = nil
   end
 
   def log_in(user)
@@ -26,5 +33,5 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !current_user.nil?
   end
-
 end
+

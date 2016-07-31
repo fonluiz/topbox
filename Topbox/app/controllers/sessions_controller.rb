@@ -1,26 +1,33 @@
 class SessionsController < ApplicationController
+  before_action :save_login_state, only: [:new, :create]
 
   def new
   end
 
   def create
+    @user = email_or_username(params[:session][:email_or_username])
 
-    user = User.find_by(params[:session][:email]) || User.find_by(username: params[:session][:username])
-
-    if user && user.authenticate(params[:session][:password])
-      log_in user
+    if @user && @user.authenticate(params[:session][:login_password])
+      log_in @user
       redirect_to '/home'
-
     else
-      flash.now[:error] = 'Invalid username/password combination.'
+      flash.now[:danger] = 'Usuário e/ou senha invalídos.'
       render :new
     end
-
   end
 
   def destroy
     log_out
-    redirect_to '/login'
+    redirect_to :action => 'new'
+  end
+
+  private
+  def email_or_username(email_or_username="")
+    if email_or_username != ""
+      user ||= User.find_by_email(email_or_username)
+      user ||= User.find_by_username(email_or_username)
+    end
+    return user
   end
 
 

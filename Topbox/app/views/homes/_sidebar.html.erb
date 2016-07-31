@@ -5,7 +5,7 @@
   			<div class="avatar">
   				<%= image_tag('user.jpg', :alt => '') %>
 			</div>
-        Bem-vindo, <%= current_user.first_name%> <%= current_user.last_name %>
+  			Bem-vindo, <%= current_user.first_name %> <%= current_user.last_name %>
   		</div>
   		<br>
      		<div class="list-group" id="sidebar">
@@ -27,10 +27,9 @@
             		<a href="#demo4" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-folder-open ic"></i>Item 4</a>
        			<div class="collapse" id="demo4">
           		<a href="" class="list-group-item"><i class="glyphicon glyphicon-file ic"></i>Subitem 1</a>
-          	</div>
-      	</div>
+            </div>
+        </div>
       <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
-      </div>
-
-    <!-- /#sidebar-wrapper -->
-  </div>
+    </div>
+      <!-- /#sidebar-wrapper -->
+</div>
