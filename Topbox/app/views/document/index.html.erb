@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Conteúdo</th>
+  </tr>
+  <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.id    %></td>
+        <td><%= document.name    %></td>
+        <td><%= document.content %></td>
+      </tr>
+  <% end %>
+</table>
+
+<!-- Redireciona para a action new do controller_document -->
+<%= link_to 'Novo', action: 'new' %>
+
+
+
+<td>
+  <%= link_to 'Editar', action: 'edit', id: restaurante %>
+</td>
