@@ -7,6 +7,7 @@
 			</div>
   			Bem-vindo, <%= current_user.first_name %> <%= current_user.last_name %>
   		</div>
+
   		<br>
      		<div class="list-group" id="sidebar">
          		<a href="#demo3" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-folder-open ic"></i>Item 3</a>
@@ -29,7 +30,11 @@
           		<a href="" class="list-group-item"><i class="glyphicon glyphicon-file ic"></i>Subitem 1</a>
             </div>
         </div>
+
       <li><%= link_to 'Log out', logout_path, method: 'delete', :class => 'btn-logout' %></li>
+
+      <li><%= link_to "Novo Documento", {:controller => 'documents', :action => 'new', :id => @document}, :class => 'btn-logout' %></li>
+
     </div>
       <!-- /#sidebar-wrapper -->
 </div>

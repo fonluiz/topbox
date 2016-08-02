@@ -10,16 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731171849) do
+ActiveRecord::Schema.define(version: 20160801020731) do
 
-  create_table "home", force: :cascade do |t|
+  create_table "documents", force: :cascade do |t|
+    t.string   "content"
+    t.string   "name"
+    t.string   "format"
+    t.string   "directory_parent"
+    t.string   "topbox_user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "homes", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_homes_on_user_id"
   end
 
-  create_table "user", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "username"

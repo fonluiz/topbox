@@ -1,13 +1,14 @@
-class DocumentController < ApplicationController
+class DocumentsController < ApplicationController
 
   def new
     @document = Document.new
   end
 
   def create
-    @document = Document.new params.require(:document).permit(:name)
+    @document = Document.new(document_params)
     @document.save
-    #redirect_to(action: "show", id: @document)
+    redirect_to '/home'
+    #redirect_to(action: "show", id: @documents)
   end
 
   def index
@@ -35,5 +36,10 @@ class DocumentController < ApplicationController
     redirect_to action: "show", id: @document
   end
 
+
+  private
+  def document_params
+    params.require(:document).permit(:name, :content)
+  end
 
 end

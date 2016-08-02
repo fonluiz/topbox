@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   get 'home' => 'homes#new'
+
+  resources :documents
+  get 'home/new_document' => 'documents#new'
+  get 'home/my_documents' => 'documents#index'
+
 end
