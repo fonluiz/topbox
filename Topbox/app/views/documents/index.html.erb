@@ -9,6 +9,8 @@
         <td><%= document.id    %></td>
         <td><%= document.name    %></td>
         <td><%= document.content %></td>
+        <td><%= link_to 'Edit', edit_document_path(document) %></td>
+        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
 </table>
@@ -16,8 +18,3 @@
 <!-- Redireciona para a action new do controller_document -->
 <%= link_to 'Novo', action: 'new' %>
 
-
-
-<td>
-  <%= link_to 'Editar', action: 'edit', id: :document%>
-</td>

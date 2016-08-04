@@ -22,6 +22,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
+    redirect_to '/home/my_documents'
     #usar redirect_to para redirecionar para parent_directory
   end
 
@@ -30,7 +31,7 @@ class DocumentsController < ApplicationController
   end
 
   def update
-    @document = Restaurante.find params[:id]
+    @document = Document.find params[:id]
     @document.update_attributes(document_params)
 
     redirect_to action: "show", id: @document
