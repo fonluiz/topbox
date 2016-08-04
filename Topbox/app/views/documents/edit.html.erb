@@ -1,8 +1,16 @@
+<div class="form">
 
 <%= form_for @document do |d| %>
+
     Nome: <%= d.text_field :name %>
-    Conteudo: <%= d.text_field :content %>
-    <%= d.submit %>
+
+      <!-- Conteudo -->
+    <div class="form-group">
+      <%= d.text_area(:content, class: "form-control", rows: "5") %>
+    </div>
+
+    <%= d.submit "Salvar alterações" %>
 <% end %>
 
 
+</div>

@@ -8,21 +8,15 @@
 
     Documento sem título <!-- < %= d.text_field :name %> -->
 
-    <!-- Conteudo -->
-    <%= d.text_field :content %>
+      <!-- Conteudo -->
+      <div class="form-group">
+        <%= d.text_area(:content, class: "form-control", rows: "5") %>
+      </div>
 
     <%= d.submit 'Salvar' %>
+
 <% end %>
 
 </div>
 
-
-
-<!--
-< %= form_tag :action => 'create' do %>
-    Nome: < %= text_field :documents, :nome %>
-    Conteudo: < %= text_field :documents, :endereco %>
-    %= submit_tag 'Criar' %>
-< % end %>
--->
 
