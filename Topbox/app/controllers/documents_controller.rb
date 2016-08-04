@@ -7,8 +7,11 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     @document.holder = current_folder
+
+
     puts
     puts current_folder.name
+
     puts
     if @document.save
       redirect_to '/folders/'+current_folder.id.to_s
