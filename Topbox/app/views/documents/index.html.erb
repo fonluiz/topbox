@@ -2,7 +2,8 @@
   <tr>
     <th>ID      </th>
     <th>Nome    </th>
-    <th>Conteúdo</th>
+    <th>Conteudo</th>
+    <th>Folder </th>
   </tr>
 
   <% @documents.each do |document| %>
@@ -10,6 +11,7 @@
         <td><%= document.id    %></td>
         <td><%= document.name    %></td>
         <td><%= document.content %></td>
+        <td><%= document.holder.name %></td>
         <td><%= link_to 'Show', document, action: :show %></td>
 
         <td>

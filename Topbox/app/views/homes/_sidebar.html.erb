@@ -10,7 +10,8 @@
 
   		<br>
      		<div class="list-group" id="sidebar">
-         		<a href="#demo3" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-folder-open ic"></i>Item 3</a>
+         		<a href="#demo3" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#MainMenu">
+              <i class="glyphicon glyphicon-folder-open ic"></i>Item 3</a>
          			<div class="collapse in" id="demo3">
              			<a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1"><i class="glyphicon glyphicon-folder-open ic"></i>Subitem 1</a>
              			<div class="collapse in list-group-submenu" id="SubMenu1">
@@ -31,9 +32,13 @@
             </div>
         </div>
 
+      <p><%= puts current_folder.name %></p>
+
       <li><%= link_to 'Log out', logout_path, method: 'delete', :class => 'btn-logout' %></li>
 
       <li><%= link_to "Novo Documento", {:controller => 'documents', :action => 'new', :id => @document}, :class => 'btn-logout' %></li>
+      <li><%= link_to "Meu TopBox", {:controller => 'folders', :action => 'index', :id => @folder}, :class => 'btn-logout' %></li>
+
 
     </div>
       <!-- /#sidebar-wrapper -->

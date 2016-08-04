@@ -3,10 +3,22 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user
+  helper_method :current_user, :current_folder, :set_current_folder, :set_carl, :carl
+  @@current_folder #Its a class variable. The Current found should remain the same.
+
+
+
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_folder
+    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', owner_id: current_user.id))
+  end
+
+  def set_current_folder(folder)
+    @@current_folder = folder
   end
 
   def require_user

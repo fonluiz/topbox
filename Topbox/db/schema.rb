@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801020731) do
+ActiveRecord::Schema.define(version: 20160804151240) do
 
   create_table "documents", force: :cascade do |t|
+    t.integer  "holder_id"
     t.string   "content"
     t.string   "name"
     t.string   "format"
@@ -20,6 +21,23 @@ ActiveRecord::Schema.define(version: 20160801020731) do
     t.string   "topbox_user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["holder_id"], name: "index_documents_on_holder_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.integer  "owner_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["owner_id"], name: "index_folders_on_owner_id"
+    t.index ["parent_id"], name: "index_folders_on_parent_id"
+  end
+
+  create_table "holders", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
   end
 
   create_table "homes", force: :cascade do |t|
@@ -27,6 +45,19 @@ ActiveRecord::Schema.define(version: 20160801020731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_homes_on_user_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|

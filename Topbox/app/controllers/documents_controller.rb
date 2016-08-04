@@ -6,13 +6,21 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
-    @document.save
-    redirect_to '/home'
+    @document.holder = current_folder
+    puts
+    puts current_folder.name
+    puts
+    if @document.save
+      redirect_to '/folders/'+current_folder.id.to_s
+    else
+      redirect_to '/documents'
+    end
+
     #redirect_to(action: "show", id: @documents)
   end
 
   def index
-    @documents = Document.order :name
+    @documents = Document.all
   end
 
   def show
