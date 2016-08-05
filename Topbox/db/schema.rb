@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(version: 20160804151240) do
     t.string   "content"
     t.string   "name"
     t.string   "format"
-    t.string   "directory_parent"
-    t.string   "topbox_user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["holder_id"], name: "index_documents_on_holder_id"
   end
 

@@ -1,33 +1,36 @@
-<div class="login-page">
-  <div class="form">
+<body class="login-bg">
+    <div class="login-page">
+      <div class="form">
 
-    <!--Application logo-->
-    <a href="/">
-      <div id="logo-container">
-        <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
-      </div>
-    </a>
+        <!--Application logo-->
+        <a href="/">
+          <div id="logo-container">
+            <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
+          </div>
+        </a>
 
-    <!--Sign up form-->
-    <%= form_for(@user) do |f| %>
-        <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control" %>
-        <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
-        <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true, :class => "form-control" %>
-        <%= f.email_field :email, :placeholder => 'Email', :required => true, :class => "form-control" %>
-        <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+        <!--Sign up form-->
+        <%= form_for(@user) do |f| %>
+            <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control" %>
+            <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
+            <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.email_field :email, :placeholder => 'Email', :required => true, :class => "form-control" %>
+            <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
 
-        <!--Submit sign up form button-->
-        <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
+            <!--Submit sign up form button-->
+            <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
 
-        <!--Flash messages-->
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %> fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <%= value %>
-            </div>
+            <!--Flash messages-->
+            <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %> fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <%= value %>
+                </div>
+            <% end %>
+
+            <p class="message">Já possui uma conta? <a href="/login">Entrar</a></p>
         <% end %>
 
-    <% end %>
-
-  </div>
-</div>
+      </div>
+    </div>
+</body>

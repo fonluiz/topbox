@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_folder, :set_current_folder, :set_carl, :carl
   @@current_folder #Its a class variable. The Current found should remain the same.
-
+  before_filter :show_navbar
 
 
 
@@ -45,5 +45,11 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !current_user.nil?
   end
+
+  protected
+  def show_navbar
+    @show_navbar = true
+  end
+
 end
 

@@ -38,13 +38,13 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: image-url("login_background.jpg");
-  background-size: 100%;
 }
 
 .login-bg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: image-url("login_background.jpg");
+  background-size: 100%;
 }
 
 .login-page {
@@ -151,8 +151,6 @@ body {
 
 li {
     display: block;
-    width: 250px;
-    height: 20px;
 }
 
 /* Sidebar */
@@ -223,40 +221,56 @@ li {
     }
 }
 
-/* User Info */
+/* Home */
 
-.avatar {
-    position: relative;
-    top: 5px;
+.content {
+  padding: 50px;
+  padding-top: 10px;
 }
 
-.avatar img {
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    border: 5px solid rgba(255,255,255,0.5);
+#content-table {
+  width: 100%;
+  height: 100%;
 }
 
-.user-info {
-  text-align: center;
+/* Button */
+
+.btn-circle.btn-xl {
+  width: 54px;
+  height: 54px;
+  margin: 2px;
+  padding: 10px 10px;
+  font-size: 22px;
+  border-radius: 35px;
 }
 
-/* Accordion */
-.list-group-submenu {
-  margin-left:20px;
-}
-.list-group-item {
-  border: none;
+.lower-right {
+  position: absolute;
+  bottom: 10px;
+  right: 50px;
 }
 
-.ic {
-  margin-right: 10px;
+.btn-menu {
+  position: absolute;
+  bottom: 10px;
+  right: 115px;
 }
 
-modal {
-  display:block;
+/* Modals */
+
+.modal-backdrop {
+  background: none;
+}
+
+.modal-header-primary {
+  color:#fff;
+    padding:5px 10px;
+    border-bottom:1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
 }
