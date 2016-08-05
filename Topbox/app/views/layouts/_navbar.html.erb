@@ -1,12 +1,19 @@
 <nav class="navbar navbar-default navbar-static-top">
 	<ul>
 		<li>
-			<a class="navbar-brand" href="/home">
+			<a class="navbar-brand" href="/mytopbox">
         		<%= image_tag('topbox_logo.png', :size => '130x40', :alt => 'logo') %>
     		</a>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
         <li><a href="/profile">Minha conta</a></li>
-        <li><a href="/logout" style="margin-right: 60px">Log out</a></li>
+        <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
     </ul>
 </nav>
+
+<div class="input-group content">
+  <input type="text" class="form-control pull-right" style="max-width:300px" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+      </span>
+</div>

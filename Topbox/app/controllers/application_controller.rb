@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :current_folder, :set_current_folder, :set_carl, :carl
+  helper_method :current_user, :current_folder, :set_current_folder
   @@current_folder #Its a class variable. The Current found should remain the same.
   before_filter :show_navbar
 
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def save_login_state
     if session[:user_id]
-      redirect_to(:controller => 'homes', :action => 'new')
+      redirect_to '/folders'
       return false
     else
       return true

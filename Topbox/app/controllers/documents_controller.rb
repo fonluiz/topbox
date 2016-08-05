@@ -1,6 +1,5 @@
 class DocumentsController < ApplicationController
 
-
   def new
     @document = Document.new
   end
@@ -14,8 +13,6 @@ class DocumentsController < ApplicationController
     else
       redirect_to '/documents'
     end
-
-    #redirect_to(action: "show", id: @documents)
   end
 
   def index

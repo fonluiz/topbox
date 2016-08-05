@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :folders
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#new'
 
   get 'signup'  => 'users#new'
+  get 'mytopbox' => 'folders#index'
   resources :users
 
   get 'login' => 'sessions#new'
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get 'home/new_document' => 'documents#new'
   get 'home/my_documents' => 'documents#index'
 
-  resources :folders
+  resources :folders, :path => "mytopbox"
 
 end

@@ -12,13 +12,13 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     set_current_folder(@folder)
-
   end
 
   # GET /folders/new
   def new
     @folder = Folder.new
   end
+
 
   # GET /folders/1/edit
   def edit
