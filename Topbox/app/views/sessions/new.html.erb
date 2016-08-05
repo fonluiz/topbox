@@ -1,36 +1,36 @@
 <body class="login-bg">
-<div class="login-page">
-  <div class="form">
+  <div class="login-page">
+    <div class="form">
 
-    <!--Application logo-->
-    <div id="logo-container">
-      <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
+      <!--Application logo-->
+      <div id="logo-container">
+        <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
+      </div>
+
+      <!--Sign in form-->
+      <%= form_for(:session, url: login_path) do |f| %>
+          <div class="form-group input-group">
+            <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-user" style="color:#045FB4"></i></span>
+            <%= f.text_field :email_or_username, :placeholder => 'Nome de Usuário ou E-mail', :required => true, :class => 'form-control' %>
+          </div>
+          <div class="form-group input-group">
+            <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-lock" style="color:#045FB4"></i></span>
+            <%= f.password_field :login_password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => 'form-control' %>
+          </div>
+
+          <!--Sign in button-->
+          <%= f.submit 'Entrar', :class => 'btn btn-login' %>
+
+          <!--Flash messages-->
+          <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><%= value %></strong>
+              </div>
+          <% end %>
+
+          <p class="message">Não é cadastrado? <a href="/signup">Crie uma conta</a></p>
+      <% end %>
     </div>
-
-    <!--Sign in form-->
-    <%= form_for(:session, url: login_path) do |f| %>
-        <div class="form-group input-group">
-          <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-user" style="color:#045FB4"></i></span>
-          <%= f.text_field :email_or_username, :placeholder => 'Nome de Usuário ou E-mail', :required => true, :class => 'form-control' %>
-        </div>
-        <div class="form-group input-group">
-          <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-lock" style="color:#045FB4"></i></span>
-          <%= f.password_field :login_password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => 'form-control' %>
-        </div>
-
-        <!--Sign in button-->
-        <%= f.submit 'Entrar', :class => 'btn btn-login' %>
-
-        <!--Flash messages-->
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong><%= value %></strong>
-            </div>
-        <% end %>
-
-        <p class="message">Não é cadastrado? <a href="/signup">Crie uma conta</a></p>
-    <% end %>
   </div>
-</div>
 </body>

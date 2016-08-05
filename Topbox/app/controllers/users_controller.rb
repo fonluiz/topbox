@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :save_login_state, only: [:new, :create]
+  skip_before_filter :show_navbar, only: [:new]
 
   def new
     @user = User.new

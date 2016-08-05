@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :save_login_state, only: [:new, :create]
+  skip_before_filter :show_navbar, only: [:new]
 
   def new
   end
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:login_password])
       log_in @user
-      redirect_to '/home'
+      redirect_to '/folders'
     else
       flash.now[:danger] = 'Usuário e/ou senha invalídos.'
       render :new
