@@ -10,11 +10,11 @@
 
   <table class="table table-striped">
     <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Ultima Alteração</th>
-      <th>Opções</th>
-    </tr>
+     <tr style="color: #2251A6">
+          <th><b>Nome</b></th>
+          <th><b>Ultima Alteração</b></th>
+          <th><b>Opções</b></th>
+        </tr>
     </thead>
     <tbody>
     <% Folder.where(parent_id: @folder.id, owner_id: current_user.id).each do |folder| %>

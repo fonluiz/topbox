@@ -2,12 +2,13 @@
 	<ul>
 		<li>
 			<a class="navbar-brand" href="/mytopbox">
-        		<%= image_tag('topbox_logo.png', :size => '130x40', :alt => 'logo') %>
+        		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo') %>
     		</a>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-        <li><a href="/profile">Minha conta</a></li>
-        <li><%= link_to 'Log out', logout_path, method: 'delete' %></li>
+        <li><a><b style="color: #DAE5F8"><%= current_user.first_name %> <%= current_user.last_name %></b></a></li>
+        <li><a href="/mytopbox" style="margin-right: 60px"><b style="color: #DAE5F8">My Topbox</b></a></li>
+        <li><b style="color: #DAE5F8"><%= link_to 'Log out', logout_path, method: 'delete' %></b></li>
     </ul>
 </nav>
 

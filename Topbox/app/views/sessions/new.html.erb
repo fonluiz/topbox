@@ -4,22 +4,22 @@
 
       <!--Application logo-->
       <div id="logo-container">
-        <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
+        <%= image_tag('topbox_logo.png', :size => '198x67', :alt => 'logo') %>
       </div>
 
       <!--Sign in form-->
       <%= form_for(:session, url: login_path) do |f| %>
           <div class="form-group input-group">
             <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-user" style="color:#045FB4"></i></span>
-            <%= f.text_field :email_or_username, :placeholder => 'Nome de Usuário ou E-mail', :required => true, :class => 'form-control' %>
+            <%= f.text_field :email_or_username, :placeholder => 'Username or E-mail', :required => true, :class => 'form-control' %>
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-lock" style="color:#045FB4"></i></span>
-            <%= f.password_field :login_password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => 'form-control' %>
+            <%= f.password_field :login_password, :placeholder => 'Password', :maxlength => 30, :minlength => 6, :required => true, :class => 'form-control' %>
           </div>
 
           <!--Sign in button-->
-          <%= f.submit 'Entrar', :class => 'btn btn-login' %>
+          <%= f.submit 'Sign in', :class => 'btn btn-login' %>
 
           <!--Flash messages-->
           <% flash.each do |key, value| %>
@@ -29,7 +29,7 @@
               </div>
           <% end %>
 
-          <p class="message">Não é cadastrado? <a href="/signup">Crie uma conta</a></p>
+          <p class="message">Not a member? <a href="/signup">Register now</a></p>
       <% end %>
     </div>
   </div>

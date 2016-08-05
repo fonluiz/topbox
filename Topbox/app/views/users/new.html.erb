@@ -5,20 +5,20 @@
         <!--Application logo-->
         <a href="/">
           <div id="logo-container">
-            <%= image_tag('topbox_logo.png', :size => '230x67', :alt => 'logo') %>
+            <%= image_tag('topbox_logo.png', :size => '198x67', :alt => 'logo') %>
           </div>
         </a>
 
         <!--Sign up form-->
         <%= form_for(@user) do |f| %>
-            <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control" %>
-            <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
-            <%= f.text_field :username, :placeholder => 'username', :minlength => 6, :required => true, :class => "form-control" %>
-            <%= f.email_field :email, :placeholder => 'Email', :required => true, :class => "form-control" %>
-            <%= f.password_field :password, :placeholder => 'password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.text_field :first_name, :placeholder => 'First name', :autofocus => true, :required => true, :class => "form-control" %>
+            <%= f.text_field :last_name, :placeholder => 'Last name', :required => true, :class => "form-control" %>
+            <%= f.text_field :username, :placeholder => 'Username', :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.email_field :email, :placeholder => 'E-mail', :required => true, :class => "form-control" %>
+            <%= f.password_field :password, :placeholder => 'Password', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
 
             <!--Submit sign up form button-->
-            <%= f.submit 'Cadastrar-se', class: 'btn btn-login' %>
+            <%= f.submit 'Sign up', class: 'btn btn-login' %>
 
             <!--Flash messages-->
             <% flash.each do |key, value| %>
@@ -28,7 +28,7 @@
                 </div>
             <% end %>
 
-            <p class="message">Já possui uma conta? <a href="/login">Entrar</a></p>
+            <p class="message">Already a member? <a href="/login">Sign in</a></p>
         <% end %>
 
       </div>

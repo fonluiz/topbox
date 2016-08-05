@@ -2,25 +2,25 @@
   <div class="modal-content">
     <div class="modal-header modal-header-primary">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3><i class="glyphicon glyphicon-folder-open" style="margin: 5px"></i> Nova pasta</h3>
+      <h3><i class="glyphicon glyphicon-folder-open" style="margin: 5px"></i> New folder</h3>
     </div>
     <div class="modal-body">
       <% @folder_new = Folder.new %>
 
       <%= form_for(@folder_new) do |f| %>
-          <label for="folder-name">Nome: </label>
+          <label for="folder-name">Name: </label>
           <%= f.text_field :name, :required => true, :autofocus => true, :class => 'form-control', :id => 'folder-name'%>
           <br>
-          <label for="folder-description">Descrição: </label>
+          <label for="folder-description">Description: </label>
           <%= f.text_area :description, :class => 'form-control', :id => 'folder-description'%>
           <br>
-          <label for="folder-parent">Pasta pai: </label>
+          <label for="folder-parent">Father folder: </label>
           <%= f.collection_select :parent, Folder.order(:name),:id, :name, include_blank: true, :class => 'dropdown-menu', :id => 'folder-parent'%>
           </div>
           <div class="modal-footer">
             <%= f.submit 'Criar', :class => "btn btn-primary" %>
       <% end %>
-      <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Cancel</button>
       </div>
       </div>
 </div>
