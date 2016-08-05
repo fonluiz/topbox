@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
     @document.holder = current_folder
 
     if @document.save
-      redirect_to '/folders/'+current_folder.id.to_s
+      redirect_to '/mytopbox/'+current_folder.id.to_s
     else
       redirect_to '/documents'
     end

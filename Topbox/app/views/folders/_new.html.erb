@@ -15,7 +15,7 @@
           <%= f.text_area :description, :class => 'form-control', :id => 'folder-description'%>
           <br>
           <label for="folder-parent">Pasta pai: </label>
-          <%= f.collection_select :parent, Folder.order(:name),:id, :name, include_blank: true, :class => 'dropdown-menu', :id => 'folder-parent'%>
+          <%= f.collection_select :parent, Folder.order(:name),:id, :name, include_blank: false, :class => 'dropdown-menu', :id => 'folder-parent'%>
           </div>
           <div class="modal-footer">
             <%= f.submit 'Criar', :class => "btn btn-primary" %>
