@@ -32,12 +32,9 @@
             </div>
         </div>
 
-      <p><%= puts current_folder.name %></p>
-
-      <li><%= link_to 'Log out', logout_path, method: 'delete', :class => 'btn-logout' %></li>
-
-      <li><%= link_to "Novo Documento", {:controller => 'documents', :action => 'new', :id => @document}, :class => 'btn-logout' %></li>
-      <li><%= link_to "Meu TopBox", {:controller => 'folders', :action => 'index', :id => @folder}, :class => 'btn-logout' %></li>
+      <p><%= link_to 'Log out', logout_path, method: 'delete', :class => 'btn-logout' %></p>
+      <p><%= link_to "Novo Documento", {:controller => 'documents', :action => 'new', :id => @document}, :class => 'btn-logout' %></p>
+      <p><%= link_to "Meu TopBox", {:controller => 'folders', :action => 'index', :id => @folder}, :class => 'btn-logout' %></p>
 
 
     </div>

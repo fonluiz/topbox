@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
 
+
   def new
     @document = Document.new
   end
@@ -8,11 +9,6 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     @document.holder = current_folder
 
-
-    puts
-    puts current_folder.name
-
-    puts
     if @document.save
       redirect_to '/folders/'+current_folder.id.to_s
     else
@@ -47,7 +43,6 @@ class DocumentsController < ApplicationController
 
     redirect_to action: "show", id: @document
   end
-
 
   private
   def document_params

@@ -15,7 +15,7 @@
         <p><%= @document.content%></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to "Close", :back, {:class=>"btn btn-default"} %>
       </div>
     </div>
   </div>
