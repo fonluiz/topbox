@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      create_default_folder(@user)
+      create_main_folder(@user)
       flash[:success] = 'Conta criada com sucesso!'
       redirect_to '/login'
     else
@@ -34,8 +34,9 @@ class UsersController < ApplicationController
   end
 
   private
-  def create_default_folder(user)
-    @folder = Folder.create(name: 'My TopBox',description: 'Your initial folder',parent: Folder.new,owner: user)
+  def create_main_folder(user)
+    @folder = Folder.create(name: 'My TopBox', parent: nil , user: user)
+    @folder.save(validate: false)
   end
 
 end

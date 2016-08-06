@@ -13,49 +13,23 @@
 ActiveRecord::Schema.define(version: 20160804151240) do
 
   create_table "documents", force: :cascade do |t|
-    t.integer  "holder_id"
+    t.integer  "folder_id"
     t.string   "content"
     t.string   "name"
     t.string   "format"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["holder_id"], name: "index_documents_on_holder_id"
+    t.index ["folder_id"], name: "index_documents_on_folder_id"
   end
 
   create_table "folders", force: :cascade do |t|
     t.integer  "parent_id"
-    t.integer  "owner_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["owner_id"], name: "index_folders_on_owner_id"
-    t.index ["parent_id"], name: "index_folders_on_parent_id"
-  end
-
-  create_table "holders", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-  end
-
-  create_table "homes", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_homes_on_user_id"
-  end
-
-  create_table "owners", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
-  end
-
-  create_table "parents", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+    t.index ["parent_id"], name: "index_folders_on_parent_id"
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

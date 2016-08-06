@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new
-    @document.holder = current_folder
+    @document.folder = current_folder
     @document.name = "Documento sem título"
 
     if @document.save
@@ -45,7 +45,7 @@ class DocumentsController < ApplicationController
 
   def default_create_doc
     @doc = Document.new
-    @doc.holder = current_folder
+    @doc.folder = current_folder
     @doc.name = "Documento sem título"
 
     if @doc.save

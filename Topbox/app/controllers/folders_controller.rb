@@ -32,7 +32,6 @@ class FoldersController < ApplicationController
     @folder = Folder.new(folder_params)
     respond_to do |format|
       @folder.parent = Folder.find(@parent)
-      @folder.owner = current_user
       if @folder.save
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render :show, status: :created, location: @folder }
@@ -73,7 +72,7 @@ class FoldersController < ApplicationController
     @folder_new = Folder.new
     @folder_new.name = "Nova Pasta"
     @folder_new.parent = current_folder
-    @folder_new.owner = current_user
+    @folder_new.user = current_user
 
     if @folder_new.save
       redirect_to '/mytopbox/'+current_folder.id.to_s
@@ -101,9 +100,8 @@ class FoldersController < ApplicationController
       @folder = Folder.find(params[:id])
     end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def folder_params
-      params.require(:folder).permit(:name, :description)
+    def folder_params
+      params.require(:folder).permit(:name)
     end
 
 end

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_folder
-    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', owner_id: current_user.id))
+    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', user_id: current_user.id))
   end
 
   def set_current_folder(folder)
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_mytopbox
-    my_topbox_id = Folder.find_by(name: 'My TopBox', owner_id: current_user.id).id.to_s
+    my_topbox_id = Folder.find_by(name: 'My TopBox', user_id: current_user.id).id.to_s
     redirect_to '/mytopbox/' + my_topbox_id
   end
 
