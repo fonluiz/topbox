@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   get 'signup'  => 'users#new'
-  get 'mytopbox' => 'folders#index'
   resources :users
 
   get 'login' => 'sessions#new'
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :documents
   resources :folders, :path => "mytopbox"
-  get "folders" => "folders#index"
+
+  get 'mytopbox' => 'folder#index'
+
 
 end

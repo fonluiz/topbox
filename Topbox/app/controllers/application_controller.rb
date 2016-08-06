@@ -3,11 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :current_folder, :set_current_folder
-  @@current_folder #Its a class variable. The Current found should remain the same.
   before_filter :show_navbar
 
+  helper_method :current_user, :current_folder, :set_current_folder
+  helper_method :redirect_to_my_topbox
 
+  @@current_folder #Its a class variable. The Current found should remain the same.
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -49,6 +50,11 @@ class ApplicationController < ActionController::Base
   protected
   def show_navbar
     @show_navbar = true
+  end
+
+  def redirect_to_mytopbox
+    my_topbox_id = Folder.find_by(name: 'My TopBox', owner_id: current_user.id).id.to_s
+    redirect_to '/mytopbox/'+my_topbox_id
   end
 
 end

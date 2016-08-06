@@ -2,18 +2,27 @@
 	<ul>
 		<li>
 			<a class="navbar-brand" href="/mytopbox">
-        		<%= image_tag('topbox_logo.png', :size => '130x40', :alt => 'logo') %>
-    		</a>
+        		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo') %>
+    	</a>
+
+
+      <li class="form-inline pull-left" style="position:relative; top: 15px;">
+        <input class="form-control" type="text" style="max-width:300px" placeholder="Search">           
+      </li>
+      <li class="form-inline pull-left" style="position:relative; top: 15px;">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+          </span>  
+      </li>
+
+    </li>
 	</ul>
+
 	<ul class="nav navbar-nav navbar-right">
-        <li><a href="/profile">Minha conta</a></li>
-        <li><%= link_to 'Sair', logout_path, method: 'delete' %></li>
+
+        <li><a><b style="color: #DAE5F8"><%= current_user.first_name %> <%= current_user.last_name %></b></a></li>
+        <li><a href="/mytopbox" style="margin-right: 60px"><b style="color: #DAE5F8">My Topbox</b></a></li>
+        <li><a style="margin-right: 60px"><b style="position:relative; top: -15px;"><%= link_to 'Log out', logout_path, method: 'delete' %></b></a></li>
+        <!-- <li><b style="color: #DAE5F8"><%= link_to 'Log out', logout_path, method: 'delete' %></b></li> -->
     </ul>
 </nav>
-
-<div class="input-group content">
-  <input type="text" class="form-control pull-right" style="max-width:300px" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-      </span>
-</div>

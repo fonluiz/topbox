@@ -1,11 +1,12 @@
 class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_mytopbox, only: [:index]
   helper_method :full_path
 
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    redirect_to_mytopbox
   end
 
   # GET /folders/1
@@ -27,6 +28,11 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
+
+    puts
+    puts "deu quase aguia bb"
+    puts
+
     @parent = params.require(:folder).require(:parent)
     @folder = Folder.new(folder_params)
     respond_to do |format|
@@ -36,10 +42,18 @@ class FoldersController < ApplicationController
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render :show, status: :created, location: @folder }
       else
+        puts
+        puts "deu aguia bb"
+        puts
         format.html { render :new }
         format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
+
+    puts
+    puts "entrei bb"
+    puts
+
   end
 
   # PATCH/PUT /folders/1
@@ -88,4 +102,7 @@ class FoldersController < ApplicationController
     def folder_params
       params.require(:folder).permit(:name, :description)
     end
+
+
+
 end
