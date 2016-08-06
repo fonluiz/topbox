@@ -10,12 +10,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'home' => 'homes#new'
-
   resources :documents
-  get 'home/new_document' => 'documents#new'
-  get 'home/my_documents' => 'documents#index'
-
   resources :folders, :path => "mytopbox"
+  get "folders" => "folders#index"
 
 end
