@@ -18,7 +18,7 @@
           <%= f.collection_select :parent, Folder.order(:name),:id, :name, include_blank: true, :class => 'dropdown-menu', :id => 'folder-parent'%>
           </div>
           <div class="modal-footer">
-            <%= f.submit 'Criar', :class => "btn btn-primary" %>
+            <%= f.submit 'Create', :class => "btn btn-primary" %>
       <% end %>
       <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Cancel</button>
       </div>
