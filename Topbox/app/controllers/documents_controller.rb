@@ -1,17 +1,20 @@
 class DocumentsController < ApplicationController
 
+  helper_method :default_create_doc
+
   def new
     @document = Document.new
   end
 
   def create
-    @document = Document.new(document_params)
+    @document = Document.new
     @document.holder = current_folder
+    @document.name = "Documento sem título"
 
     if @document.save
       redirect_to '/mytopbox/'+current_folder.id.to_s
     else
-      redirect_to '/documents'
+      redirect_to '/blablabla'
     end
   end
 
@@ -26,8 +29,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
-    redirect_to '/home/my_documents'
-    #usar redirect_to para redirecionar para parent_directory
+    redirect_to '/mytopbox/'+current_folder.id.to_s
   end
 
   def edit
@@ -39,6 +41,18 @@ class DocumentsController < ApplicationController
     @document.update_attributes(document_params)
 
     redirect_to action: "show", id: @document
+  end
+
+  def default_create_doc
+    @doc = Document.new
+    @doc.holder = current_folder
+    @doc.name = "Documento sem título"
+
+    if @doc.save
+      redirect_to '/mytopbox/'+current_folder.id.to_s
+    else
+      redirect_to '/blablabla'
+    end
   end
 
   private

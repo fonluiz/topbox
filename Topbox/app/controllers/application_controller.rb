@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :show_navbar
 
   helper_method :current_user, :current_folder, :set_current_folder
-  helper_method :redirect_to_my_topbox
+  helper_method :redirect_to_mytopbox
 
   @@current_folder #Its a class variable. The Current found should remain the same.
 
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def save_login_state
     if session[:user_id]
-      redirect_to '/folders'
+      redirect_to_mytopbox
       return false
     else
       return true
@@ -56,6 +56,8 @@ class ApplicationController < ActionController::Base
     my_topbox_id = Folder.find_by(name: 'My TopBox', owner_id: current_user.id).id.to_s
     redirect_to '/mytopbox/'+my_topbox_id
   end
+
+
 
 end
 
