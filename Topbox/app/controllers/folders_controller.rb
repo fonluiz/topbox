@@ -2,6 +2,7 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_mytopbox, only: [:index]
   helper_method :full_path
+  helper_method :default_create_folder
 
   # GET /folders
   # GET /folders.json
@@ -19,7 +20,6 @@ class FoldersController < ApplicationController
   def new
     @folder = Folder.new
   end
-
 
   # GET /folders/1/edit
   def edit
@@ -68,6 +68,20 @@ class FoldersController < ApplicationController
     end
   end
 
+  def default_create_folder
+    @folder_new = Folder.new
+    @folder_new.name = "Nova Pasta"
+    @folder_new.parent = current_folder
+    @folder_new.owner = current_user
+
+    if @folder_new.save
+      redirect_to '/mytopbox/'+current_folder.id.to_s
+    else
+      redirect_to '/mytopbox/'
+    end
+
+  end
+
   public
   def full_path(folder)
     full_path = folder.name
@@ -80,18 +94,15 @@ class FoldersController < ApplicationController
     return full_path.html_safe
   end
 
-
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_folder
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_folder
       @folder = Folder.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def folder_params
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def folder_params
       params.require(:folder).permit(:name, :description)
     end
-
-
 
 end
