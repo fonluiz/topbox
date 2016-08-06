@@ -6,17 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(first_name: 'Luiz', last_name: 'Fonseca', username: 'luizfo',
+# Users
+luiz = User.create(first_name: 'Luiz', last_name: 'Fonseca', username: 'luizfo',
             email: 'luiz@gmail.com', password: 'luiz123')
 
-User.create(first_name: 'Ítalo', last_name: 'Batista', username: 'italob',
+italo = User.create(first_name: 'Ítalo', last_name: 'Batista', username: 'italob',
             email: 'italo@gmail.com', password: 'italo123')
 
-User.create(first_name: 'Jair', last_name: 'Neto', username: 'jairne',
+jair = User.create(first_name: 'Jair', last_name: 'Neto', username: 'jairne',
             email: 'jair@gmail.com', password: 'jair123')
 
-User.create(first_name: 'Laybson', last_name: 'Cunha', username: 'laybsonc',
+laybson = User.create(first_name: 'Laybson', last_name: 'Cunha', username: 'laybsonc',
             email: 'laybson@gmail.com', password: 'laybson123')
 
-User.create(first_name: 'Gabriel', last_name: 'Morais', username: 'gabrielm',
+gabriel = User.create(first_name: 'Gabriel', last_name: 'Morais', username: 'gabrielm',
             email: 'gabriel@gmail.com', password: 'gabriel123')
+
+# Home Folders
+homelu = Folder.create(name: 'My TopBox', parent: nil , user: luiz)
+homelu.save(validate: false)
+homeit = Folder.create(name: 'My TopBox', parent: nil , user: italo)
+homeit.save(validate: false)
+homeja = Folder.create(name: 'My TopBox', parent: nil , user: jair)
+homeja.save(validate: false)
+homela = Folder.create(name: 'My TopBox', parent: nil , user: laybson)
+homela.save(validate: false)
+homega = Folder.create(name: 'My TopBox', parent: nil , user: gabriel)
+homega.save(validate: false)

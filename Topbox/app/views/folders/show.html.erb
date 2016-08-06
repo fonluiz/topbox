@@ -5,7 +5,6 @@
     </button></h2>
   <p id="notice"><%= notice %></p>
 
-  <p><i></i><%= @folder.description %></i></p>
   <p><b>Você está aqui:</b> <i> <%= full_path(@folder) %></i></p>
 
   <table class="table table-striped">
@@ -17,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <% Folder.where(parent_id: @folder.id, owner_id: current_user.id).each do |folder| %>
+    <% Folder.where(parent_id: @folder.id, user_id: current_user.id).each do |folder| %>
         <tr>
           <td>
             <span class="glyphicon glyphicon-folder-open">  </span>
@@ -31,7 +30,7 @@
 
     <tbody>
     <!-- Documents are not related to an owner? -->
-    <% Document.where(holder_id: @folder.id).each do |document| %>
+    <% Document.where(folder_id: @folder.id).each do |document| %>
         <tr>
           <td>
             <span class="glyphicon glyphicon-file">  </span>

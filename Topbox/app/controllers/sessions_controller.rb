@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:login_password])
       log_in @user
-      redirect_to '/folders'
+      redirect_to '/folders/1'
     else
       flash.now[:danger] = 'Usuário e/ou senha invalídos.'
       render :new

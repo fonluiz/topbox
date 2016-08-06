@@ -12,7 +12,6 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     set_current_folder(@folder)
-
   end
 
   # GET /folders/new
@@ -31,7 +30,6 @@ class FoldersController < ApplicationController
     @folder = Folder.new(folder_params)
     respond_to do |format|
       @folder.parent = Folder.find(@parent)
-      @folder.owner = current_user
       if @folder.save
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render :show, status: :created, location: @folder }
@@ -86,6 +84,6 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:name, :description)
+      params.require(:folder).permit(:name)
     end
 end
