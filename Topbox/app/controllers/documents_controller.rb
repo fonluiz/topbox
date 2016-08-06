@@ -50,8 +50,6 @@ class DocumentsController < ApplicationController
 
     if @doc.save
       redirect_to '/mytopbox/'+current_folder.id.to_s
-    else
-      redirect_to '/blablabla'
     end
   end
 
