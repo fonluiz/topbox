@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_mytopbox
     my_topbox_id = Folder.find_by(name: 'My TopBox', owner_id: current_user.id).id.to_s
-    redirect_to '/mytopbox/'+my_topbox_id
+    redirect_to '/mytopbox/' + my_topbox_id
   end
 
 

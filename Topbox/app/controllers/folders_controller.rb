@@ -41,6 +41,7 @@ class FoldersController < ApplicationController
         format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /folders/1
@@ -84,13 +85,14 @@ class FoldersController < ApplicationController
 
   public
   def full_path(folder)
-    full_path = ''
-    parent = folder.parent
-    until (parent.nil?)
-      full_path = (parent.name + '/' + full_path)
-      parent = parent.parent
+    full_path = folder.name
+    divider = '<b style="color: #2251A6">  >  </b>'
+    parent_folder = folder.parent
+    until (parent_folder.nil?)
+      full_path = (parent_folder.name + divider + full_path)
+      parent_folder = parent_folder.parent
     end
-    return full_path
+    return full_path.html_safe
   end
 
   private
