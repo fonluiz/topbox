@@ -28,11 +28,6 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-
-    puts
-    puts "deu quase aguia bb"
-    puts
-
     @parent = params.require(:folder).require(:parent)
     @folder = Folder.new(folder_params)
     respond_to do |format|
@@ -42,17 +37,10 @@ class FoldersController < ApplicationController
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render :show, status: :created, location: @folder }
       else
-        puts
-        puts "deu aguia bb"
-        puts
         format.html { render :new }
         format.json { render json: @folder.errors, status: :unprocessable_entity }
       end
     end
-
-    puts
-    puts "entrei bb"
-    puts
 
   end
 
@@ -82,13 +70,14 @@ class FoldersController < ApplicationController
 
   public
   def full_path(folder)
-    full_path = ''
-    parent = folder.parent
-    until (parent.nil?)
-      full_path = (parent.name + '/' + full_path)
-      parent = parent.parent
+    full_path = folder.name
+    divider = '<b style="color: #2251A6">  >  </b>'
+    parent_folder = folder.parent
+    until (parent_folder.nil?)
+      full_path = (parent_folder.name + divider + full_path)
+      parent_folder = parent_folder.parent
     end
-    return full_path
+    return full_path.html_safe
   end
 
 

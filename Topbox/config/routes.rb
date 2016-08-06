@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :folders, :path => "mytopbox"
 
   get 'mytopbox' => 'folder#index'
+  get 'mytopbox/:id' => 'folder#index'
 
 
 end
