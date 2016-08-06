@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
-    @document.holder = current_folder
+    @document.folder = current_folder
 
 
     puts

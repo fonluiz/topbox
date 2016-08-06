@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_folder
-    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', owner_id: current_user.id))
+    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', user_id: current_user.id))
   end
 
   def set_current_folder(folder)
