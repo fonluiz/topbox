@@ -62,9 +62,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_folders
-    puts
-    puts current_folder.id
-    puts
     folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
   end
 
