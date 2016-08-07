@@ -9,7 +9,7 @@
             
             <p><a class="subtitle">Mover para:</a></p>
 
-            <p><%= f.collection_select :parent, get_not_children_folders(@folder.children), :id, :name, {:include_blank => false}, {class: "select"}%></p>
+            <p><%= f.collection_select :parent, get_not_children_folders(@folder.children), :id, :name, {:selected => @folder.parent.id}, {class: "select"}%></p>
             <br>
             <br>
             <!--Submit sign up form button-->

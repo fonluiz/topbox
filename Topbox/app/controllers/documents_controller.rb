@@ -38,6 +38,9 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find params[:id]
+    folder_id = params.require(:document).require(:folder)
+    @folder = Folder.find(folder_id)
+    @document.folder = @folder
     @document.update_attributes(document_params)
 
     redirect_to action: "show", id: @document

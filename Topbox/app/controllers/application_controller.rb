@@ -47,8 +47,9 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
-  def get_not_children_folders(children, folders=get_user_folders)
+  def get_not_children_folders(children)
     @result = []
+    folders = get_user_folders.where('id != ?', current_folder.id)
     get_children_folders(children.to_ary)
     return folders - @result
   end
@@ -81,7 +82,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_user_folders
-    Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+    Folder.where(user_id: current_user.id)
   end
 
 end
