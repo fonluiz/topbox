@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_folders
-    folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+    @folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
   end
 
 end
