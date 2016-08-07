@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :save_login_state, only: [:new, :create]
+  before_action :has_active_session?, only: [:new, :create]
   skip_before_filter :show_navbar, only: [:new]
 
   def new
