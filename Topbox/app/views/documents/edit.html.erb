@@ -2,14 +2,14 @@
 
 <%= form_for @document do |d| %>
 
-    Nome: <%= d.text_field :name %>
+    Name: <%= d.text_field :name %>
 
       <!-- Conteudo -->
     <div class="form-group">
       <%= d.text_area(:content, class: "form-control", rows: "5") %>
     </div>
 
-    <%= d.submit "Salvar alterações" %>
+    <%= d.submit "Save changes" %>
 <% end %>
 
 </div>
