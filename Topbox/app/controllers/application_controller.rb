@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :show_navbar
 
   helper_method :current_user, :current_folder, :set_current_folder
-  helper_method :redirect_to_mytopbox, :find_mytopbox, :user_folders
+  helper_method :redirect_to_mytopbox, :find_mytopbox, :user_folders, :children_folders
 
   @@current_folder #Its a class variable. The Current found should remain the same.
 
@@ -47,6 +47,24 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
+  def children_folders(childrens, folders=user_folders)
+    @result = []
+    recursive_children_folders(childrens.to_ary)
+    return folders - @result
+  end
+
+  private
+  def recursive_children_folders(childrens)
+    if childrens.length != 0
+      childrens.each do |c|
+        child = []
+        child.push(c)
+        @result += child
+        recursive_children_folders(c.children.to_ary)
+      end
+    end
+  end
+
   protected
   def show_navbar
     @show_navbar = true
@@ -62,7 +80,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_folders
-    @folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+    Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
   end
 
 end

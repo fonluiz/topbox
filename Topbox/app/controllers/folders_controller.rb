@@ -24,10 +24,12 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @parent = params.require(:folder).require(:parent)
+    parent_id = params.require(:folder).require(:parent)
+    @parent = Folder.find(parent)
     @folder = Folder.new(folder_params)
     respond_to do |format|
-      @folder.parent = Folder.find(@parent)
+      @parent.children << @folder
+      @folder.parent = @parent
       if @folder.save
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render :show, status: :created, location: @folder }
@@ -40,12 +42,16 @@ class FoldersController < ApplicationController
 
   # GET /folders/1/edit
   def edit
+    set_current_folder(@folder)
   end
 
   # PATCH/PUT /folders/1
   # PATCH/PUT /folders/1.json
   def update
+    parent_id = params.require(:folder).require(:parent)
+    @parent = Folder.find(parent_id)
     respond_to do |format|
+      @folder.parent = @parent
       if @folder.update(folder_params)
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { render :show, status: :ok, location: @folder }
