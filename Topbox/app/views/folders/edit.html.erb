@@ -4,6 +4,7 @@
 
         <!--Sign up form-->
         <%= form_for(@folder) do |f| %>
+            <a class="subtitle">Title:</a> 
             <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
 
             <!--Submit sign up form button-->
@@ -13,6 +14,9 @@
       </div>
     </div>
 </body>
-<%= link_to 'Show', @folder %> |
-<%= link_to 'Back', folders_path %>
+<center>
+    <%= link_to 'Show', @folder %> |
+    <%= link_to 'Back', folders_path %>
+</center>
+
 
