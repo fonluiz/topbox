@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -15,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_folder
-    return (@@current_folder ||= Folder.find_by(name: 'My TopBox', user_id: current_user.id))
+    return (@@current_folder ||= Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id))
   end
 
   def set_current_folder(folder)
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to '/login' unless current_user
+    redirect_to LOGIN_URL unless current_user
   end
 
   def has_active_session?
@@ -53,12 +54,12 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_mytopbox
-    my_topbox_id = Folder.find_by(name: 'My TopBox', user_id: current_user.id).id.to_s
-    redirect_to '/mytopbox/' + my_topbox_id
+    my_topbox_id = Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id).id.to_s
+    redirect_to MAIN_FOLDER_PATH + my_topbox_id
   end
 
   def find_mytopbox
-    Folder.find_by(name: 'My topbox', user_id: current_user.id)
+    Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id)
   end
 
   def user_folders

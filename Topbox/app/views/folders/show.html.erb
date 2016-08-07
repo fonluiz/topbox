@@ -5,15 +5,14 @@
     </h2>
   <p id="notice"><%= notice %></p>
 
-  <p class="subtitle">You're here: </p> 
     <i>  <%= full_path(@folder) %></i>
 
   <table class="table table-striped">
     <thead>
     <tr class="subtitle">
-      <th>Name</th>
-      <th>Last Change</th>
-      <th>Options</th>
+      <th>Nome</th>
+      <th>Última modificação</th>
+      <th>Opções</th>
     </tr>
     </thead>
     <tbody>
@@ -23,8 +22,8 @@
             <span class="glyphicon glyphicon-folder-open silver"></span> &nbsp
             <%= link_to folder.name, folder %>
           <td><%= folder.updated_at %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Edit', edit_folder_path(folder) %></td>
-          <td><span class="glyphicon glyphicon-trash silver"></span> &nbsp <%= link_to 'Delete', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Renomear', edit_folder_path(folder) %></td>
+          <td><span class="glyphicon glyphicon-trash silver"></span> &nbsp <%= link_to 'Apagar', folder, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
         </tr>
     <% end %>
     </tbody>
@@ -39,8 +38,8 @@
             <%= link_to document.name, document %>
           </td>
           <td><%= document.updated_at %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Edit', edit_document_path(document) %></td>
-          <td><span class="glyphicon glyphicon-trash silver">  </span> &nbsp <%= link_to 'Delete', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
+          <td><span class="glyphicon glyphicon-trash silver">  </span> &nbsp <%= link_to 'Apagar', document, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
         </tr>
     <% end %>
 

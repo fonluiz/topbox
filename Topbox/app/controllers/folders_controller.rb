@@ -1,4 +1,5 @@
 class FoldersController < ApplicationController
+  include FoldersHelper, ApplicationHelper
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_mytopbox, only: [:index]
   helper_method :full_path
@@ -29,7 +30,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       @folder.parent = Folder.find(@parent)
       if @folder.save
-        format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
+        format.html { redirect_to @folder, notice: folder_created_msg(@folder.name) }
         format.json { render :show, status: :created, location: @folder }
       else
         format.html { render :new }
@@ -47,7 +48,7 @@ class FoldersController < ApplicationController
   def update
     respond_to do |format|
       if @folder.update(folder_params)
-        format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
+        format.html { redirect_to @folder, notice: folder_updated_msg(@folder.name) }
         format.json { render :show, status: :ok, location: @folder }
       else
         format.html { render :edit }
@@ -60,23 +61,24 @@ class FoldersController < ApplicationController
   # DELETE /folders/1.json
   def destroy
     parent = @folder.parent
+    folder_name = @folder.name
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to parent, action: :show, notice: 'Folder was successfully destroyed.' }
+      format.html { redirect_to parent, action: :show, notice: folder_destroyed_msg(folder_name) }
       format.json { head :no_content }
     end
   end
 
   def default_create_folder
     @folder_new = Folder.new
-    @folder_new.name = "Nova Pasta"
+    @folder_new.name = NEW_FOLDER_NAME
     @folder_new.parent = current_folder
     @folder_new.user = current_user
 
     if @folder_new.save
-      redirect_to '/mytopbox/'+current_folder.id.to_s
+      redirect_to MAIN_FOLDER_PATH + current_folder.id.to_s
     else
-      redirect_to '/mytopbox/'
+      redirect_to MAIN_FOLDER_PATH
     end
 
   end

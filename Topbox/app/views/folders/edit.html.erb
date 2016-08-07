@@ -4,19 +4,19 @@
 
         <!--Sign up form-->
         <%= form_for(@folder) do |f| %>
-            <a class="subtitle">Title:</a> 
+            <a class="subtitle">Nome da pasta</a>
             <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
 
             <!--Submit sign up form button-->
-            <%= f.submit 'Save', class: 'btn btn-login' %>
+            <%= f.submit 'Salvar', class: 'btn btn-login' %>
         <% end %>
 
       </div>
     </div>
 </body>
 <center>
-    <%= link_to 'Show', @folder %> |
-    <%= link_to 'Back', folders_path %>
+    <%= link_to 'Ver ' + @folder.name, @folder %> |
+    <%= link_to 'Voltar', folders_path %>
 </center>
 
 
