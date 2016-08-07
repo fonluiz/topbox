@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  get 'logout' => 'sessions#destroy'
 
   resources :documents
   resources :folders, :path => "mytopbox"
