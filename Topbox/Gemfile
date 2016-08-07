@@ -55,3 +55,7 @@ gem 'rspec', '3.1'
 gem 'rspec-rails', '3.1'
 gem 'rspec-context-private', '0.0.1'
 gem 'rspec-html-matchers', '0.6.1'
+
+#Gem for code analysis
+gem 'traceroute'
+gem "rails_best_practices"
