@@ -22,7 +22,7 @@
             <span class="glyphicon glyphicon-folder-open silver"></span> &nbsp
             <%= link_to folder.name, folder %>
           <td><%= folder.updated_at %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Renomear', edit_folder_path(folder) %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Renomear / Mover', edit_folder_path(folder) %></td>
           <td><span class="glyphicon glyphicon-trash silver"></span> &nbsp <%= link_to 'Apagar', folder, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
         </tr>
     <% end %>

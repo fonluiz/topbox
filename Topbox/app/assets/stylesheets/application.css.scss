@@ -160,6 +160,28 @@ body {
   color: #808080;
 }
 
+.select {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  border-radius: 3px;
+  border: 1px solid #CFCFCF;
+  background: #FFFFFF;
+  padding: 5px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+}
+    
+.select:hover {
+  background-color: #FFFFFF;
+}
+
+
 
 
 /* Navbar */

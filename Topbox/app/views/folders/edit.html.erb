@@ -3,9 +3,15 @@
       <div class="form">
         <!--Sign up form-->
         <%= form_for(@folder) do |f| %>
+            
             <a class="subtitle">Nome da pasta</a>
             <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
-            <%= f.collection_select :parent, get_not_children_folders(@folder.children), :id, :name %>
+            
+            <p><a class="subtitle">Mover para:</a></p>
+
+            <p><%= f.collection_select :parent, get_not_children_folders(@folder.children), :id, :name, {:include_blank => true}, {class: "select"}%></p>
+            <br>
+            <br>
             <!--Submit sign up form button-->
             <%= f.submit 'Salvar', class: 'btn btn-login' %>
         <% end %>

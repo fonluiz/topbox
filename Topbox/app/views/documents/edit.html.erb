@@ -11,11 +11,11 @@
 	<br>
 	<div class="content">
 		<%= form_for @document do |d| %>
-			<a class="subtitle">Title:</a> <%= d.text_field :name, :class => 'form-control' %>
+			<a class="subtitle">Título:</a> <%= d.text_field :name, :class => 'form-control' %>
 	    	<br>
 
 	    	<%= d.bootsy_area(:content, class: 'form-control doc-area', :rows => 18) %>
-	  		<%= d.submit "Save changes", :class => 'btn btn-primary pull-right' %>
+	  		<%= d.submit "Salvar", :class => 'btn btn-primary pull-right' %>
 	  	<% end %>
 	</div>
 </body>
