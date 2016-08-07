@@ -5,18 +5,9 @@
         <!--Sign up form-->
         <%= form_for(@folder) do |f| %>
             <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
-            <%= f.collection_select :parent, user_folders, :id, :name %>
 
             <!--Submit sign up form button-->
             <%= f.submit 'Salvar', class: 'btn btn-login' %>
-
-            <!--Flash messages-->
-            <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key %> fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <%= value %>
-                </div>
-            <% end %>
         <% end %>
 
       </div>

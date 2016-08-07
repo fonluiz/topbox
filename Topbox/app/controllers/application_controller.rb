@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
-  def save_login_state
+  def has_active_session?
     if session[:user_id]
       redirect_to_mytopbox
       return false
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_folders
-    folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+    @folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
   end
 
 end
