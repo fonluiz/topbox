@@ -2,6 +2,7 @@
 @import "bootstrap";
 
 /* universal 
+*= require bootsy
 *= require_self
 */
 
@@ -153,8 +154,6 @@ li {
 }
 
 
-
-
 /* Home */
 
 .content {
@@ -208,4 +207,19 @@ li {
     -moz-border-radius-topright: 5px;
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
+}
+
+/* Documents */
+
+.wysihtml5-toolbar {
+    margin-left: -40px;
+}
+
+.wysihtml5-toolbar li {
+    display: inline;
+}
+
+.doc-area {
+  height: 100%;
+  margin-bottom: 10px;
 }

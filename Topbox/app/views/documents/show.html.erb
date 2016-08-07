@@ -1,6 +1,6 @@
 <div class= "container-fluid">
   <div class="col-sm-12">
     <h2> <center><%= @document.name%> </center></h2>
-    <p> <%= @document.content %></p>
+    <p> <%= @document.content.html_safe %></p>
   </div>
 </div>
