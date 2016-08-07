@@ -62,7 +62,13 @@
     </div>
 
     <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right"><i class="glyphicon glyphicon-plus"></i></button>>
-    </tbody>
+
+
+    <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
+    <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
+    <% end %>
+
+    </tbody> 
   </table>
 </div>
 
