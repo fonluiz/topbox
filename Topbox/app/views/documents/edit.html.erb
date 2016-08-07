@@ -1,15 +1,21 @@
-<div class="form">
+<body>
+	<script type="text/javascript">
+		if(location.search.indexOf('reloaded=yes') < 0){
+		var hash = window.location.hash;
+		var loc = window.location.href.replace(hash, '');
+		loc += (loc.indexOf('?') < 0? '?' : '&') + 'reloaded=yes';
+		setTimeout(function(){window.location.href = loc + hash;}, 0);
+		}
+	</script>
 
-<%= form_for @document do |d| %>
+	<br>
+	<div class="content">
+		<%= form_for @document do |d| %>
+			<a class="subtitle">Title:</a> <%= d.text_field :name, :class => 'form-control' %>
+	    	<br>
 
-    Name: <%= d.text_field :name %>
-
-      <!-- Conteudo -->
-    <div class="form-group">
-      <%= d.text_area(:content, class: "form-control", rows: "5") %>
-    </div>
-
-    <%= d.submit "Save changes" %>
-<% end %>
-
-</div>
+	    	<%= d.bootsy_area(:content, class: 'form-control doc-area', :rows => 18) %>
+	  		<%= d.submit "Save changes", :class => 'btn btn-primary pull-right' %>
+	  	<% end %>
+	</div>
+</body>

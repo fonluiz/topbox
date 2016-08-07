@@ -1,7 +1,7 @@
 module UsersHelper
 
-  ACCOUNT_CREATED_MSG = 'Your account has been successfully created'
-  EMAIL_USED_MSG = 'This email is registered already. Please, choose a different one.'
-  USERNAME_USED_MSG = 'This username is registered already. Please, choose a different one.'
+  ACCOUNT_CREATED_MSG = 'Sua conta foi criada com sucesso!'
+  EMAIL_USED_MSG = 'Esse email já está registrado. Por favor, escolha outro.'
+  USERNAME_USED_MSG = 'Esse nome de usuário já está registrado. Por favor, escolha outro.'
 
 end

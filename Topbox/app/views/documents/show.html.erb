@@ -1,6 +1,10 @@
 <div class= "container-fluid">
   <div class="col-sm-12">
     <h2> <center><%= @document.name%> </center></h2>
-    <p> <%= @document.content %></p>
+    <p> <%= @document.content.html_safe %></p>
   </div>
+
+	<%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
+    <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
+    <% end %>
 </div>

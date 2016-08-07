@@ -2,6 +2,7 @@
 @import "bootstrap";
 
 /* universal 
+*= require bootsy
 *= require_self
 */
 
@@ -60,6 +61,7 @@ body {
 .btn-login {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
+  font-weight: bold;
   outline: 0;
   background: #008BED !important;
   width: 100%;
@@ -75,6 +77,7 @@ body {
 .btn-logout {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
+  font-weight: bold;
   outline: 0;
   background: #008BED !important;
   width: 100%;
@@ -87,6 +90,14 @@ body {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+}
+
+.btn-primary {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #008BED;
+    color: #ffffff;
 }
 
 .form .message {
@@ -139,6 +150,16 @@ body {
   color: #EF3B3A;
 }
 
+.subtitle {
+  font-family: "Roboto", sans-serif;
+  color: #2251A6;
+  font-weight: bold;
+}
+
+.silver {
+  color: #808080;
+}
+
 
 
 /* Navbar */
@@ -151,8 +172,6 @@ body {
 li {
     display: block;
 }
-
-
 
 
 /* Home */
@@ -184,6 +203,12 @@ li {
   right: 50px;
 }
 
+.lower-left {
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+}
+
 .btn-menu {
   position: absolute;
   bottom: 10px;
@@ -208,4 +233,19 @@ li {
     -moz-border-radius-topright: 5px;
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
+}
+
+/* Documents */
+
+.wysihtml5-toolbar {
+    margin-left: -40px;
+}
+
+.wysihtml5-toolbar li {
+    display: inline;
+}
+
+.doc-area {
+  height: 100%;
+  margin-bottom: 10px;
 }

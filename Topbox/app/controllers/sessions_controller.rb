@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
   before_action :has_active_session?, only: [:new, :create]
   skip_before_filter :show_navbar, only: [:new, :create]
 
@@ -12,14 +13,14 @@ class SessionsController < ApplicationController
       log_in @user
       redirect_to_mytopbox
     else
-      flash.now[:danger] = 'Usuário e/ou senha invalídos.'
+      flash.now[:danger] = INVALID_AUTHENTICATION_ERROR
       render :new
     end
   end
 
   def destroy
     log_out
-    redirect_to :action => 'new'
+    redirect_to :action => ACTION_NEW
   end
 
   private

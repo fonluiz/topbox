@@ -3,15 +3,19 @@
       <div class="form">
         <!--Sign up form-->
         <%= form_for(@folder) do |f| %>
+            <a class="subtitle">Title:</a> 
             <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
             <%= f.collection_select :parent, children_folders(@folder.children), :id, :name %>
             <!--Submit sign up form button-->
-            <%= f.submit 'Salvar', class: 'btn btn-login' %>
+            <%= f.submit 'Save', class: 'btn btn-login' %>
         <% end %>
 
       </div>
     </div>
 </body>
-<%= link_to 'Show', @folder %> |
-<%= link_to 'Back', folders_path %>
+<center>
+    <%= link_to 'Show', @folder %> |
+    <%= link_to 'Back', folders_path %>
+</center>
+
 
