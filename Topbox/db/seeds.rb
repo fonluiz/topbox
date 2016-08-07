@@ -23,13 +23,13 @@ gabriel = User.create(first_name: 'Gabriel', last_name: 'Morais', username: 'gab
             email: 'gabriel@gmail.com', password: 'gabriel123')
 
 # Home Folders
-homelu = Folder.create(name: 'Meu TopBox', parent: nil , user: luiz)
+homelu = Folder.create(name: 'Meu Topbox', parent: nil , user: luiz)
 homelu.save(validate: false)
-homeit = Folder.create(name: 'Meu TopBox', parent: nil , user: italo)
+homeit = Folder.create(name: 'Meu Topbox', parent: nil , user: italo)
 homeit.save(validate: false)
-homeja = Folder.create(name: 'Meu TopBox', parent: nil , user: jair)
+homeja = Folder.create(name: 'Meu Topbox', parent: nil , user: jair)
 homeja.save(validate: false)
-homela = Folder.create(name: 'Meu TopBox', parent: nil , user: laybson)
+homela = Folder.create(name: 'Meu Topbox', parent: nil , user: laybson)
 homela.save(validate: false)
-homega = Folder.create(name: 'Meu TopBox', parent: nil , user: gabriel)
+homega = Folder.create(name: 'Meu Topbox', parent: nil , user: gabriel)
 homega.save(validate: false)

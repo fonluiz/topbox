@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   resources :documents
   resources :folders, :path => "mytopbox"
 
-
-
   get 'default_create_doc' => 'documents#default_create_doc'
   get 'default_create_folder' => 'folders#default_create_folder'
 
