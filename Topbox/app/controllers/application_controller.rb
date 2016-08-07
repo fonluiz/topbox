@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :show_navbar
 
   helper_method :current_user, :current_folder, :set_current_folder
-  helper_method :redirect_to_mytopbox
+  helper_method :redirect_to_mytopbox, :find_mytopbox, :user_folders
 
   @@current_folder #Its a class variable. The Current found should remain the same.
 
@@ -57,7 +57,13 @@ class ApplicationController < ActionController::Base
     redirect_to '/mytopbox/' + my_topbox_id
   end
 
+  def find_mytopbox
+    Folder.find_by(name: 'My topbox', user_id: current_user.id)
+  end
 
+  def user_folders
+    folders = Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+  end
 
 end
 
