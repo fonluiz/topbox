@@ -2,8 +2,8 @@ class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_mytopbox, only: [:index]
-  helper_method :full_path
-  helper_method :default_create_folder
+  helper_method :get_folder_path
+  helper_method :create_default_folder
 
   # GET /folders
   # GET /folders.json
@@ -25,9 +25,8 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    parent_id = params.require(:folder).require(:parent)
     @parent = Folder.find(parent)
-    @folder = Folder.new(folder_params)
+    @folder = Folder.new(get_folder_params)
     respond_to do |format|
       @parent.children << @folder
       @folder.parent = @parent
@@ -53,7 +52,7 @@ class FoldersController < ApplicationController
     @parent = Folder.find(parent_id)
     respond_to do |format|
       @folder.parent = @parent
-      if @folder.update(folder_params)
+      if @folder.update(get_folder_params)
         format.html { redirect_to @folder, notice: folder_updated_msg(@folder.name) }
         format.json { render :show, status: :ok, location: @folder }
       else
@@ -75,22 +74,22 @@ class FoldersController < ApplicationController
     end
   end
 
-  def default_create_folder
+  def create_default_folder
     @folder_new = Folder.new
     @folder_new.name = NEW_FOLDER_NAME
-    @folder_new.parent = current_folder
-    @folder_new.user = current_user
+    @folder_new.parent = get_current_folder
+    @folder_new.user = get_current_user
 
     if @folder_new.save
-      redirect_to MAIN_FOLDER_PATH + current_folder.id.to_s
+      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
     else
       redirect_to MAIN_FOLDER_PATH
     end
-
   end
 
+  # Returns the path of a folder
   public
-  def full_path(folder)
+  def get_folder_path(folder)
     full_path = folder.name
     divider = '<b style="color: #2251A6">  >  </b>'
     parent_folder = folder.parent
@@ -104,11 +103,11 @@ class FoldersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_folder
-      @folder = Folder.find(params[:id])
-    end
+    @folder = Folder.find(params[:id])
+  end
 
-    def folder_params
-      params.require(:folder).permit(:name)
-    end
+  def get_folder_params
+    params.require(:folder).permit(:name)
+  end
 
 end

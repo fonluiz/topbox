@@ -5,17 +5,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :show_navbar
 
-  helper_method :current_user, :current_folder, :set_current_folder
+  helper_method :get_current_user, :get_current_folder, :set_current_folder
   helper_method :redirect_to_mytopbox, :find_mytopbox, :get_user_folders, :get_not_children_folders
 
   @@current_folder #The Current folder should remain the same.
 
-  def current_user
+  def get_current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_folder
-    return (@@current_folder ||= Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id))
+  def get_current_folder
+    return (@@current_folder ||= Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id))
   end
 
   def set_current_folder(folder)
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to LOGIN_URL unless current_user
+    redirect_to LOGIN_URL unless get_current_user
   end
 
   def has_active_session?
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.nil?
+    !get_current_user.nil?
   end
 
   def get_not_children_folders(children, folders=get_user_folders)
@@ -71,17 +71,17 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_mytopbox
-    my_topbox = Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id)
+    my_topbox = Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id)
     my_topbox_id = my_topbox.id.to_s
     redirect_to MAIN_FOLDER_PATH + my_topbox_id
   end
 
   def find_mytopbox
-    Folder.find_by(name: MAIN_FOLDER_NAME, user_id: current_user.id)
+    Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id)
   end
 
   def get_user_folders
-    Folder.where(user_id: current_user.id).where('id != ?', current_folder.id)
+    Folder.where(user_id: get_current_user.id).where('id != ?', get_current_folder.id)
   end
 
 end

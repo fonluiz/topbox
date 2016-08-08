@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
-
-  helper_method :default_create_doc
+  include DocumentsHelper, ApplicationHelper
+  helper_method :create_default_doc
 
   def new
     @document = Document.new
@@ -8,11 +8,11 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new
-    @document.folder = current_folder
-    @document.name = "Documento sem título"
+    @document.folder = get_current_folder
+    @document.name = NEW_DOCUMENT_NAME
 
     if @document.save
-      redirect_to '/mytopbox/'+current_folder.id.to_s
+      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
     else
       redirect_to '/blablabla'
     end
@@ -29,7 +29,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
-    redirect_to '/mytopbox/'+current_folder.id.to_s
+    redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
   end
 
   def edit
@@ -38,23 +38,22 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find params[:id]
-    @document.update_attributes(document_params)
-
-    redirect_to action: "show", id: @document
+    @document.update_attributes(get_document_params)
+    redirect_to action: ACTION_SHOW, id: @document
   end
 
-  def default_create_doc
+  def create_default_doc
     @doc = Document.new
-    @doc.folder = current_folder
-    @doc.name = "Documento sem título"
+    @doc.folder = get_current_folder
+    @doc.name = NEW_DOCUMENT_NAME
 
     if @doc.save
-      redirect_to '/mytopbox/'+current_folder.id.to_s
+      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
     end
   end
 
   private
-  def document_params
+  def get_document_params
     params.require(:document).permit(:name, :content)
   end
 

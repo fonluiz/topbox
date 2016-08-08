@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(get_user_params)
     if @user.save
       create_main_folder(@user)
       flash[:success] = ACCOUNT_CREATED_MSG
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
+  def get_user_params
     params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
   end
 

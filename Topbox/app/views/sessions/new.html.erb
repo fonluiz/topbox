@@ -11,7 +11,7 @@
       <%= form_for(:session, url: login_path) do |f| %>
           <div class="form-group input-group">
             <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-user" style="color:#045FB4"></i></span>
-            <%= f.text_field :email_or_username, :placeholder => 'Nome de usuário ou E-mail', :required => true, :class => 'form-control' %>
+            <%= f.text_field :find_user, :placeholder => 'Nome de usuário ou E-mail', :required => true, :class => 'form-control' %>
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon" style="background:#FFFFFF"><i class="glyphicon glyphicon-lock" style="color:#045FB4"></i></span>
