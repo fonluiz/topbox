@@ -21,7 +21,7 @@
           <td>
             <span class="glyphicon glyphicon-folder-open silver"></span> &nbsp
             <%= link_to folder.name, folder %>
-          <td><%= l(folder.updated_at, format: '%d/%M/%Y às %H:%M') %></td>
+          <td><%= folder.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
           <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
             &nbsp <%= link_to 'Renomear / Mover', edit_folder_path(folder) %></td>
           <td><span class="glyphicon glyphicon-trash silver"></span>
@@ -39,7 +39,7 @@
             <span class="glyphicon glyphicon-file silver"> </span> &nbsp
             <%= link_to document.name, document %>
           </td>
-          <td><%= document.updated_at.strftime('%d/%M/%Y às %H:%M') %></td>
+          <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
           <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
             &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
           <td><span class="glyphicon glyphicon-trash silver">  </span>
