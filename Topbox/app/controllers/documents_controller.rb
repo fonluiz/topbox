@@ -13,8 +13,6 @@ class DocumentsController < ApplicationController
 
     if @document.save
       redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
-    else
-      redirect_to '/blablabla'
     end
   end
 
@@ -43,16 +41,6 @@ class DocumentsController < ApplicationController
     @document.folder = @folder
     @document.update_attributes(get_document_params)
     redirect_to action: ACTION_SHOW, id: @document
-  end
-
-  def create_default_doc
-    @doc = Document.new
-    @doc.folder = get_current_folder
-    @doc.name = NEW_DOCUMENT_NAME
-
-    if @doc.save
-      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
-    end
   end
 
   private

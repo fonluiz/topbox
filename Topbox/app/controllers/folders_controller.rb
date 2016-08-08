@@ -25,18 +25,13 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @parent = Folder.find(parent)
-    @folder = Folder.new(get_folder_params)
-    respond_to do |format|
-      @parent.children << @folder
-      @folder.parent = @parent
-      if @folder.save
-        format.html { redirect_to @folder, notice: folder_created_msg(@folder.name) }
-        format.json { render :show, status: :created, location: @folder }
-      else
-        format.html { render :new }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
-      end
+    @folder = Folder.new
+    @folder.name = NEW_FOLDER_NAME
+    @folder.parent = get_current_folder
+    @folder.user = get_current_user
+
+    if @folder.save
+      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
     end
   end
 
@@ -71,19 +66,6 @@ class FoldersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to parent, action: :show, notice: folder_destroyed_msg(folder_name) }
       format.json { head :no_content }
-    end
-  end
-
-  def create_default_folder
-    @folder_new = Folder.new
-    @folder_new.name = NEW_FOLDER_NAME
-    @folder_new.parent = get_current_folder
-    @folder_new.user = get_current_user
-
-    if @folder_new.save
-      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
-    else
-      redirect_to MAIN_FOLDER_PATH
     end
   end
 
