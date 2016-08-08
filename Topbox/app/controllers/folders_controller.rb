@@ -31,9 +31,10 @@ class FoldersController < ApplicationController
     @folder.name = NEW_FOLDER_NAME
     @folder.parent = get_current_folder
     @folder.user = get_current_user
-
     if @folder.save
-      redirect_to_current_folder
+      edit
+      redirect_to edit_folder_path(@folder)
+      #redirect_to_current_folder
     end
   end
 
