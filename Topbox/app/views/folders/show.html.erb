@@ -2,10 +2,10 @@
   <% set_current_folder(@folder) %>
 
   <h2 class="subtitle"><%= @folder.name %>
-    </h2>
+  </h2>
   <p id="notice"><%= notice %></p>
 
-    <i>  <%= get_folder_path(@folder) %></i>
+  <i> <%= get_folder_path(@folder) %></i>
 
   <table class="table table-striped">
     <thead>
@@ -21,9 +21,11 @@
           <td>
             <span class="glyphicon glyphicon-folder-open silver"></span> &nbsp
             <%= link_to folder.name, folder %>
-          <td><%= folder.updated_at %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Renomear / Mover', edit_folder_path(folder) %></td>
-          <td><span class="glyphicon glyphicon-trash silver"></span> &nbsp <%= link_to 'Apagar', folder, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <td><%= l(folder.updated_at, format: '%d/%M/%Y às %H:%M') %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
+            &nbsp <%= link_to 'Renomear / Mover', edit_folder_path(folder) %></td>
+          <td><span class="glyphicon glyphicon-trash silver"></span>
+            &nbsp <%= link_to 'Apagar', folder, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
         </tr>
     <% end %>
     </tbody>
@@ -37,9 +39,11 @@
             <span class="glyphicon glyphicon-file silver"> </span> &nbsp
             <%= link_to document.name, document %>
           </td>
-          <td><%= document.updated_at %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span> &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
-          <td><span class="glyphicon glyphicon-trash silver">  </span> &nbsp <%= link_to 'Apagar', document, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <td><%= document.updated_at.strftime('%d/%M/%Y às %H:%M') %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
+            &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
+          <td><span class="glyphicon glyphicon-trash silver">  </span>
+            &nbsp <%= link_to 'Apagar', document, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
         </tr>
     <% end %>
 
@@ -48,26 +52,28 @@
     <div id="menu" class="modal fade" role="dialog">
       <div class="btn-menu">
 
-            <%= link_to '/default_create_doc', class: 'btn btn-info btn-circle btn-xl' do %>
-            <%= content_tag('i', nil, class: 'glyphicon glyphicon-file')%>
-            <% end %>
+        <%= link_to '/default_create_doc', class: 'btn btn-info btn-circle btn-xl' do %>
+            <%= content_tag('i', nil, class: 'glyphicon glyphicon-file') %>
+        <% end %>
 
 
-            <%= link_to '/default_create_folder', class: 'btn btn-info btn-circle btn-xl' do %>
+        <%= link_to '/default_create_folder', class: 'btn btn-info btn-circle btn-xl' do %>
             <%= content_tag('i', nil, class: 'glyphicon glyphicon-folder-open') %>
-            <% end %>
+        <% end %>
 
       </div>
     </div>
 
-    <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right"><i class="glyphicon glyphicon-plus"></i></button>>
+    <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
+      <i class="glyphicon glyphicon-plus"></i></button>
 
-
-    <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
-    <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
+    <% unless @folder.id == find_mytopbox.id %>
+        <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
+            <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil') %>
+        <% end %>
     <% end %>
 
-    </tbody> 
+    </tbody>
   </table>
 </div>
 
