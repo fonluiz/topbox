@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <nav class="navbar navbar-default navbar-static-top">
 	<ul>
 		<li>
@@ -8,9 +9,10 @@
 	</ul>
 
 	<ul class="nav navbar-nav navbar-right">
-        <li><a style="margin-right: 60px"><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
+        <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
         
         <li><a href="/mytopbox/"><b style="color: #DAE5F8">Meu Topbox</b></a></li>
         <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
     </ul>
 </nav>
+</div>
