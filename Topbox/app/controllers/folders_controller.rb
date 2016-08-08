@@ -3,7 +3,7 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_mytopbox, only: [:index]
   helper_method :get_folder_path
-  helper_method :create_default_folder
+
 
   # GET /folders
   # GET /folders.json
@@ -31,7 +31,7 @@ class FoldersController < ApplicationController
     @folder.user = get_current_user
 
     if @folder.save
-      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
+      redirect_to_current_folder
     end
   end
 

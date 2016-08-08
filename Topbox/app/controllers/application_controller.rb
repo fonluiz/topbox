@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :show_navbar
 
-  helper_method :get_current_user, :get_current_folder, :set_current_folder
-  helper_method :redirect_to_mytopbox, :find_mytopbox, :get_user_folders, :get_not_children_folders
+  helper_method :get_current_user, :get_current_folder, :set_current_folder, :get_user_folders, :get_not_children_folders
+  helper_method :redirect_to_mytopbox, :redirect_to_current_folder
+  helper_method :find_mytopbox
 
   @@current_folder #The Current folder should remain the same.
 
@@ -75,6 +76,10 @@ class ApplicationController < ActionController::Base
     my_topbox = Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id)
     my_topbox_id = my_topbox.id.to_s
     redirect_to MAIN_FOLDER_PATH + my_topbox_id
+  end
+
+  def redirect_to_current_folder
+    redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
   end
 
   def find_mytopbox

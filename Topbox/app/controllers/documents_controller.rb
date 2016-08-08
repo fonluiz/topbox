@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
-  helper_method :create_default_doc
+
 
   def new
     @document = Document.new
@@ -12,7 +12,7 @@ class DocumentsController < ApplicationController
     @document.name = NEW_DOCUMENT_NAME
 
     if @document.save
-      redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
+      redirect_to_current_folder
     end
   end
 
