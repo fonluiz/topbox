@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to LOGIN_URL unless get_current_user
+    redirect_to LOGIN_URL unless logged_in?
   end
 
   def has_active_session?

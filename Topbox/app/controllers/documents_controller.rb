@@ -21,6 +21,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
+    require_user
     @document = Document.find(params[:id])
   end
 

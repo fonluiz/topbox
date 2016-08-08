@@ -8,12 +8,14 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
+    require_user
     redirect_to_mytopbox
   end
 
   # GET /folders/1
   # GET /folders/1.json
   def show
+    require_user
     set_current_folder(@folder)
   end
 
