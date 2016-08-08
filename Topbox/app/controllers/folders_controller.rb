@@ -1,16 +1,21 @@
 class FoldersController < ApplicationController
+  include FoldersHelper, ApplicationHelper
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
-  helper_method :full_path
+  before_action :redirect_to_mytopbox, only: [:index]
+  helper_method :get_folder_path
+
 
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    require_user
+    redirect_to_mytopbox
   end
 
   # GET /folders/1
   # GET /folders/1.json
   def show
+    require_user
     set_current_folder(@folder)
   end
 
@@ -19,33 +24,34 @@ class FoldersController < ApplicationController
     @folder = Folder.new
   end
 
-  # GET /folders/1/edit
-  def edit
-  end
-
   # POST /folders
   # POST /folders.json
   def create
-    @parent = params.require(:folder).require(:parent)
-    @folder = Folder.new(folder_params)
-    respond_to do |format|
-      @folder.parent = Folder.find(@parent)
-      if @folder.save
-        format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
-        format.json { render :show, status: :created, location: @folder }
-      else
-        format.html { render :new }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
-      end
+    @folder = Folder.new
+    @folder.name = NEW_FOLDER_NAME
+    @folder.parent = get_current_folder
+    @folder.user = get_current_user
+    if @folder.save
+      edit
+      redirect_to edit_folder_path(@folder)
+      #redirect_to_current_folder
     end
+  end
+
+  # GET /folders/1/edit
+  def edit
+    set_current_folder(@folder)
   end
 
   # PATCH/PUT /folders/1
   # PATCH/PUT /folders/1.json
   def update
+    parent_id = params.require(:folder).require(:parent)
+    @parent = Folder.find(parent_id)
     respond_to do |format|
-      if @folder.update(folder_params)
-        format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
+      @folder.parent = @parent
+      if @folder.update(get_folder_params)
+        format.html { redirect_to @folder, notice: folder_updated_msg(@folder.name) }
         format.json { render :show, status: :ok, location: @folder }
       else
         format.html { render :edit }
@@ -57,33 +63,36 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
+    parent = @folder.parent
+    folder_name = @folder.name
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
+      format.html { redirect_to parent, action: :show, notice: folder_destroyed_msg(folder_name) }
       format.json { head :no_content }
     end
   end
 
+  # Returns the path of a folder
   public
-  def full_path(folder)
-    full_path = ''
-    parent = folder.parent
-    until (parent.nil?)
-      full_path = (parent.name + '/' + full_path)
-      parent = parent.parent
+  def get_folder_path(folder)
+    full_path = folder.name
+    divider = '<b style="color: #2251A6">  >  </b>'
+    parent_folder = folder.parent
+    until (parent_folder.nil?)
+      full_path = (parent_folder.name + divider + full_path)
+      parent_folder = parent_folder.parent
     end
-    return full_path
+    return full_path.html_safe
   end
 
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_folder
+    @folder = Folder.find(params[:id])
+  end
 
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_folder
-      @folder = Folder.find(params[:id])
-    end
+  def get_folder_params
+    params.require(:folder).permit(:name)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def folder_params
-      params.require(:folder).permit(:name)
-    end
 end

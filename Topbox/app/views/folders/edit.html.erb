@@ -1,6 +1,27 @@
-<h1>Editing Folder</h1>
+<body class="login-bg">
+    <div class="login-page">
+      <div class="form">
+        <!--Sign up form-->
+        <%= form_for(@folder) do |f| %>
+            
+            <a class="subtitle">Nome da pasta</a>
+            <%= f.text_field :name, :placeholder => @folder.name, :autofocus => true, :required => true, :class => "form-control" %>
+            
+            <p><a class="subtitle">Mover para:</a></p>
 
-<%= render 'form', folder: @folder %>
+            <p><%= f.collection_select :parent, get_not_children_folders(@folder.children), :id, :name, {:selected => @folder.parent.id}, {class: "select"}%></p>
+            <br>
+            <br>
+            <!--Submit sign up form button-->
+            <%= f.submit 'Salvar', class: 'btn btn-login' %>
+        <% end %>
 
-<%= link_to 'Show', @folder %> |
-<%= link_to 'Back', folders_path %>
+      </div>
+    </div>
+</body>
+<center>
+    <%= link_to 'Ver ' + @folder.name, @folder %> |
+    <%= link_to 'Voltar', folders_path %>
+</center>
+
+

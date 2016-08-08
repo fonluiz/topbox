@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :folders
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#new'
 
@@ -8,12 +8,14 @@ Rails.application.routes.draw do
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
 
   resources :documents
-  get 'home/new_document' => 'documents#new'
-  get 'home/my_documents' => 'documents#index'
+  resources :folders, :path => 'mytopbox'
 
-  resources :folders
+  get 'create_doc' => 'documents#create'
+  get 'create_folder' => 'folders#create'
+
+
 
 end

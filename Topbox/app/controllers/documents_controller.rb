@@ -1,25 +1,19 @@
 class DocumentsController < ApplicationController
+  include DocumentsHelper, ApplicationHelper
+
 
   def new
     @document = Document.new
   end
 
   def create
-    @document = Document.new(document_params)
-    @document.folder = current_folder
+    @document = Document.new
+    @document.folder = get_current_folder
+    @document.name = NEW_DOCUMENT_NAME
 
-
-    puts
-    puts current_folder.name
-
-    puts
     if @document.save
-      redirect_to '/folders/'+current_folder.id.to_s
-    else
-      redirect_to '/documents'
+      redirect_to_current_folder
     end
-
-    #redirect_to(action: "show", id: @documents)
   end
 
   def index
@@ -27,14 +21,14 @@ class DocumentsController < ApplicationController
   end
 
   def show
+    require_user
     @document = Document.find(params[:id])
   end
 
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
-    redirect_to '/home/my_documents'
-    #usar redirect_to para redirecionar para parent_directory
+    redirect_to MAIN_FOLDER_PATH + get_current_folder.id.to_s
   end
 
   def edit
@@ -43,14 +37,15 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find params[:id]
-    @document.update_attributes(document_params)
-
-    redirect_to action: "show", id: @document
+    folder_id = params.require(:document).require(:folder)
+    @folder = Folder.find(folder_id)
+    @document.folder = @folder
+    @document.update_attributes(get_document_params)
+    redirect_to action: ACTION_SHOW, id: @document
   end
 
-
   private
-  def document_params
+  def get_document_params
     params.require(:document).permit(:name, :content)
   end
 
