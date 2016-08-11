@@ -15,5 +15,19 @@ Departamento de Sistemas e Computação <br/>
   <li>Rafaela Lacerda</li>
 </ul>
 
+<h3> Configurando o ambiente </h3>
+	
+	Ruby - versão 2.3
+	Ruby on Rails - versão 5.0
+	sqlite3 - versão 3.11
+
+<b> Passo 1) </b> Instalar Ruby. Você pode seguir <a href="https://www.ruby-lang.org/pt/documentation/installation/">este tutorial</a>. <br/>
+<b> Passo 2) </b> Instalar Ruby on Rails. Voce pode seguir <a href="http://installrails.com/">este tutorial</a>. <br/>
+<b> Passo 3) </b> Instalar o sqlite3, caso não o tenha. <br/>
+<b> Passo 4) </b> Baixe o projeto pelo GitHub. <br/>
+<b> Passo 5) </b> No terminal, Entre no diretório “Topbox”.  < cd topbox/Topbox > <br/>
+<b> Passo 6) </b> Digite o comando < rails server > <br/>
+<b> Passo 7) </b> Entre no seu navegador e digite http://localhost:3000 <br/>
+
 <p> As atividades foram realizadas, em sua maioria, por meio de implementação colaborativas em branches. Sendo seu conteúdo mesclado posteriormente com o da branch principal (master). Sendo assim, alguns membros do grupo não constam nas estatísticas de contribuição do github. Embora algumas branches tenham sido deletadas, algumas ainda constam no repositório. Além disso, está disponível no Trello a distribuição das atividades. </p>
 
