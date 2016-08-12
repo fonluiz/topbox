@@ -23,7 +23,7 @@ Departamento de Sistemas e Computação <br/>
 
 <b> Passo 1) </b> Instalar Ruby. Você pode seguir <a href="https://www.ruby-lang.org/pt/documentation/installation/">este tutorial</a>. <br/>
 <b> Passo 2) </b> Instalar Ruby on Rails. Voce pode seguir <a href="http://installrails.com/">este tutorial</a>. <br/>
-<b> Passo 3) </b> Instalar o sqlite3, caso não o tenha. <br/>
+<b> Passo 3) </b> Instalar o sqlite3, caso não o tenha. Você pode seguir <a href="http://www.tutorialspoint.com/sqlite/sqlite_installation.htm">este tutorial</a>. <br/>
 <b> Passo 4) </b> Baixe o projeto pelo GitHub. <br/>
 <b> Passo 5) </b> No terminal, Entre no diretório “Topbox”.  < cd topbox/Topbox > <br/>
 <b> Passo 6) </b> Antes de executar a aplicação é necessário criar e fazer as migrações do banco de dados. Para isso, basta executar < rails db:create > e depois executar < rails db:migrate > </br>
