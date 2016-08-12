@@ -27,8 +27,8 @@ Departamento de Sistemas e Computação <br/>
 <b> Passo 4) </b> Baixe o projeto pelo GitHub. <br/>
 <b> Passo 5) </b> No terminal, Entre no diretório “Topbox”.  < cd topbox/Topbox > <br/>
 <b> Passo 7) </b> Antes de mais nada será preciso instalar as gems usadas na aplicação. Para isso, basta executar < bundle install >. Isso instalará as gems necessárias, que estão listadas no arquivo GEMFILE. </br>
-<b> Passo 8) </b> Antes de executar a aplicação é necessário criar e fazer as migrações do banco de dados. Para isso, basta executar < rails db:create > e depois executar < rails db:migrate > </br>
-<b> Passo 9) </b> Digite o comando < rails server > <br/>
+<b> Passo 8) </b> Antes de executar a aplicação é necessário criar e fazer as migrações do banco de dados. Para isso, basta executar < rails db:create > e depois executar < rake db:migrate > </br>
+<b> Passo 9) </b> Digite o comando < rake server > <br/>
 <b> Passo 10) </b> Entre no seu navegador e digite http://localhost:3000 <br/>
 
 <p> As atividades foram realizadas, em sua maioria, por meio de implementação colaborativas em branches. Sendo seu conteúdo mesclado posteriormente com o da branch principal (master). Sendo assim, alguns membros do grupo não constam nas estatísticas de contribuição do github. Embora algumas branches tenham sido deletadas, algumas ainda constam no repositório. Além disso, está disponível no Trello a distribuição das atividades. </p>
