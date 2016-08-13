@@ -30,7 +30,7 @@ rafaela = User.create(first_name: 'Rafaela', last_name: 'Larcerda', username: 'r
             email: 'rafaela@gmail.com', password: 'rafaela123')
 
 # Home Folders
-homean = Folder.create(name: 'Meu Topbox', parent:nil , user: andre)
+homean = Folder.create(name: 'Meu Topbox', parent: nil , user: andre)
 homean.save(validate: false)
 homelu = Folder.create(name: 'Meu Topbox', parent: nil , user: luiz)
 homelu.save(validate: false)
