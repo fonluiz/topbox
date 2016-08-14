@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.racecar1', '< 5.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use postgresql as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -57,3 +57,8 @@ gem 'rspec', '3.1'
 gem 'rspec-rails', '3.1'
 gem 'rspec-context-private', '0.0.1'
 gem 'rspec-html-matchers', '0.6.1'
+
+# Heroku integration. Enable features such as static asset serving and logging on Heroku.
+gem 'rails_12factor', group: :production
+
+ruby '2.3.1'

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160807051910) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.string   "bootsy_resource_type"
     t.integer  "bootsy_resource_id"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160807051910) do
     t.string   "format"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["folder_id"], name: "index_documents_on_folder_id"
+    t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
   end
 
   create_table "folders", force: :cascade do |t|
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20160807051910) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_folders_on_parent_id"
-    t.index ["user_id"], name: "index_folders_on_user_id"
+    t.index ["parent_id"], name: "index_folders_on_parent_id", using: :btree
+    t.index ["user_id"], name: "index_folders_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
