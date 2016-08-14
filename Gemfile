@@ -57,3 +57,8 @@ gem 'rspec', '3.1'
 gem 'rspec-rails', '3.1'
 gem 'rspec-context-private', '0.0.1'
 gem 'rspec-html-matchers', '0.6.1'
+
+# Heroku integration. Enable features such as static asset serving and logging on Heroku.
+gem 'rails_12factor', group: :production
+
+ruby '2.3.1'
