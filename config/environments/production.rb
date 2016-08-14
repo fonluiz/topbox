@@ -26,8 +26,8 @@ Rails.application.configure do
   config.action_controller.asset_host = "assets.example.com"
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.precompile += ['static_pages.css']
-  config.serve_static_assets = true
+  config.cache_classes = true
+  config.serve_static_files = true
   config.assets.compile = true
   config.assets.digest = true
 
