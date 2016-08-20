@@ -23,6 +23,9 @@ class DocumentsController < ApplicationController
   def show
     require_user
     @document = Document.find(params[:id])
+    unless has_read_permission?
+      redirect_to MAIN_FOLDER_PATH
+    end
   end
 
   def destroy
@@ -33,6 +36,9 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    unless has_edit_permission?
+      redirect_to MAIN_FOLDER_PATH
+    end
   end
 
   def update
@@ -47,6 +53,31 @@ class DocumentsController < ApplicationController
   private
   def get_document_params
     params.require(:document).permit(:name, :content)
+  end
+
+    def has_edit_permission?
+    return true if is_in_user_folders?(@document.folder)
+    @document.permissions.each do |permission|
+      return true if ((permission.user_id == get_current_user.id) and permission.write)
+    end
+    return false
+  end
+
+  def has_read_permission?
+    return true if has_edit_permission?
+    @document.permissions.each do |permission|
+      return true if (permission.user_id == get_current_user.id)
+    end
+    return false
+  end
+
+  def is_in_user_folders?(folder)
+    return false if folder.nil?
+    if folder.user == get_current_user
+      return true
+    else
+      return is_in_user_folders?(folder.parent)
+    end
   end
 
 end

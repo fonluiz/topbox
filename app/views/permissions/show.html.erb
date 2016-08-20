@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @permission.document_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @permission.user_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= 'can edit the file' if @permission.write %>
+  <%= 'can share this file with others' if @permission.share %>
+</p>
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>
