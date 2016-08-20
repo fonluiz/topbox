@@ -1,43 +1,23 @@
-  <% if permission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
-
-      <ul>
-      <% permission.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
 <body class="login-bg">
     <div class="login-page">
-      <center>
-        <%= form_for(@permission) do  |f| %>
-            <a class="subtitle"> Nome do documento: <%= get_current_document.name %> </a>
+        <%= form_for(@permission) do |f| %>
+          <center>
+            <a class="subtitle"> Nome do documento: <h2> <%= get_current_document.name %></h2> </a>
             <br>
-      </center>
-            <br>
-            <p><a class="subtitle">Compartilhar com: </a> <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
+            <p><a class="subtitle">Compartilhar com: </a> <%= f.collection_select :user_id, all_users_except_current.order(:first_name), :id, :first_name %> </p>
             <%= f.check_box :write %>
             <%= f.label "Pode editar o arquivo"%>
             <br>
             <%= f.check_box :share %>
             <%= f.label "Pode Compartilhar o arquivo com outros" %>
-            <br>
-            <br>
-      <center>
-            <!--Submit sign up form button-->
-            <%= f.submit 'Salvar', class: 'btn btn-login' %>
+          </center>
+          <!--Submit sign up form button-->
+          <br>
+          <%= f.submit 'Salvar', class: 'btn btn-login' %>
         <% end %>
-      </center>
     </div>
 </body>
 <center>
-    <br>
-    <%= link_to 'Voltar', get_current_document %>
+  <br>
+  <%= link_to 'Voltar', get_current_document %>
 </center>
-
-
-

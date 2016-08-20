@@ -79,6 +79,6 @@ class PermissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def permission_params
-      params.require(:permission).permit(:user_id, :write, :share)
+      params.require(:permission).permit(get_current_document.id, :user_id, :write, :share)
     end
 end
