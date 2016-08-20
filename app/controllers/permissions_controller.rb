@@ -34,6 +34,7 @@ class PermissionsController < ApplicationController
   # POST /permissions.json
   def create
     @permission = Permission.new(permission_params)
+    @permission.document_id = get_current_document.id
 
     respond_to do |format|
       if @permission.save
@@ -78,6 +79,6 @@ class PermissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def permission_params
-      params.require(:permission).permit(:document_id, :user_id, :write, :share)
+      params.require(:permission).permit(:user_id, :write, :share)
     end
 end
