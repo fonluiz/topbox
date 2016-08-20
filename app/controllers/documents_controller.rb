@@ -23,6 +23,7 @@ class DocumentsController < ApplicationController
   def show
     require_user
     @document = Document.find(params[:id])
+    set_current_document(@document)
     unless has_read_permission?
       redirect_to MAIN_FOLDER_PATH
     end
@@ -36,6 +37,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    set_current_document(@document)
     unless has_edit_permission?
       redirect_to MAIN_FOLDER_PATH
     end

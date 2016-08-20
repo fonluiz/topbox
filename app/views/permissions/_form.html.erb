@@ -13,34 +13,30 @@
 
 <body class="login-bg">
     <div class="login-page">
-  <center>
+      <center>
         <%= form_for(@permission) do  |f| %>
-            <a class="subtitle">  <%= 'Document title will appear here' %></a>
+            <a class="subtitle"> Nome do documento: <%= get_current_document.name %> </a>
             <br>
-            </center>
+      </center>
             <br>
-                  <%= f.check_box :write %>
-                  <%= f.label "Pode editar o arquivo"%>
-                  <br>
-                <%= f.check_box :share %>
-
-                <%= f.label "Pode Compartilhar o arquivo com outros" %>
-                <br>
-                <br>
-                 <%= f.label :document_id %>
-                <%= f.number_field :document_id %>
-<center>
-            <p><a class="subtitle">Compartilhar com:</a></p>
-            <p> <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
+            <p><a class="subtitle">Compartilhar com: </a> <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
+            <%= f.check_box :write %>
+            <%= f.label "Pode editar o arquivo"%>
             <br>
+            <%= f.check_box :share %>
+            <%= f.label "Pode Compartilhar o arquivo com outros" %>
+            <br>
+            <br>
+      <center>
             <!--Submit sign up form button-->
             <%= f.submit 'Salvar', class: 'btn btn-login' %>
         <% end %>
-</center>
+      </center>
     </div>
 </body>
 <center>
-    <%= link_to 'Voltar', get_current_folder %>
+    <br>
+    <%= link_to 'Voltar', get_current_document %>
 </center>
 
 

@@ -8,8 +8,10 @@ class ApplicationController < ActionController::Base
   helper_method :get_current_user, :get_current_folder, :set_current_folder, :get_user_folders, :get_not_children_folders
   helper_method :redirect_to_mytopbox, :redirect_to_current_folder
   helper_method :find_mytopbox
+  helper_method :get_current_document, :set_current_document
 
   @@current_folder #The Current folder should remain the same.
+  @@current_docucument #The current/lastest document
 
   def get_current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -21,6 +23,14 @@ class ApplicationController < ActionController::Base
 
   def set_current_folder(folder)
     @@current_folder = folder
+  end
+
+  def get_current_document
+    @@current_docucument
+  end
+
+  def set_current_document(document)
+    @@current_docucument = document
   end
 
   def require_user

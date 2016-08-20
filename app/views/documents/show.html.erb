@@ -7,4 +7,8 @@
 	<%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
     <% end %>
+
+    <%= link_to new_permission_path, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
+    <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+    <% end %>
 </div>
