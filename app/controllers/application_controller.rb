@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :show_navbar
-
   helper_method :get_current_user, :get_current_folder, :set_current_folder, :get_user_folders, :get_not_children_folders
   helper_method :redirect_to_mytopbox, :redirect_to_current_folder
   helper_method :find_mytopbox

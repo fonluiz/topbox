@@ -15,9 +15,8 @@ class PermissionsController < ApplicationController
   # GET /permissions/new
   def new
     @permission = Permission.new
-    @permission.user_id = params[:u]
-    @permission.document_id = params[:d]
-    if params[:d].blank?
+    @permission.privacy_id = params[:p]
+    if params[:p].blank?
       redirect_to_current_folder
     end
   end
@@ -36,7 +35,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.new(permission_params)
     respond_to do |format|
       if @permission.save
-        format.html { redirect_to @permission, notice: 'Permission was successfully created.' }
+        format.html { redirect_to @permission.privacy.shareable, notice: 'Permission was successfully created.' }
         format.json { render :show, status: :created, location: @permission }
       else
         format.html { render :new }
@@ -76,6 +75,6 @@ class PermissionsController < ApplicationController
     end
 
     def permission_params
-      params.require(:permission).permit(:document_id,:user_id, :write, :share)
+      params.require(:permission).permit(:privacy_id,:user_id, :status)
     end
 end

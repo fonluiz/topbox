@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Privacies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Document</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @privacies.each do |privacy| %>
+      <tr>
+        <td><%= privacy.shareable.name %></td>
+        <td><%= link_to 'Show', privacy %></td>
+        <td><%= link_to 'Edit', edit_privacy_path(privacy) %></td>
+        <td><%= link_to 'Destroy', privacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Privacy', new_privacy_path %>

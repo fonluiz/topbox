@@ -1,4 +1,5 @@
 class Permission < ApplicationRecord
-	belongs_to :document
-	belongs_to :user
+	enum status: [ :reader, :contributor, :author ]
+	belongs_to :privacy
+	has_one :user
 end

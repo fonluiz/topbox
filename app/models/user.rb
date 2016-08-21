@@ -7,6 +7,4 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password, length: { in: 6..30 }
   
-  has_many :permissions
-  has_many :document, through: :permissions
 end

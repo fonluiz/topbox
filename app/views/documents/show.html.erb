@@ -12,7 +12,7 @@
     <div class="panel panel-default">
 		  	<div class="panel-body">Compartilhado com</div>
 			  	<div class="panel-body">
-			  	<% @document.permissions.each do |permission| %>
+			  	<% @document.privacy.permissions.each do |permission| %>
 			    <p> <%= User.find(permission.user_id).first_name %></p>
 			   <% end %>
 			   </div>  
@@ -24,7 +24,7 @@
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
     <% end %>
 
-    <%= link_to new_permission_path + '?d='+@document.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
+    <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
     <% end %>
 </div>

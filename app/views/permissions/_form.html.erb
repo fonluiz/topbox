@@ -16,24 +16,18 @@
     <div class="login-page">
   <center>
           <h3>
-          Compartilhar arquivo
+          Compartilhar arquivo com um amigo
           </h3>
             <a class="subtitle">  
-            <%= Document.find(@permission.document_id).name unless @permission.document_id.nil? %></a>
+            <%= @permission.privacy.shareable.name %></a>
             <br>
-            </center>
             <br>
                   <%= form_for(@permission) do  |f| %>
-                  <%= f.check_box :write %>
-                  <%= f.label "Pode editar o arquivo"%>
+                  <%= f.label "Tipo de compartilhamento:"%>
+                  <%= f.select :status, Permission.statuses.keys.to_a %>
                   <br>
-                <%= f.check_box :share %>
-
-                <%= f.label "Pode Compartilhar o arquivo com outros" %>
                 <br>
-                <br>
-                <%= f.hidden_field :document_id%>
-<center>
+                <%= f.hidden_field :privacy_id%>
             <p><a class="subtitle">Compartilhar com:</a>
             <%= f.collection_select :user_id, all_users_except_current.order(:first_name), :id, :first_name, include_blank: false %> </p>
             <br>

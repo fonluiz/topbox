@@ -14,7 +14,7 @@
   <tbody>
     <% @permissions.each do |permission| %>
       <tr>
-        <td><%= permission.document_id %></td>
+        <td><%= permission.privacy.shareable.name %></td>
         <td><%= permission.user_id %></td>
         <td><%= link_to 'Show', permission %></td>
         <td><%= link_to 'Edit', edit_permission_path(permission) %></td>

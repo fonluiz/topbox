@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:login_password])
       log_in @user
-      redirect_to_mytopbox
+      redirect_to folders_path
     else
       flash.now[:danger] = INVALID_AUTHENTICATION_ERROR
       render :new

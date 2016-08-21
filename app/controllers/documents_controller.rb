@@ -11,7 +11,9 @@ class DocumentsController < ApplicationController
     @document = Document.new
     @document.folder = get_current_folder
     @document.name = NEW_DOCUMENT_NAME
-
+    privacy = Privacy.new
+    privacy.shareable = @document
+    @document.privacy = privacy
     if @document.save
       redirect_to_current_folder
     end
@@ -64,15 +66,15 @@ class DocumentsController < ApplicationController
 
     def has_edit_permission?
     return true if is_in_user_folders?(@document.folder)
-    @document.permissions.each do |permission|
-      return true if ((permission.user_id == get_current_user.id) and permission.write)
+    @document.privacy.permissions.each do |permission|
+      return true if ((permission.user_id == get_current_user.id) and permission.contributor?)
     end
     return false
   end
 
   def has_read_permission?
     return true if has_edit_permission?
-    @document.permissions.each do |permission|
+    @document.privacy.permissions.each do |permission|
       return true if (permission.user_id == get_current_user.id)
     end
     return false

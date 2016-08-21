@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @privacy.shareable.name %>
+  <br>
+  <strong>permissions:</strong>
+  <%= link_to @privacy.visibility %>
+  <%=@privacy.permissions%>
+</p>
+
+<%= link_to 'Edit', edit_privacy_path(@privacy) %> |
+<%= link_to 'Back', privacies_path %>

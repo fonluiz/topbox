@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :privacies
   resources :permissions
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'denied' => 'permissions#denied'
 
+  get 'makeopen' => 'privacies#open'
 
   get 'create_doc' => 'documents#create'
   get 'create_folder' => 'folders#create'
