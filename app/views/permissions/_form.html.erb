@@ -35,16 +35,14 @@
                 <%= f.hidden_field :document_id%>
 <center>
             <p><a class="subtitle">Compartilhar com:</a>
-            <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
+            <%= f.collection_select :user_id, all_users_except_current.order(:first_name), :id, :first_name, include_blank: false %> </p>
             <br>
             <!--Submit sign up form button-->
             <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
         <% end %>
-</center>
     </div>
     <center>
     <%= link_to 'Voltar', get_current_folder %>
 </center>
 </body>
-
 

@@ -8,8 +8,10 @@ class ApplicationController < ActionController::Base
   helper_method :get_current_user, :get_current_folder, :set_current_folder, :get_user_folders, :get_not_children_folders
   helper_method :redirect_to_mytopbox, :redirect_to_current_folder
   helper_method :find_mytopbox
+  helper_method :all_users_except_current
 
   @@current_folder #The Current folder should remain the same.
+  @@current_docucument #The current/lastest document
 
   def get_current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -22,6 +24,7 @@ class ApplicationController < ActionController::Base
   def set_current_folder(folder)
     @@current_folder = folder
   end
+
 
   def require_user
     redirect_to LOGIN_URL unless logged_in?
@@ -54,6 +57,7 @@ class ApplicationController < ActionController::Base
     get_children_folders(children.to_ary)
     return folders - @result
   end
+
 
   private
   def get_children_folders(children)
@@ -88,6 +92,10 @@ class ApplicationController < ActionController::Base
 
   def get_user_folders
     Folder.where(user_id: get_current_user.id)
+  end
+
+  def all_users_except_current
+    User.where('id != ?', get_current_user.id)
   end
 
 end

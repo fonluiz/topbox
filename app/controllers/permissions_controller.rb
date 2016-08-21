@@ -76,6 +76,6 @@ class PermissionsController < ApplicationController
     end
 
     def permission_params
-      params.require(:permission).permit(:document_id, :user_id, :write, :share)
+      params.require(:permission).permit(:document_id,:user_id, :write, :share)
     end
 end

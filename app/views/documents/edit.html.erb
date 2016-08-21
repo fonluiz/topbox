@@ -11,10 +11,10 @@
 	<br>
 	<div class="content">
 		<%= form_for @document do |d| %>
-			<a class="subtitle">Título:</a> <%= d.text_field :name, :class => 'form-control' %>
+			<a class="subtitle">Título:</a> <%= d.text_field :name, class: 'form-control' %>
 	    	<br>
 
-	    	<%= d.bootsy_area(:content, class: 'form-control doc-area', :rows => 18) %>
+	    	<%= d.bootsy_area(:content, class: 'form-control doc-area', rows: 18) %>
 	    	
 	    	<p><a class="subtitle">Mover para:</a></p>
 	    	<p><%= d.collection_select :folder, get_user_folders, :id, :name, {:selected => @document.folder.id}, {class: "select"}%></p>
