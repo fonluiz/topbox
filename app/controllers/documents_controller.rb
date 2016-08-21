@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
+  helper_method :share
 
 
   def new
@@ -24,7 +25,8 @@ class DocumentsController < ApplicationController
     require_user
     @document = Document.find(params[:id])
     unless has_read_permission?
-      redirect_to MAIN_FOLDER_PATH
+      render "permissions/denied"
+      #redirect_to 'denied_permissions_path'
     end
   end
 
@@ -39,6 +41,11 @@ class DocumentsController < ApplicationController
     unless has_edit_permission?
       redirect_to MAIN_FOLDER_PATH
     end
+  end
+
+  def share
+    @document = Document.find(params[:id])
+    redirect_to share_permission_path + '?d='+@document.id.to_s
   end
 
   def update

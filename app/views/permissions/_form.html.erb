@@ -1,3 +1,6 @@
+
+<body class="login-bg">
+
   <% if permission.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
@@ -10,15 +13,17 @@
     </div>
   <% end %>
 
-
-<body class="login-bg">
     <div class="login-page">
   <center>
-        <%= form_for(@permission) do  |f| %>
-            <a class="subtitle">  <%= 'Document title will appear here' %></a>
+          <h3>
+          Compartilhar arquivo
+          </h3>
+            <a class="subtitle">  
+            <%= Document.find(@permission.document_id).name unless @permission.document_id.nil? %></a>
             <br>
             </center>
             <br>
+                  <%= form_for(@permission) do  |f| %>
                   <%= f.check_box :write %>
                   <%= f.label "Pode editar o arquivo"%>
                   <br>
@@ -27,21 +32,19 @@
                 <%= f.label "Pode Compartilhar o arquivo com outros" %>
                 <br>
                 <br>
-                 <%= f.label :document_id %>
-                <%= f.number_field :document_id %>
+                <%= f.hidden_field :document_id%>
 <center>
-            <p><a class="subtitle">Compartilhar com:</a></p>
-            <p> <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
+            <p><a class="subtitle">Compartilhar com:</a>
+            <%= f.collection_select :user_id, User.order(:first_name),:id,:first_name, include_blank: false %> </p>
             <br>
             <!--Submit sign up form button-->
-            <%= f.submit 'Salvar', class: 'btn btn-login' %>
+            <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
         <% end %>
 </center>
     </div>
-</body>
-<center>
+    <center>
     <%= link_to 'Voltar', get_current_folder %>
 </center>
-
+</body>
 
 

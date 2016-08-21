@@ -17,15 +17,15 @@ class PermissionsController < ApplicationController
     @permission = Permission.new
     @permission.user_id = params[:u]
     @permission.document_id = params[:d]
-  end
-
-
-  def share
-    respond_to do |format|
-      format.html
-      format.js
+    if params[:d].blank?
+      redirect_to_current_folder
     end
   end
+
+  def denied
+  end
+
+  
   # GET /permissions/1/edit
   def edit
   end
@@ -34,7 +34,6 @@ class PermissionsController < ApplicationController
   # POST /permissions.json
   def create
     @permission = Permission.new(permission_params)
-
     respond_to do |format|
       if @permission.save
         format.html { redirect_to @permission, notice: 'Permission was successfully created.' }
@@ -70,13 +69,12 @@ class PermissionsController < ApplicationController
     end
   end
 
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_permission
       @permission = Permission.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def permission_params
       params.require(:permission).permit(:document_id, :user_id, :write, :share)
     end

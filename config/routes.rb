@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   resources :documents
   resources :folders, :path => 'mytopbox'
+  resources :permissions
+
+  get 'denied' => 'permissions#denied'
+
 
   get 'create_doc' => 'documents#create'
   get 'create_folder' => 'folders#create'
