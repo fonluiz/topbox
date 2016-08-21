@@ -19,7 +19,34 @@ class PermissionsController < ApplicationController
     if params[:p].blank?
       redirect_to_current_folder
     end
+    unless isAuthorized?
+      redirect_to_current_folder
+    end
   end
+
+
+  def isAuthorized?
+    return true if belongs_to_current_user?
+    @permission.privacy.permissions.each do |permission|
+      if (permission.user_id == get_current_user.id) 
+        return permission.author?
+      end
+    end
+    return false
+  end
+
+  def belongs_to_current_user?
+    return @permission.privacy.shareable.folder.user.id == get_current_user.id
+  end
+
+  def authorPermission?
+    @permission.privacy.permissions.each do |permission|
+      if (permission.user_id == get_current_user.id) 
+        return permission.author?
+      end
+    end
+  end
+
 
   def denied
   end

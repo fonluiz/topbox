@@ -23,6 +23,7 @@ class FoldersController < ApplicationController
     @folder = Folder.new
   end
 
+
   # POST /folders
   # POST /folders.json
   def create
@@ -70,6 +71,7 @@ class FoldersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   # Returns the path of a folder
   public

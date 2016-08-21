@@ -1,7 +1,10 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
-  helper_method :share
+  helper_method :share, :user
 
+  def user
+    return @document.folder.user
+  end
 
   def new
     @document = Document.new
@@ -28,7 +31,6 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     unless has_read_permission?
       render "permissions/denied"
-      #redirect_to 'denied_permissions_path'
     end
   end
 
@@ -59,6 +61,7 @@ class DocumentsController < ApplicationController
     redirect_to action: ACTION_SHOW, id: @document
   end
 
+  
   private
   def get_document_params
     params.require(:document).permit(:name, :content)
