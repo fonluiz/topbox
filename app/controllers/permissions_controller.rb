@@ -24,7 +24,6 @@ class PermissionsController < ApplicationController
     end
   end
 
-
   def isAuthorized?
     return true if belongs_to_current_user?
     @permission.privacy.permissions.each do |permission|
@@ -36,7 +35,9 @@ class PermissionsController < ApplicationController
   end
 
   def belongs_to_current_user?
-    return @permission.privacy.shareable.folder.user.id == get_current_user.id
+    user = @permission.privacy.shareable.user
+    user_id = user.id
+    return user_id == get_current_user.id
   end
 
   def authorPermission?
