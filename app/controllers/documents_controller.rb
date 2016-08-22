@@ -54,10 +54,13 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find params[:id]
-    folder_id = params.require(:document).require(:folder)
-    @folder = Folder.find(folder_id)
-    @document.folder = @folder
+    unless (@document.user != get_current_user)
+      folder_id = params.require(:document).require(:folder)
+      @folder = Folder.find(folder_id)
+      @document.folder = @folder
+    end
     @document.update_attributes(get_document_params)
+    
     redirect_to action: ACTION_SHOW, id: @document
   end
 
