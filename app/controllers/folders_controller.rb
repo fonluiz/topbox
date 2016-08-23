@@ -23,6 +23,9 @@ class FoldersController < ApplicationController
     @folder = Folder.new
   end
 
+  def shared
+  end
+
 
   # POST /folders
   # POST /folders.json
