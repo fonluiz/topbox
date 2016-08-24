@@ -3,12 +3,16 @@ class UsersController < ApplicationController
   before_action :has_active_session?, only: [:new, :create]
   skip_before_filter :show_navbar, only: [:new, :create]
 
+  attr_reader :notifications
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(get_user_params)
+    @notifications = []
+
     if @user.save
       create_main_folder(@user)
       flash[:success] = ACCOUNT_CREATED_MSG
@@ -18,6 +22,15 @@ class UsersController < ApplicationController
       flash.now[:danger] = USERNAME_USED_MSG if used_username?
       render :new
     end
+  end
+
+  def add_notification(document_name)
+    notification = Notification.create(document_name)
+    @notifications.push(notification)
+  end
+
+  def get_notifications
+    return @notifications
   end
 
   private
