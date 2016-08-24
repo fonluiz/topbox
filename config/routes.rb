@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'create_doc' => 'documents#create'
   get 'create_folder' => 'folders#create'
+  
+  get 'shared' => 'folders#shared'
 
 
 

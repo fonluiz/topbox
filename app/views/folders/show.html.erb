@@ -1,14 +1,41 @@
 <div class="container-fluid">
-<div class="list-show content">
+<div class="row">
+  <div class="col-sm-2">
+  <%= render 'sidebar' %>
+  </div>
+<div class="col-sm-10">
   <% set_current_folder(@folder) %>
 
-  <h2 class="subtitle"><%= @folder.name %>
-  </h2>
   <p id="notice"><%= notice %></p>
 
-  <i> <%= get_folder_path(@folder) %></i>
+  <ol class="breadcrumb">
+    <% parent = @folder.parent %>
+  <%= until parent.nil? do %>
+  <li><%=link_to parent.name, parent%></li>
+    <% parent = parent.parent %>
+  <% end %>
+    <li class="active"> <%= @folder.name unless @folder.nil?%></li>
+</ol>
 
-  <table class="table table-striped">
+
+<div class="row">
+    <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
+    <% mode1 = '<a href='+ folder_url(folder) + ' class="list-group-item active" >' %>
+      <div class="col-sm-2">
+      <div class="list-group">
+      <center>
+      <%= mode1.html_safe %>
+      <h2 class="list-group-item-heading">
+        <span class="glyphicon glyphicon-folder-open white"></span> 
+      </h2>
+    <p class="list-group-item-text"><h5><%= folder.name %></h5></p>
+  </a></center>
+</div>
+</div>
+<% end %>
+</div>
+
+  <table class="table table">
     <thead>
     <tr class="subtitle">
       <th>Nome</th>
@@ -16,22 +43,7 @@
       <th>Opções</th>
     </tr>
     </thead>
-    <tbody>
-    <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-folder-open silver"></span> &nbsp
-            <%= link_to folder.name, folder %>
-          <td><%= folder.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
-          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
-            &nbsp <%= link_to 'Renomear / Mover', edit_folder_path(folder) %></td>
-          <td><span class="glyphicon glyphicon-trash silver"></span>
-            &nbsp <%= link_to 'Apagar', folder, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
-        </tr>
-    <% end %>
-    </tbody>
 
-    <tbody>
 
     <!-- Documents -->
     <% Document.where(folder_id: @folder.id).each do |document| %>

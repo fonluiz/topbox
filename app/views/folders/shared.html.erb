@@ -1,0 +1,43 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-2">
+  <%= render 'sidebar' %>
+  </div>
+<div class="col-sm-10">
+
+  <p id="notice"><%= notice %></p>
+
+  <table class="table table">
+    <thead>
+    <tr class="subtitle">
+      <th>Nome</th>
+      <th>Última modificação</th>
+      <th>Opções</th>
+    </tr>
+    </thead>
+
+
+    <!-- Documents -->
+    <% Permission.where(user_id: get_current_user.id).each do |permission| %>
+    <% document = permission.privacy.shareable %>
+    <tr>
+          <td>
+            <span class="glyphicon glyphicon-file silver"> </span> &nbsp
+            <%= link_to document.name, document %>
+          </td>
+          <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
+            &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
+          <td><span class="glyphicon glyphicon-trash silver">  </span>
+            &nbsp <%= link_to 'Apagar', document, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
+        </tr>
+    <% end %>
+        
+
+
+
+    </tbody>
+  </table>
+</div>
+    
+</div>
