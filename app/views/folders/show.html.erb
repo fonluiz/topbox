@@ -8,14 +8,23 @@
 
   <p id="notice"><%= notice %></p>
 
-  <ol class="breadcrumb">
+
+  <!-- Caminho clicável de pastas -->
+<ol class="breadcrumb">
+    <% parents = [] %>
     <% parent = @folder.parent %>
-  <%= until parent.nil? do %>
-  <li><%=link_to parent.name, parent%></li>
-    <% parent = parent.parent %>
-  <% end %>
+    <%= until parent.nil? do %>
+        <% parents.push(parent) %>
+        <% parent = parent.parent %>
+    <% end %>
+
+    <% parents.reverse.each do |folder| %>
+      <li><%=link_to folder.name, folder%></li>
+    <% end %>
+
     <li class="active"> <%= @folder.name unless @folder.nil?%></li>
 </ol>
+
 
 
 <div class="row">
