@@ -23,7 +23,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Asset host
-  config.action_controller.asset_host = "assets.example.com"
+  config.action_controller.asset_host = "topboxapp.herokuapp.com"
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.cache_classes = true
