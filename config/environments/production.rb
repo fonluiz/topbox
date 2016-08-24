@@ -25,7 +25,7 @@ Rails.application.configure do
   # Asset host
   config.action_controller.asset_host = "topboxapp.herokuapp.com"
   config.serve_static_assets = true
-
+  config.assets.precompile += %w( '.woff', '.eot', '.svg', '.ttf' )
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.cache_classes = true
