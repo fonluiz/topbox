@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @permission.privacy.shareable.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= User.find(@permission.user_id).first_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+    <%= 'can see the file' if @permission.reader? %>
+  <%= 'can edit the file' if @permission.contributor? %>
+  <%= 'can share this file with others' if @permission.author? %>
+</p>
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>

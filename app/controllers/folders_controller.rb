@@ -1,7 +1,6 @@
 class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_to_mytopbox, only: [:index]
   helper_method :get_folder_path
 
 
@@ -9,7 +8,7 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     require_user
-    redirect_to_mytopbox
+    @folder = find_mytopbox    #redirect_to_mytopbox
   end
 
   # GET /folders/1
@@ -23,6 +22,10 @@ class FoldersController < ApplicationController
   def new
     @folder = Folder.new
   end
+
+  def shared
+  end
+
 
   # POST /folders
   # POST /folders.json
@@ -71,6 +74,7 @@ class FoldersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   # Returns the path of a folder
   public

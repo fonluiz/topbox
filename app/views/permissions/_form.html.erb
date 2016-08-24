@@ -1,0 +1,42 @@
+
+<body class="login-bg">
+
+  <% if permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="login-page">
+  <center>
+          <h3>
+          Compartilhar arquivo com um amigo
+          </h3>
+            <a class="subtitle">  
+            <%= @permission.privacy.shareable.name %></a>
+            <br>
+            <br>
+                  <%= form_for(@permission) do  |f| %>
+                  <%= f.label "Tipo de compartilhamento:"%>
+                  <%= f.select :status, Permission.statuses.keys.to_a %>
+                  <br>
+                <br>
+                <%= f.hidden_field :privacy_id%>
+            <p><a class="subtitle">Compartilhar com:</a>
+            <%= f.collection_select :user_id, all_users_except_current.order(:first_name), :id, :first_name, include_blank: false %> </p>
+            <br>
+            <!--Submit sign up form button-->
+            <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
+        <% end %>
+    </div>
+    <center>
+    <%= link_to 'Voltar', get_current_folder %>
+</center>
+</body>
+
