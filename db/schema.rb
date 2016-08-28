@@ -52,8 +52,11 @@ ActiveRecord::Schema.define(version: 20160823022400) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "notified_by_id"
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "permissions", force: :cascade do |t|

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   
   get 'shared' => 'folders#shared'
 
+  get 'notifications' => 'notification#index'
 
 
 end
