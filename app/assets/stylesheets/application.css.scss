@@ -278,3 +278,13 @@ li {
   min-height: 400px;
   min-width: 700px;
 }
+
+.wysihtml5-editor {
+  border: none;
+  box-shadow: none;
+}
+
+.wysihtml5-editor:focus {
+  border: none;
+  box-shadow: none;
+}
