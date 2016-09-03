@@ -19,8 +19,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    redirect_to :action => ACTION_NEW
+    respond_to do |format|
+        log_out
+        format.html { redirect_to :action => ACTION_NEW}
+    end
   end
 
   # Returns the user in the database that corresponds to the email or username passed as arguments.

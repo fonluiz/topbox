@@ -63,7 +63,7 @@ class PermissionsController < ApplicationController
     @permission = Permission.new(permission_params)
     respond_to do |format|
       if @permission.save
-        format.html { redirect_to @permission.privacy.shareable, notice: 'Permission was successfully created.' }
+        format.html { redirect_to @permission.privacy.shareable }
         format.json { render :show, status: :created, location: @permission }
       else
         format.html { render :new }
