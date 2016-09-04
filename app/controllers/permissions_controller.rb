@@ -61,16 +61,22 @@ class PermissionsController < ApplicationController
   # POST /permissions.json
   def create
     @permission = Permission.new(permission_params)
-    respond_to do |format|
+    if already_shared?
+      redirect_to edit_permission_path(get_permission)
+    else 
+      respond_to do |format|
       if @permission.save
         format.html { redirect_to @permission.privacy.shareable }
         format.json { render :show, status: :created, location: @permission }
       else
         format.html { render :new }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
+
+
 
   # PATCH/PUT /permissions/1
   # PATCH/PUT /permissions/1.json
@@ -104,5 +110,13 @@ class PermissionsController < ApplicationController
 
     def permission_params
       params.require(:permission).permit(:privacy_id,:user_id, :status)
+    end
+
+    def already_shared?
+      return !(Permission.where(privacy_id: @permission.privacy.id, user_id: @permission.user_id).blank?)    
+    end
+
+    def get_permission
+      return Permission.find_by(privacy_id: @permission.privacy.id, user_id: @permission.user_id)
     end
 end

@@ -8,34 +8,25 @@
 
   <p id="notice"><%= notice %></p>
 
-  <ol class="breadcrumb">
+<!-- Caminho clicável de pastas -->
+<ol class="breadcrumb">
+    <% parents = [] %>
     <% parent = @folder.parent %>
-  <%= until parent.nil? do %>
-  <li><%=link_to parent.name, parent%></li>
-    <% parent = parent.parent %>
-  <% end %>
+    <%= until parent.nil? do %>
+        <% parents.push(parent) %>
+        <% parent = parent.parent %>
+    <% end %>
+
+    <% parents.reverse.each do |folder| %>
+      <li><%=link_to folder.name, folder%></li>
+    <% end %>
+
     <li class="active"> <%= @folder.name unless @folder.nil?%></li>
 </ol>
 
 
-<div class="row">
-    <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
-    <% mode1 = '<a href='+ folder_url(folder) + ' class="list-group-item active" >' %>
-      <div class="col-sm-2">
-      <div class="list-group">
-      <center>
-      <%= mode1.html_safe %>
-      <h2 class="list-group-item-heading">
-        <span class="glyphicon glyphicon-folder-open white"></span> 
-      </h2>
-    <p class="list-group-item-text"><h5><%= folder.name %></h5></p>
-  </a></center>
-</div>
-</div>
-<% end %>
-</div>
 
-  <table class="table table">
+  <table class="table table-hover">
     <thead>
     <tr class="subtitle">
       <th>Nome</th>
@@ -44,22 +35,40 @@
     </tr>
     </thead>
 
+    <!-- Folders -->
+    <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
+    <tr >
+      <td>
+      &nbsp <span class="glyphicon glyphicon-folder-close silver" >  </span>
+      &nbsp <%= link_to folder.name, folder %> 
+      </td>
+          <td><p class="text-muted">--</p></td>
+          <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
+            &nbsp <%= link_to 'Editar', edit_folder_path(folder) %></td>
+          <td><span class="glyphicon glyphicon-trash silver">  </span>
+            &nbsp <%= link_to 'Apagar', folder, method: :delete, data: {confirm: 'Você tem certeza?'}%></td>
+        </tr>
+    <% end %>
 
     <!-- Documents -->
     <% Document.where(folder_id: @folder.id).each do |document| %>
-        <tr>
+        <tr >
           <td>
-            <span class="glyphicon glyphicon-file silver"> </span> &nbsp
-            <%= link_to document.name, document %>
-          </td>
-          <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
+          &nbsp <span class="glyphicon glyphicon glyphicon-file silver" >  </span>
+              &nbsp <%= link_to document.name, document %> 
+            </td>
+          <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
           <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
             &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
           <td><span class="glyphicon glyphicon-trash silver">  </span>
             &nbsp <%= link_to 'Apagar', document, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
         </tr>
-    <% end %>
 
+    <% end %>
+     </tbody>
+  </table>
+
+      
 
     <!-- Menu -->
     <div id="menu" class="modal fade" role="dialog">
@@ -88,10 +97,8 @@
       </div>
     </div>
 
-    </tbody>
-  </table>
+   
 </div>
-    
 </div>
 <div class="footer"> <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
       <i class="glyphicon glyphicon-plus"></i></button>
