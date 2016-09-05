@@ -61,6 +61,28 @@
     <% end %>
 
 
+    <!-- Folder Modal -->
+    <div id="createFolderModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Nova Pasta</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'folders/create' %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
     <!-- Menu -->
     <div id="menu" class="modal fade" role="dialog">
       <div class="btn-menu">
@@ -70,9 +92,14 @@
         <% end %>
 
 
-        <%= link_to '/create_folder', class: 'btn btn-info btn-circle btn-xl' do %>
-            <%= content_tag('i', nil, class: 'glyphicon glyphicon-folder-open') %>
-        <% end %>
+        <!--<#%= link_to '/create_folder', class: 'btn btn-info btn-circle btn-xl' do %>-->
+            <!--<#%= content_tag('i', nil, class: 'glyphicon glyphicon-folder-open') %>-->
+        <!--<#% end %>-->
+
+        <button type="button" class='btn btn-info btn-circle btn-xl' data-toggle="modal"
+                data-target="#createFolderModal">
+          <content class='glyphicon glyphicon-folder-open'/>
+        </button>
 
       </div>
     </div>
@@ -85,8 +112,5 @@
 <div class="footer"> <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
       <i class="glyphicon glyphicon-plus"></i></button>
 
-    <% unless @folder.id == find_mytopbox.id %>
-        <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
-            <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil') %>
-        <% end %>
-    <% end %></div>
+</div>
+  </div>
