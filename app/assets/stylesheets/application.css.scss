@@ -94,7 +94,6 @@ body {
 
 .btn-primary {
     font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
     font-weight: bold;
     background: #008BED;
     color: #ffffff;
@@ -188,7 +187,6 @@ body {
 
 .navbar {
   background-color: #2251A6;
-  min-height: 65px;
 }
 
 li {
@@ -199,7 +197,6 @@ li {
 /* Home */
 
 .content {
-  padding: 50px;
   padding-top: 0px;
 }
 
@@ -274,7 +271,7 @@ li {
 
 .document-text {
   font-family: 'Roboto', sans-serif;
-  font-style:  normal;
+  font-style:  bold;
   min-height: 400px;
   min-width: 700px;
 }

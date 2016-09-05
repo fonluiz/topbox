@@ -1,4 +1,4 @@
-<div class= "container-fluid">
+<div class= "container-fluid"> 
   <div class="col-sm-9" >
   	<div class ="document-text">
       <h1 class="page-header"> <center><%= @document.name%> </center></h1>
@@ -7,7 +7,9 @@
 
     </div>
   </div>
-    <div class="col-sm-3">
+
+    <div class="col-sm-3 table-col">
+
        <footer class="blockquote-footer"><span class="pull-right"> Criado por <strong><%= @document.folder.user.first_name.to_s %></strong></span></footer><br>
     <div class="panel panel-default">
 		  	<div class="panel-body">Compartilhado com</div>
@@ -17,7 +19,7 @@
 			   <% end %>
 			   </div>  
 			</div>
-    </div>
+      </div>
 
 
 	<%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
@@ -27,4 +29,5 @@
     <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
     <% end %>
+    </div>
 </div>
