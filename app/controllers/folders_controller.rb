@@ -16,6 +16,7 @@ class FoldersController < ApplicationController
   def show
     require_user
     set_current_folder(@folder)
+    render 'folders/index'
   end
 
   # GET /folders/new
