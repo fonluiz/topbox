@@ -3,7 +3,7 @@
   <div class="form">
     <%= form_for(Folder.new, :url => url_for(:action => 'create')) do |f| %>
 
-        <%= f.text_field :name, :placeholder => 'Pasta sem nome', :autofocus => true, :required => true, :class => 'form-control' %>
+        <%= f.text_field :name, :value => 'Pasta sem nome', :autofocus => true, :required => true, :class => 'form-control' %>
 
         <!--Submit sign up form button-->
         <%= f.submit 'Criar', class: 'btn btn-login' %>
