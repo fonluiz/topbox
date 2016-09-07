@@ -8,4 +8,9 @@ module ApplicationHelper
   ACTION_NEW = 'new'
   ACTION_SHOW = 'show'
 
+
+  def current_user_notifications
+    Notification.where(user: get_current_user.id)
+  end
+
 end

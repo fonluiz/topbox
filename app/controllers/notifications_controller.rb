@@ -1,6 +1,5 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
-  helper_method :current_user_notifications
 
   attr_reader :message
 
@@ -53,10 +52,6 @@ class NotificationsController < ApplicationController
       format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def current_user_notifications
-    Notification.where(user: get_current_user.id)
   end
 
   private
