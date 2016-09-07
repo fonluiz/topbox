@@ -79,7 +79,27 @@
               <h4 class="modal-title">Nova Pasta</h4>
             </div>
             <div class="modal-body">
-              <%= render 'folders/create' %>
+              <%= render 'documents/create' %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Modal -->
+      <div id="createDocumentModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Novo Documento</h4>
+            </div>
+            <div class="modal-body">
+              <%= render 'documents/create' %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -93,9 +113,10 @@
       <div id="menu" class="modal fade" role="dialog">
         <div class="btn-menu">
 
-          <%= link_to '/create_doc', class: 'btn btn-info btn-circle btn-xl' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-file') %>
-          <% end %>
+          <button type="button" class='btn btn-info btn-circle btn-xl' data-toggle="modal"
+                  data-target="#createDocumentModal">
+            <content class='glyphicon glyphicon-file'/>
+          </button>
 
 
           <button type="button" class='btn btn-info btn-circle btn-xl' data-toggle="modal"
@@ -107,9 +128,10 @@
               <%= link_to @folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-circle btn-xl' do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
               <% end %>
-              <!--<#%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl' do %>-->
-              <!--<#%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil') %>-->
-              <!--<#% end %>-->
+
+              <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>
 
           <% end %>
 

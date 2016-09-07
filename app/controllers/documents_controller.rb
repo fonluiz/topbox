@@ -11,9 +11,8 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new
+    @document = Document.new(get_document_params)
     @document.folder = get_current_folder
-    @document.name = NEW_DOCUMENT_NAME
     privacy = Privacy.new
     privacy.shareable = @document
     @document.privacy = privacy
