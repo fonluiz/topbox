@@ -240,6 +240,11 @@ li {
   background: none;
 }
 
+.modal-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
 .modal-header-primary {
   color:#fff;
     padding:5px 10px;
@@ -252,6 +257,11 @@ li {
     -moz-border-radius-topright: 5px;
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
+}
+
+.close {
+  color: #ffffff;
+  opacity: 1;
 }
 
 /* Documents */
