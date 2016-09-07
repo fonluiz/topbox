@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @notifications.each do |notification| %>
+    <%  current_user_notifications.each do |notification| %>
       <tr>
         <td><%= link_to "#{notification.notified_by.get_name} has shared a document with you", document_path(notification.document) %></td>
         <td><%= link_to 'Show', notification %></td>
