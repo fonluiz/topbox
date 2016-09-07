@@ -1,9 +1,14 @@
 <div class= "container-fluid"> 
   <div class="col-sm-9" >
   	<div class ="document-text">
-      <h1 class="page-header"> <center><%= @document.name%> </center></h1>
+      <h1 class="page-header"> <center><%= @document.name + "." %><strong><%= @document.extension %></strong> </center></h1>
     
-		    <p> <%= @document.content.try(:html_safe) %></p>
+		    <p> <% if @document.md? %>
+              <%= @document.content.try(:html_safe) %>
+            <% else %>
+              <%= @document.content %>
+            <% end %>
+        </p>
 
     </div>
   </div>

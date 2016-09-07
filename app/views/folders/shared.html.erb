@@ -23,7 +23,7 @@
     <tr>
           <td>
             <span class="glyphicon glyphicon-file silver"> </span> &nbsp
-            <%= link_to document.name, document %>
+            <%= link_to document.name + "." + document.extension, document %>
           </td>
           <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
           <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>

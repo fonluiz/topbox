@@ -2,7 +2,7 @@
 <div class="login-page">
   <div class="form">
     <%= form_for(Folder.new, :url => url_for(:action => 'create')) do |f| %>
-
+    	<a class="subtitle">Nome da pasta</a>
         <%= f.text_field :name, :value => 'Pasta sem nome', :autofocus => true, :required => true, :class => 'form-control' %>
 
         <!--Submit sign up form button-->

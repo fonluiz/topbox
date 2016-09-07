@@ -2,9 +2,10 @@
 <div class="login-page">
   <div class="form">
     <%= form_for(:document, :url => url_for(:controller => 'documents', :action => 'create')) do |f| %>
+    	<a class="subtitle">Nome do documento</a>
         <%= f.text_field :name, :value => 'Documento sem título', :autofocus => true, :required => true, :class => 'form-control' %>
-
-        <!--Submit sign up form button-->
+        <p><a class="subtitle">Tipo</a></p>
+        <p><%= f.select :extension, Document.extensions.keys.to_a, class: "select" %></p>
         <%= f.submit 'Criar', class: 'btn btn-login' %>
     <% end %>
 

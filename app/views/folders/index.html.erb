@@ -55,7 +55,7 @@
             <tr >
               <td>
                 &nbsp <span class="glyphicon glyphicon glyphicon-file silver" >  </span>
-                &nbsp <%= link_to document.name, document %>
+                &nbsp <%= link_to document.name + "." + document.extension, document %>
               </td>
               <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
               <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
@@ -79,7 +79,7 @@
               <h4 class="modal-title">Nova Pasta</h4>
             </div>
             <div class="modal-body">
-              <%= render 'documents/create' %>
+              <%= render 'folders/create' %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

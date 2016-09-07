@@ -5,7 +5,7 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.references :privacy
       t.string :content
       t.string :name
-      t.string :format
+      t.column :extension, :integer, default: 0
       t.timestamps
     end
   end

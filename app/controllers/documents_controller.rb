@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
   
   private
   def get_document_params
-    params.require(:document).permit(:name, :content)
+    params.require(:document).permit(:name, :content, :extension)
   end
 
     def has_edit_permission?
