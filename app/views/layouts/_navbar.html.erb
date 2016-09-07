@@ -5,36 +5,24 @@
         		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo') %>
     	</a>
     </li>
-    <li>
-
-    </li>
 	</ul>
 
-  <button type="button" class='btn btn-lg btn-circle btn-sm' data-toggle="modal" data-target="#indexNotificationModal" >
-    <content class='glyphicon glyphicon-globe'/>
-  </button>
-
 	<ul class="nav navbar-nav navbar-right">
+        <!-- Notification Dropdown -->
+        <li>
+          <div class="dropdown">
+            <button type="button" class='btn btn-lg btn-circle btn-sm' data-toggle="dropdown">
+              <content class='glyphicon glyphicon-globe'/>
+            </button>
+            <ul class="dropdown-menu">
+              <%= render :partial => 'notifications/index' %>
+            </ul>
+          </div>
+        </li>
+
         <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
         <li><a href="/mytopbox/"><b style="color: #DAE5F8">Meu Topbox</b></a></li>
         <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
     </ul>
-
-
-  <!-- Notification Modal -->
-  <div id="indexNotificationModal" class="modal fade" role="dialog" >
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Minhas notificações</h4>
-        </div>
-        <div class="modal-body">
-          <%= render :partial => 'notifications/index' %>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </nav>

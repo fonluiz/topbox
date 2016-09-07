@@ -1,11 +1,7 @@
-<table>
-  <tbody>
-  <%  current_user_notifications.each do |notification| %>
-      <tr>
-        <td><%= link_to "#{notification.notified_by.get_name} compartilhou o documento #{notification.document.name} com você.", document_path(notification.document) %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<%  current_user_notifications.each do |notification| %>
+    <li>
+      <%= link_to "#{notification.notified_by.get_name} compartilhou o documento #{notification.document.name} com você.", document_path(notification.document) %>
+    </li>
+<% end %>
 
 
