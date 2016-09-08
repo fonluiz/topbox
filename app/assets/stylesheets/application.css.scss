@@ -74,6 +74,11 @@ body {
   cursor: pointer;
 }
 
+.btn-login:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
+}
+
 .btn-logout {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -92,11 +97,21 @@ body {
   cursor: pointer;
 }
 
+.btn-logout:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
+}
+
 .btn-primary {
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     background: #008BED;
     color: #ffffff;
+}
+
+.btn-primary:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
 }
 
 .form .message {
@@ -216,6 +231,10 @@ li {
   border-radius: 35px;
 }
 
+.btn-circle.btn-sm { 
+  border-radius: 35px;
+}
+
 .lower-right {
   position: absolute;
   bottom: 10px;
@@ -295,3 +314,12 @@ li {
   border: none;
   box-shadow: none;
 }
+
+/* Sidebar 
+
+.table-hover:hover {
+  background: #000 !important;
+} */
+
+
+    

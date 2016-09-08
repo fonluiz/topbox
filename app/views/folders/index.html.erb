@@ -39,14 +39,21 @@
         <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
             <tr >
               <td>
-                &nbsp <span class="glyphicon glyphicon-folder-open silver" >  </span>
-                &nbsp <%= link_to folder.name, folder %>
+              <%= link_to folder, class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white') %>
+              <% end %>
+              &nbsp <%= link_to folder.name, folder %>
               </td>
               <td><p class="text-muted">--</p></td>
-              <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
-                &nbsp <%= link_to 'Editar', edit_folder_path(folder) %></td>
-              <td><span class="glyphicon glyphicon-trash silver">  </span>
-                &nbsp <%= link_to 'Apagar', folder, method: :delete, data: {confirm: 'Você tem certeza?'}%></td>
+
+              <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>
+
+              <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm' do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+              <% end %></td>              
+
             </tr>
         <% end %>
 
@@ -54,14 +61,27 @@
         <% Document.where(folder_id: @folder.id).each do |document| %>
             <tr >
               <td>
-                &nbsp <span class="glyphicon glyphicon glyphicon-file silver" >  </span>
-                &nbsp <%= link_to document.name + "." + document.extension, document %>
+              <%= link_to document, class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file white') %>
+              <% end %>               
+              &nbsp <%= link_to document.name + "." + document.extension, document %>
               </td>
               <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
-              <td><span class="glyphicon glyphicon-pencil silver" aria-hidden="true"></span>
-                &nbsp <%= link_to 'Editar', edit_document_path(document) %></td>
-              <td><span class="glyphicon glyphicon-trash silver">  </span>
-                &nbsp <%= link_to 'Apagar', document, method: :delete, data: {confirm: 'Você tem certeza?'} %></td>
+
+              <td>
+              <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>
+
+              <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm' do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+              <% end %>
+
+              <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+              <% end %>
+              </td> 
+
             </tr>
 
         <% end %>
@@ -113,19 +133,19 @@
       <div id="menu" class="modal fade" role="dialog">
         <div class="btn-menu">
 
-          <button type="button" class='btn btn-info btn-circle btn-xl' data-toggle="modal"
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl' data-toggle="modal"
                   data-target="#createDocumentModal">
             <content class='glyphicon glyphicon-file'/>
           </button>
 
 
-          <button type="button" class='btn btn-info btn-circle btn-xl' data-toggle="modal"
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl' data-toggle="modal"
                   data-target="#createFolderModal">
             <content class='glyphicon glyphicon-folder-open'/>
           </button>
           <% unless @folder == find_mytopbox%>
 
-              <%= link_to @folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-circle btn-xl' do %>
+              <%= link_to @folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-xl' do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
               <% end %>
 
