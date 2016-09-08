@@ -26,6 +26,12 @@
   margin: 1 auto 100px;
   padding: 45px;
   text-align: center;
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -moz-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .form input {
@@ -42,6 +48,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #fbfbfb;
 }
 
 .login-bg {
