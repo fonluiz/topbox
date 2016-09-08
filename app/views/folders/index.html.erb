@@ -39,18 +39,16 @@
         <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
             <tr >
               <td>
-              <%= link_to folder, class: 'btn btn-primary btn-circle btn-sm' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white') %>
-              <% end %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white blue') %>
               &nbsp <%= link_to folder.name, folder %>
               </td>
               <td><p class="text-muted">--</p></td>
 
-              <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm' do %>
+              <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm blue' do %>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
               <% end %>
 
-              <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm' do %>
+              <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
               <% end %></td>              
 
@@ -61,23 +59,21 @@
         <% Document.where(folder_id: @folder.id).each do |document| %>
             <tr >
               <td>
-              <%= link_to document, class: 'btn btn-primary btn-circle btn-sm' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file white') %>
-              <% end %>               
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
               &nbsp <%= link_to document.name + "." + document.extension, document %>
               </td>
               <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
 
               <td>
-              <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm blue' do %>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
               <% end %>
 
-              <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm' do %>
+              <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
               <% end %>
 
-              <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm blue' do %>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
               <% end %>
               </td> 
@@ -94,16 +90,7 @@
 
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header-primary">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Nova Pasta</h4>
-            </div>
-            <div class="modal-body">
-              <%= render 'folders/create' %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-            </div>
+            <%= render 'folders/create' %>
           </div>
         </div>
       </div>
@@ -114,16 +101,7 @@
 
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header-primary">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Novo Documento</h4>
-            </div>
-            <div class="modal-body">
-              <%= render 'documents/create' %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-            </div>
+            <%= render 'documents/create' %>
           </div>
 
         </div>
