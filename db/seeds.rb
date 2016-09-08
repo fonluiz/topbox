@@ -26,7 +26,7 @@ luiz = User.create(first_name: 'Luiz', last_name: 'Fonseca', username: 'luizfo',
 jair = User.create(first_name: 'Jair', last_name: 'Neto', username: 'jairne',
             email: 'jair@gmail.com', password: 'jair123')
             
-rafaela = User.create(first_name: 'Rafaela', last_name: 'Larcerda', username: 'rafala',
+rafaela = User.create(first_name: 'Rafaela', last_name: 'Lacerda', username: 'rafaela',
             email: 'rafaela@gmail.com', password: 'rafaela123')
 
 # Home Folders
