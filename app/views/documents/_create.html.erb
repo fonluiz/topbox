@@ -5,7 +5,10 @@
     	<a class="subtitle">Nome do documento</a>
         <%= f.text_field :name, :value => 'Documento sem título', :autofocus => true, :required => true, :class => 'form-control' %>
         <p><a class="subtitle">Tipo</a></p>
-        <p><%= f.select :extension, Document.extensions.keys.to_a, class: "select" %></p>
+
+        <p><%= f.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => Document.extensions.keys.to_a[0]}, {class: "select"}%></p>
+        <br>
+
         <%= f.submit 'Criar', class: 'btn btn-login' %>
     <% end %>
   </div>
