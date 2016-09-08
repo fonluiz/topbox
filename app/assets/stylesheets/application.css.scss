@@ -213,6 +213,8 @@ li {
 
 .content {
   padding-top: 0px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 #content-table {
@@ -296,6 +298,9 @@ li {
 .doc-area {
   height: 100%;
   margin-bottom: 10px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
 }
 
 .document-text {
