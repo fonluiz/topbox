@@ -9,6 +9,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 
+.blue {
+  color: #337ab7;
+}
+
 .list-show
 {
   background: white;
@@ -318,6 +322,10 @@ li {
 .wysihtml5-editor:focus {
   border: none;
   box-shadow: none;
+}
+
+.format {
+  margin: 5px;
 }
 
 /* Sidebar 

@@ -1,6 +1,8 @@
-<body class="login-bg">
-<div class="login-page">
-  <div class="form">
+<div class="modal-header-primary">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Novo Documento</h4>
+</div>
+<div class="modal-body format">
     <%= form_for(:document, :url => url_for(:controller => 'documents', :action => 'create')) do |f| %>
     	<a class="subtitle">Nome do documento</a>
         <%= f.text_field :name, :value => 'Documento sem título', :autofocus => true, :required => true, :class => 'form-control' %>
@@ -8,9 +10,9 @@
 
         <p><%= f.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => Document.extensions.keys.to_a[0]}, {class: "select"}%></p>
         <br>
-
-        <%= f.submit 'Criar', class: 'btn btn-login' %>
-    <% end %>
-  </div>
 </div>
-</body>
+<div class="modal-footer">
+		<%= f.submit 'Criar', class: 'btn btn-primary' %>
+    <% end %>
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+</div>
