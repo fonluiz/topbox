@@ -15,13 +15,14 @@
 
     <div class="col-sm-3 table-col">
 
-       <footer class="blockquote-footer"><span class="pull-right"> Criado por <strong><%= @document.folder.user.first_name.to_s %></strong></span></footer><br>
+       <footer class="blockquote-footer"><span class="pull-right"> Criado por <strong class="subtitle"><%= @document.folder.user.first_name.to_s %></strong></span></footer><br>
     <div class="panel panel-default">
-		  	<div class="panel-body">Compartilhado com</div>
-			  	<div class="panel-body">
-			  	<% @document.privacy.permissions.each do |permission| %>
-			    <p> <%= User.find(permission.user_id).first_name %></p>
-			   <% end %>
+		  	<div class="panel-body">
+          <b class="subtitle"> Compartilhado com: </b>
+			  	<p align=right>
+          <% @document.privacy.permissions.each do |permission| %>
+			    <%= User.find(permission.user_id).first_name %> <br>
+			   <% end %> </p>
 			   </div>  
 			</div>
       </div>

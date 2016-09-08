@@ -22,9 +22,7 @@
     <% document = permission.privacy.shareable %>
     <tr>
           <td>
-          <%= link_to document, class: 'btn btn-primary btn-circle btn-sm' do %>
-          <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file white') %>
-          <% end %>           
+          <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
           <%= link_to document.name + "." + document.extension, document %>
           </td>
           <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
