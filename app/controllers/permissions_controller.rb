@@ -66,7 +66,10 @@ class PermissionsController < ApplicationController
     else 
       respond_to do |format|
       if @permission.save
+
+        create_notification
         format.html { redirect_to @permission.privacy.shareable }
+
         format.json { render :show, status: :created, location: @permission }
       else
         format.html { render :new }
@@ -119,4 +122,18 @@ class PermissionsController < ApplicationController
     def get_permission
       return Permission.find_by(privacy_id: @permission.privacy.id, user_id: @permission.user_id)
     end
+
+  def create_notification
+    user_id = params[:permission][:user_id]
+
+    privacy_id = params[:permission][:privacy_id]
+    privacy = Privacy.find(privacy_id)
+
+    shareable = privacy.get_shareable
+
+    Notification.create(user_id: user_id,
+                        notified_by_id: get_current_user.id,
+                        document_id: shareable.id)
+  end
+
 end

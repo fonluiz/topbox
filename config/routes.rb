@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   resources :privacies
   resources :permissions
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
 
   get 'shared' => 'folders#shared'
 
+  get 'notifications' => 'notification#index'
 
 
 end

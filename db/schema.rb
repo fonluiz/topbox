@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821123120) do
+ActiveRecord::Schema.define(version: 20160823022400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20160821123120) do
     t.integer  "privacy_id"
     t.string   "content"
     t.string   "name"
-    t.integer  "extension",     default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "extension",  default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
     t.index ["privacy_id"], name: "index_documents_on_privacy_id", using: :btree
   end
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20160821123120) do
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_folders_on_parent_id", using: :btree
     t.index ["user_id"], name: "index_folders_on_user_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "notified_by_id"
+    t.integer  "document_id"
+    t.boolean  "read",           default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["document_id"], name: "index_notifications_on_document_id", using: :btree
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -82,5 +94,5 @@ ActiveRecord::Schema.define(version: 20160821123120) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "privacies", "documents"
+  add_foreign_key "notifications", "users", column: "notified_by_id"
 end
