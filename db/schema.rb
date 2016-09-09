@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20160821123120) do
     t.integer  "privacy_id"
     t.string   "content"
     t.string   "name"
-    t.integer  "extension",  default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "extension",     default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
     t.index ["privacy_id"], name: "index_documents_on_privacy_id", using: :btree
   end
@@ -82,4 +82,5 @@ ActiveRecord::Schema.define(version: 20160821123120) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "privacies", "documents"
 end
