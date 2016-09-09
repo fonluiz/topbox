@@ -16,6 +16,7 @@ class FoldersController < ApplicationController
   def show
     require_user
     set_current_folder(@folder)
+    render 'folders/index'
   end
 
   # GET /folders/new
@@ -30,14 +31,12 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @folder = Folder.new
-    @folder.name = NEW_FOLDER_NAME
+    @folder = Folder.new(get_folder_params, )
     @folder.parent = get_current_folder
     @folder.user = get_current_user
     if @folder.save
-      edit
-      redirect_to edit_folder_path(@folder)
-      #redirect_to_current_folder
+      set_current_folder(@folder)
+      redirect_to_current_folder
     end
   end
 
@@ -97,6 +96,7 @@ class FoldersController < ApplicationController
 
   def get_folder_params
     params.require(:folder).permit(:name)
+
   end
 
 end

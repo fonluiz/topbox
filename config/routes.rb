@@ -20,9 +20,6 @@ Rails.application.routes.draw do
 
   get 'makeopen' => 'privacies#open'
 
-  get 'create_doc' => 'documents#create'
-  get 'create_folder' => 'folders#create'
-  
   get 'shared' => 'folders#shared'
 
 

@@ -9,6 +9,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 
+.blue {
+  color: #337ab7;
+}
+
 .list-show
 {
   background: white;
@@ -22,6 +26,12 @@
   margin: 1 auto 100px;
   padding: 45px;
   text-align: center;
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -moz-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .form input {
@@ -43,6 +53,7 @@ body {
 .login-bg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fbfbfb;
 }
 
 .login-page {
@@ -74,6 +85,11 @@ body {
   cursor: pointer;
 }
 
+.btn-login:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
+}
+
 .btn-logout {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -92,11 +108,21 @@ body {
   cursor: pointer;
 }
 
+.btn-logout:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
+}
+
 .btn-primary {
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     background: #008BED;
     color: #ffffff;
+}
+
+.btn-primary:hover {
+  color: #FFFFFF !important;
+  background: #2251A6 !important;
 }
 
 .form .message {
@@ -198,6 +224,8 @@ li {
 
 .content {
   padding-top: 0px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 #content-table {
@@ -213,6 +241,10 @@ li {
   margin: 2px;
   padding: 10px 10px;
   font-size: 22px;
+  border-radius: 35px;
+}
+
+.btn-circle.btn-sm { 
   border-radius: 35px;
 }
 
@@ -240,6 +272,11 @@ li {
   background: none;
 }
 
+.modal-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
 .modal-header-primary {
   color:#fff;
     padding:5px 10px;
@@ -252,6 +289,11 @@ li {
     -moz-border-radius-topright: 5px;
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
+}
+
+.close {
+  color: #ffffff;
+  opacity: 1;
 }
 
 /* Documents */
@@ -267,6 +309,9 @@ li {
 .doc-area {
   height: 100%;
   margin-bottom: 10px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
 }
 
 .document-text {
@@ -285,3 +330,16 @@ li {
   border: none;
   box-shadow: none;
 }
+
+.format {
+  margin: 5px;
+}
+
+/* Sidebar 
+
+.table-hover:hover {
+  background: #000 !important;
+} */
+
+
+    

@@ -34,8 +34,11 @@ class UsersController < ApplicationController
   end
 
   def create_main_folder(user)
-    @folder = Folder.create(name: MAIN_FOLDER_NAME, parent: nil , user: user)
-    @folder.save(validate: false)
+    unless (user.nil?)
+      @folder = Folder.create(name: MAIN_FOLDER_NAME, parent: nil , user: user)
+      @folder.save(validate: false)
+    end else puts 'pqp ############3'
+  #     else lançar exceção
   end
 
 end
