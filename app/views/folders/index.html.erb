@@ -18,8 +18,7 @@
         <% end %>
 
         <% parents.reverse.each do |folder| %>
-            <li><%=link_to folder.name, folder,
-        :onclick => 'refresh()'%></li>
+            <li><%=link_to folder.name, folder, :onclick => 'refresh()'%></li>
         <% end %>
 
         <li class="active"> <%= @folder.name unless @folder.nil?%></li>
@@ -41,7 +40,7 @@
             <tr >
               <td>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white blue') %>
-              &nbsp <%= link_to folder.name, folder %>
+              &nbsp <%= link_to folder.name, folder, :onclick => 'refresh()' %>
               </td>
               <td><p class="text-muted">--</p></td>
 

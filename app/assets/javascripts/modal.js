@@ -6,10 +6,5 @@ $(document).ready(function() {
 });
 
 function refresh() {
-	if(location.search.indexOf('reloaded=yes') < 0){
-		var hash = window.location.hash;
-		var loc = window.location.href.replace(hash, '');
-		loc += (loc.indexOf('?') < 0? '?' : '&') + 'reloaded=yes';
-		setTimeout(function(){window.location.href = loc + hash;}, 0);
-	}
+	location.reload();
 }
