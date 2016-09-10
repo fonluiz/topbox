@@ -18,7 +18,8 @@
         <% end %>
 
         <% parents.reverse.each do |folder| %>
-            <li><%=link_to folder.name, folder%></li>
+            <li><%=link_to folder.name, folder,
+        :onclick => 'refresh()'%></li>
         <% end %>
 
         <li class="active"> <%= @folder.name unless @folder.nil?%></li>
