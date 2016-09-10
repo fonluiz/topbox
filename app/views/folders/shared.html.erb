@@ -8,40 +8,41 @@
   <p id="notice"><%= notice %></p>
 
   <table class="table table">
-    <thead>
-    <tr class="subtitle">
-      <th>Nome</th>
-      <th>Última modificação</th>
-      <th>Opções</th>
-    </tr>
-    </thead>
+
+    <% unless Permission.where(user_id: get_current_user.id).length == 0 %>
+      <thead>
+      <tr class="subtitle">
+        <th>Nome</th>
+        <th>Última modificação</th>
+        <th>Opções</th>
+      </tr>
+      </thead>
 
 
-    <!-- Documents -->
-    <% Permission.where(user_id: get_current_user.id).each do |permission| %>
-    <% document = permission.privacy.shareable %>
-    <tr>
-          <td>
-          <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
-          <%= link_to document.name + "." + document.extension, document %>
-          </td>
-          <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
+      <!-- Documents -->
+      <% Permission.where(user_id: get_current_user.id).each do |permission| %>
+      <% document = permission.privacy.shareable %>
+      <tr>
+            <td>
+            <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
+            <%= link_to document.name + "." + document.extension, document %>
+            </td>
+            <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
 
 
-          <td>
-          <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.contributor?}%>
-            <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm' do %>
-            <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+            <td>
+            <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.contributor?}%>
+              <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>
             <% end %>
-          <% end %>
-          </td>
-        </tr>
+            </td>
+          </tr>
+      <% end %> 
+      </tbody>
+    <% else %>
+      <h2 class="light-silver"><center>Nenhum arquivo foi compartilhado com você.</center></h2>
     <% end %>
-
-
-
-
-    </tbody>
   </table>
 </div>
     
