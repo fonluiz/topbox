@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-collapse">
 	<ul>
 		<li>
-			<a class="navbar-brand" href="/mytopbox">
+			<a class="navbar-brand" href="/mytopbox" onclick='refresh()'>
         		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo') %>
     	</a>
     </li>
@@ -22,7 +22,7 @@
 
         <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
         <li><a href="/mytopbox/"><b style="color: #DAE5F8">Meu Topbox</b></a></li>
-        <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
+        <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" onclick='refresh()' style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
     </ul>
 
 </nav>
