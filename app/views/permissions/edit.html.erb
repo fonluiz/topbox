@@ -1,1 +1,41 @@
-<%= render 'form', permission: @permission %>
+<body class="login-bg">
+  <% if @permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% @permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="login-page">
+	    <div class="form">
+		  	<center>
+		          <h3 class="subtitle">
+		          Editar compartilhamento de <%= @permission.privacy.shareable.name %>
+		          </h3>            
+		            <br>
+		            <%= form_for(@permission) do  |f| %>               
+
+		            <p><a class="subtitle">Tipo de compartilhamento:</a></p>
+		            <p><%= f.collection_select :status, Permission.statuses.keys.to_a, :to_s, :to_s, {:selected => Permission.statuses.keys.to_a[0]}, {class: "select"}%> </p>
+
+		            <%= f.hidden_field :privacy_id%>
+		         
+		            <p><a class="subtitle">Compartilhado com:</a></p>
+
+		            <b> <%= User.find(@permission.user_id).first_name %> </b>
+		            <br>
+		            <br>
+		            <br>		           
+		            <!--Submit sign up form button-->
+		            <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
+		            <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary' %>
+		        <% end %>
+		    </center>
+		</div>
+    </div>
+</body>

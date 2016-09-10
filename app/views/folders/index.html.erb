@@ -27,61 +27,68 @@
 
 
       <table class="table table-hover">
-        <thead>
-        <tr class="subtitle">
-          <th>Nome</th>
-          <th>Última modificação</th>
-          <th>Opções</th>
-        </tr>
-        </thead>
 
-        <!-- Folders -->
-        <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
-            <tr >
-              <td>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white blue') %>
-              &nbsp <%= link_to folder.name, folder, :onclick => 'refresh()' %>
-              </td>
-              <td><p class="text-muted">--</p></td>
+        <% unless Folder.where(parent_id: @folder.id, user_id: get_current_user.id).length == 0 && Document.where(folder_id: @folder.id).length == 0 %>
 
-              <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm blue' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
-              <% end %>
+          <thead>
+          <tr class="subtitle">
+            <th>Nome</th>
+            <th>Última modificação</th>
+            <th>Opções</th>
+          </tr>
+          </thead>
 
-              <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
-                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
-              <% end %></td>              
+          <!-- Folders -->
+          <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
+              <tr >
+                <td>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white blue') %>
+                &nbsp <%= link_to folder.name, folder, :onclick => 'refresh()' %>
+                </td>
+                <td><p class="text-muted">--</p></td>
 
-            </tr>
+                <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm blue' do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+                <% end %>
+
+                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                <% end %></td>              
+
+              </tr>
+          <% end %>
+
+          <!-- Documents -->
+          <% Document.where(folder_id: @folder.id).each do |document| %>
+              <tr >
+                <td>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
+                &nbsp <%= link_to document.name + "." + document.extension, document %>
+                </td>
+                <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
+
+                <td>
+                <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm blue' do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+                <% end %>
+
+                <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                <% end %>
+
+                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm blue' do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+                <% end %>
+                </td> 
+
+              </tr>
+
+          <% end %>
+          </tbody>
+
+        <% else %>
+          <h2 class="light-silver"><center>Sua pasta está vazia.</center></h2>
         <% end %>
-
-        <!-- Documents -->
-        <% Document.where(folder_id: @folder.id).each do |document| %>
-            <tr >
-              <td>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
-              &nbsp <%= link_to document.name + "." + document.extension, document %>
-              </td>
-              <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
-
-              <td>
-              <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm blue' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
-              <% end %>
-
-              <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
-                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
-              <% end %>
-
-              <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm blue' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
-              <% end %>
-              </td> 
-
-            </tr>
-
-        <% end %>
-        </tbody>
       </table>
 
       <!-- Folder Modal -->

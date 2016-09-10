@@ -27,13 +27,17 @@
 			</div>
       </div>
 
-
-	<%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
+    <% if @document.user.id == get_current_user.id || @document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.contributor?}%>
+	  <%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
     <% end %>
+    <% end %>
 
-    <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
-    <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+
+    <% if @document.user.id == get_current_user.id %>
+      <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
+      <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+      <% end %>
     <% end %>
     </div>
 </div>

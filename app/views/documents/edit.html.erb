@@ -28,7 +28,7 @@
 
 		<%= link_to "Compartilhar", new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: ' btn btn-primary pull-left'   %>
 	  		<%= d.submit "Salvar", :class => 'btn btn-primary pull-right' %>
-	  		<%= link_to 'Cancelar', get_current_folder, class: 'btn btn-secondary pull-right' %>
+	  		<%= link_to 'Cancelar', get_current_folder, class: 'btn btn-primary pull-right' %>
 	  	<% end %>
 	</div>
 </body>

@@ -13,13 +13,13 @@
             <br>
             <%= f.submit 'Salvar', class: 'btn btn-login' %>
         <% end %>
-
+        <center>
+        <%= link_to 'Ver ' + @folder.name, @folder %> |
+        <%= link_to 'Voltar', folders_path %>  
+        </center>
       </div>
     </div>
 </body>
-<center>
-    <%= link_to 'Ver ' + @folder.name, @folder %> |
-    <%= link_to 'Voltar', folders_path %>
-</center>
+
 
 
