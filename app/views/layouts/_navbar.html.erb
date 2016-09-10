@@ -17,6 +17,14 @@
             <ul class="dropdown-menu">
               <%= render :partial => 'notifications/index' %>
             </ul>
+
+            <!-- Notifications counter -->
+            <% if qnt_notifications > 0 %>
+                <button type="button" class="btn-notify"> <%= qnt_notifications %> </button>
+            <% else %>
+                <button type="button" class="btn-notify-none"></button>
+            <% end %>
+
           </div>
         </li>
 

@@ -14,4 +14,9 @@ module ApplicationHelper
     Notification.where(user: get_current_user.id)
   end
 
+  def qnt_notifications
+    Notification.where(user: get_current_user.id).size
+  end
+
+
 end
