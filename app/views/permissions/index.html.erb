@@ -1,29 +1,49 @@
-<p id="notice"><%= notice %></p>
+ <body class="login-bg">
+ <div class="login-page">
+  <center>
+    <p id="notice"><%= notice %></p>
 
-<h1>Permissions</h1>
+    <h3 class="subtitle">Meus compartilhamentos</h3>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th class="subtitle">Documento</th>
+          <th class="subtitle">Usuário</th>
+          <th colspan="3"></th>
+          
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Document</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @permissions.each do |permission| %>
+          <% if permission.privacy.shareable.user.id == get_current_user.id %>
+            <tr>
+              <td><%= permission.privacy.shareable.name %>&nbsp &nbsp &nbsp &nbsp</td>
+              <td><%= User.find(permission.user_id).first_name %>&nbsp &nbsp &nbsp &nbsp</td>
 
-  <tbody>
-    <% @permissions.each do |permission| %>
-      <tr>
-        <td><%= permission.privacy.shareable.name %></td>
-        <td><%= permission.user_id %></td>
-        <td><%= link_to 'Show', permission %></td>
-        <td><%= link_to 'Edit', edit_permission_path(permission) %></td>
-        <td><%= link_to 'Destroy', permission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Permission', new_permission_path %>
+              <td>
+              <%= link_to permission, class: 'btn btn-primary btn-circle btn-sm blue' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-eye-open white') %>
+              <% end %>&nbsp
+              </td>
+              <td>
+              <%= link_to edit_permission_path(permission), class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>&nbsp
+              </td>
+              <td>
+              <%= link_to permission, method: :delete, data: {confirm: 'Você tem certeza?'}, class: 'btn btn-primary btn-circle btn-sm blue' do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash') %>
+              <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    </center>
+</div>
+</body>
