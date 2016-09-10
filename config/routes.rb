@@ -25,5 +25,7 @@ Rails.application.routes.draw do
 
   get 'notifications' => 'notification#index'
 
+  get 'notifications/:id/link_through', to: 'notifications#link_through',
+                                        as: :link_through
 
 end

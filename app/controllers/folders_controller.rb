@@ -15,8 +15,12 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     require_user
-    set_current_folder(@folder)
-    render 'folders/index'
+    if has_folder?
+      set_current_folder(@folder)    
+      render 'folders/index'
+    else
+      render 'permissions/denied'
+    end
   end
 
   # GET /folders/new
@@ -96,7 +100,11 @@ class FoldersController < ApplicationController
 
   def get_folder_params
     params.require(:folder).permit(:name)
-
   end
+
+  def has_folder?
+    return @folder.user.id == get_current_user.id
+  end
+
 
 end

@@ -25,12 +25,7 @@ class PermissionsController < ApplicationController
   end
 
   def isAuthorized?
-    return true if belongs_to_current_user?
-    @permission.privacy.permissions.each do |permission|
-      if (permission.user_id == get_current_user.id) 
-        return permission.author?
-      end
-    end
+    return true if belongs_to_current_user?    
     return false
   end
 
