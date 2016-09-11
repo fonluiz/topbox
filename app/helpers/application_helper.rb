@@ -11,7 +11,7 @@ module ApplicationHelper
 
 
   def current_user_notifications
-    Notification.where(user: get_current_user.id).where(read: false)
+    Notification.where(user: get_current_user.id).order('id DESC').first(5)
   end
 
   def qnt_notifications

@@ -8,6 +8,8 @@ class NotificationsController < ApplicationController
   end
 
   def show
+    @notification.update read: true
+    redirect_to @notification.document
   end
 
   def new
