@@ -4,7 +4,7 @@
 
 <%  current_user_notifications.each do |notification| %>
     <li>
-      <%= link_to "#{notification.notified_by.get_name} compartilhou o documento #{notification.document.name} com você.", document_path(notification.document) %>
+      <%= link_to "#{notification.notified_by.get_name} compartilhou o documento '#{notification.document.name}' com você.", link_through_path(notification) %>
     </li>
 <% end %>
 

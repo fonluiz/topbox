@@ -9,24 +9,31 @@
 
 	<ul class="nav navbar-nav navbar-right">
         <!-- Notification Dropdown -->
-        <li>
-          <div class="dropdown">
-            <button type="button" class='btn btn-lg btn-circle btn-sm' data-toggle="dropdown">
-              <content class='glyphicon glyphicon-globe'/>
-            </button>
-            <ul class="dropdown-menu">
-              <%= render :partial => 'notifications/index' %>
-            </ul>
+      <li>
+        <div class="dropdown">
 
-            <!-- Notifications counter -->
-            <% if qnt_notifications > 0 %>
-                <button type="button" class="btn-notify"> <%= qnt_notifications %> </button>
-            <% else %>
-                <button type="button" class="btn-notify-none"></button>
-            <% end %>
+          <% if qnt_unread_notifications > 0 %>
+              <button type="button" class='btn btn-lg btn-circle btn-sm' data-toggle="dropdown">
+                <content class='glyphicon glyphicon-globe'/>
+              </button>
+          <% else %>
+              <button type="button" class='btn btn-lg btn-circle btn-sm none' data-toggle="dropdown">
+                <content class='glyphicon glyphicon-globe'/>
+              </button>
+          <% end %>
+          <ul class="dropdown-menu">
+            <%= render :partial => 'notifications/index' %>
+          </ul>
 
-          </div>
-        </li>
+          <!-- Notifications counter -->
+          <% if qnt_unread_notifications > 0 %>
+              <button type="button" class="btn-notify"> <%= qnt_unread_notifications %> </button>
+          <% else %>
+              <button type="button" class="btn-notify-none"></button>
+          <% end %>
+
+        </div>
+      </li>
 
         <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
         <li><a href="/mytopbox/"><b style="color: #DAE5F8">Meu Topbox</b></a></li>

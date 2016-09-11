@@ -236,6 +236,19 @@ li {
   border-radius: 10px;
 }
 
+.btn-circle.btn-lg.btn-sm.none {
+  background-color: #2251A6;
+  color: #172a55;
+  width: 0px;
+  height: 50px;
+  border: none;
+  margin: 3px 10px 0px 0px;
+  padding: 0px;
+  font-size: 21px;
+  line-height: 1.33;
+  border-radius: 10px;
+}
+
 .btn-notify {
   background-color: #fa3e3e; background-repeat:no-repeat;
   color: #ffffff;

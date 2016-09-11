@@ -11,11 +11,17 @@ module ApplicationHelper
 
 
   def current_user_notifications
-    Notification.where(user: get_current_user.id)
+    Notification.where(user: get_current_user.id).where(read: false)
   end
 
   def qnt_notifications
     Notification.where(user: get_current_user.id).size
+  end
+
+  def qnt_unread_notifications
+    notifications = Notification.where(user: get_current_user.id).where(read: false)
+    size = notifications.size
+    return size
   end
 
 

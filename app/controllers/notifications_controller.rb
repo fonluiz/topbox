@@ -45,6 +45,12 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def link_through
+    @notification = Notification.find(params[:id])
+    @notification.update read: true
+    redirect_to document_path @notification.document
+  end
+
   # DELETE /notifications/1
   def destroy
     @notification.destroy
