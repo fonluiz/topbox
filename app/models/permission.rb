@@ -1,6 +1,7 @@
 class Permission < ApplicationRecord
+
 	enum status: [ :Visualizar, :Editar]
-	belongs_to :privacy
+	belongs_to :privacy, :dependent => :destroy
 	has_one :user
 
 	def get_user_notified

@@ -9,9 +9,6 @@
 
 
 	<ul class="nav navbar-nav navbar-right">
-               <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
- <li class="nav-divider"></li>
-        <li><a href="/mytopbox/"><b style="color: #DAE5F8" onclick='refresh()'>Meu Topbox</b></a></li>
 
  <!-- Notification Dropdown -->
       <li>
@@ -40,7 +37,11 @@
         </div>
       </li>
 
-        <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
-    </ul>
+      <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
+        <li class="nav-divider"></li>
+      <li><a href="/mytopbox/"><b style="color: #DAE5F8" onclick='refresh()'>Meu Topbox</b></a></li>
+
+      <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
+  </ul>
 
 </nav>

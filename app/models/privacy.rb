@@ -1,5 +1,5 @@
 class Privacy < ApplicationRecord
-  belongs_to :shareable, polymorphic: true
+  belongs_to :shareable, polymorphic: true, :dependent => :destroy
   enum visibility: [ :closed, :open ]
   has_many :permissions, :dependent => :destroy, :foreign_key => 'privacy_id'
 

@@ -19,7 +19,7 @@ class NotificationsController < ApplicationController
   def edit
   end
 
-  # POST /notifications
+
   def create(document_name)
     @notification = Notification.new(notification_params)
 
@@ -34,7 +34,7 @@ class NotificationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notifications/1
+
   def update
     respond_to do |format|
       if @notification.update(notification_params)
@@ -53,7 +53,6 @@ class NotificationsController < ApplicationController
     redirect_to document_path @notification.document
   end
 
-  # DELETE /notifications/1
   def destroy
     @notification.destroy
     respond_to do |format|
