@@ -9,8 +9,11 @@ module ApplicationHelper
   ACTION_SHOW = 'show'
 
 
-
   def current_user_notifications
+    Notification.where(user: get_current_user.id)
+  end
+
+  def current_user_unread_notifications
     Notification.where(user: get_current_user.id).where(read: false)
   end
 
