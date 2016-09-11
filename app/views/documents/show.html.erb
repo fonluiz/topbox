@@ -13,19 +13,7 @@
     </div>
   </div>
 
-    <div class="col-sm-3 table-col">
 
-       <footer class="blockquote-footer"><span class="pull-right"> Criado por <strong class="subtitle"><%= @document.folder.user.first_name.to_s %></strong></span></footer><br>
-    <div class="panel panel-default">
-		  	<div class="panel-body">
-          <b class="subtitle"> Compartilhado com: </b>
-			  	<p align=right>
-          <% @document.privacy.permissions.each do |permission| %>
-			    <%= User.find(permission.user_id).first_name %> <br>
-			   <% end %> </p>
-			   </div>  
-			</div>
-      </div>
 
   <% if @document.user.id == get_current_user.id || @document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%>	  <%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
     <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
