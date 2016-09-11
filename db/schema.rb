@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20160823022400) do
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "notified_by_id"
-    t.integer  "document_id"
+    t.integer  "shareable_id"
     t.boolean  "read",           default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.index ["document_id"], name: "index_notifications_on_document_id", using: :btree
     t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
+    t.index ["shareable_id"], name: "index_notifications_on_shareable_id", using: :btree
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
@@ -94,5 +94,6 @@ ActiveRecord::Schema.define(version: 20160823022400) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "notifications", "documents", column: "shareable_id"
   add_foreign_key "notifications", "users", column: "notified_by_id"
 end

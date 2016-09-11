@@ -67,7 +67,7 @@ class PermissionsController < ApplicationController
 
         format.json { render :show, status: :created, location: @permission }
       else
-        format.html { render :new }
+        format.html { renderails serverr :new }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
         end
       end
@@ -128,7 +128,7 @@ class PermissionsController < ApplicationController
 
     Notification.create(user_id: user_id,
                         notified_by_id: get_current_user.id,
-                        document_id: shareable.id)
+                        shareable_id: shareable.id)
   end
 
 end

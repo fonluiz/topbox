@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
 
   def show
     @notification.update read: true
-    redirect_to @notification.document
+    redirect_to @notification.shareable
   end
 
   def new
@@ -45,12 +45,6 @@ class NotificationsController < ApplicationController
         format.json { render json: @notification.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def link_through
-    @notification = Notification.find(params[:id])
-    @notification.update read: true
-    redirect_to document_path @notification.document
   end
 
   def destroy
