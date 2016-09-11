@@ -72,7 +72,7 @@ class DocumentsController < ApplicationController
     def has_edit_permission?
     return true if is_in_user_folders?(@document.folder)
     @document.privacy.permissions.each do |permission|
-      return true if ((permission.user_id == get_current_user.id) and permission.contributor?)
+      return true if ((permission.user_id == get_current_user.id) and permission.Editar?)
     end
     return false
   end

@@ -57,7 +57,7 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.new(permission_params)
     if already_shared?
-      redirect_to edit_permission_path(get_permission)
+      redirect_to edit_permission_path(get_permission), notice: 'Esse compartilhamento já existe. Deseja atualizar?'
     else 
       respond_to do |format|
       if @permission.save
@@ -81,7 +81,7 @@ class PermissionsController < ApplicationController
   def update
     respond_to do |format|
       if @permission.update(permission_params)
-        format.html { redirect_to @permission, notice: 'Permission was successfully updated.' }
+        format.html { redirect_to @permission.privacy.shareable }
         format.json { render :show, status: :ok, location: @permission }
       else
         format.html { render :edit }

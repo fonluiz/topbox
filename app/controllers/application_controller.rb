@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   @@current_folder #The Current folder should remain the same.
   @@current_docucument #The current/lastest document
 
+
   def get_current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::Base
     @@current_folder = folder
   end
 
-
+  
   def require_user
     redirect_to LOGIN_URL unless logged_in?
   end

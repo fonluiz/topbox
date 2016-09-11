@@ -15,8 +15,8 @@
 
 	<p>
 	  <strong class="subtitle">Tipo de compartilhamento: </strong>
-	  	    <%= 'Pode visualizar o arquivo' if @permission.reader? %>
-	  <%= 'Pode editar o arquivo' if @permission.contributor? %>
+	  	    <%= 'Pode visualizar o arquivo' if @permission.visualizar? %>
+	  <%= 'Pode editar o arquivo' if @permission.editar? %>
 	</p>
 	<br>
 	<%= link_to 'Voltar', permissions_path, class: 'btn btn-primary' %>

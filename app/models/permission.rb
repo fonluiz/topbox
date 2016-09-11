@@ -1,5 +1,5 @@
 class Permission < ApplicationRecord
-	enum status: [ :reader, :contributor]
+	enum status: [ :Visualizar, :Editar]
 	belongs_to :privacy
 	has_one :user
 

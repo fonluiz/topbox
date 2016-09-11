@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     respond_to do |format|
         log_out
-        format.html { redirect_to :action => ACTION_NEW}
+        format.html { redirect_to :action => ACTION_NEW, :notice => 'Log out realizado com sucesso!'}
     end
   end
 
