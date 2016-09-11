@@ -15,7 +15,7 @@
         <% end %>
         <center>
         <%= link_to 'Ver ' + @folder.name, @folder %> |
-        <%= link_to 'Voltar', folders_path %>  
+        <%= link_to 'Voltar', folders_path, :onclick => 'refresh()' %>  
         </center>
       </div>
     </div>

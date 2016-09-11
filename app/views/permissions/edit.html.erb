@@ -33,7 +33,7 @@
 		            <br>		           
 		            <!--Submit sign up form button-->
 		            <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
-		            <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary' %>
+		            <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary', :onclick => 'refresh()' %>
 		        <% end %>
 		    </center>
 		</div>

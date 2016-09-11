@@ -2,7 +2,7 @@
 	<ul>
 		<li>
 			<a class="navbar-brand" href="/mytopbox">
-        		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo') %>
+        		<%= image_tag('topbox_logo2.png', :size => '118x40', :alt => 'logo', :onclick => 'refresh()') %>
     	</a>
     </li>
 	</ul>
@@ -36,7 +36,7 @@
       </li>
 
         <li><a><b style="color: #DAE5F8"><%= get_current_user.first_name %> <%= get_current_user.last_name %></b></a></li>
-        <li><a href="/mytopbox/"><b style="color: #DAE5F8">Meu Topbox</b></a></li>
+        <li><a href="/mytopbox/" onclick="refresh()"><b style="color: #DAE5F8">Meu Topbox</b></a></li>
         <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
     </ul>
 
