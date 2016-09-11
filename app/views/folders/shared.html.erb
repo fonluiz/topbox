@@ -31,7 +31,7 @@
 
 
             <td>
-            <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.contributor?}%>
+            <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%>
               <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm' do %>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
               <% end %>

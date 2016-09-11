@@ -8,4 +8,6 @@ class Document < ApplicationRecord
   def user
   	return self.folder.user
   end
+
+ 
 end

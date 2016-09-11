@@ -42,17 +42,17 @@
           <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
               <tr >
                 <td>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-open white blue') %>
-                &nbsp <%= link_to folder.name, folder, :onclick => 'refresh()' %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-close white blue') %>
+                &nbsp&nbsp<%= link_to folder.name, folder, :onclick => 'refresh()' %>
                 </td>
                 <td><p class="text-muted">--</p></td>
 
-                <td><%= link_to edit_folder_path(folder), class: 'btn btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
-                <% end %>
+                <td><%= link_to edit_folder_path(folder) do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <% end %>&nbsp&nbsp
 
-                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
-                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                 <% end %></td>              
 
               </tr>
@@ -68,16 +68,16 @@
                 <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
 
                 <td>
-                <%= link_to edit_document_path(document), class: 'btn btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
-                <% end %>
+                <%= link_to edit_document_path(document) do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <% end %>&nbsp&nbsp
 
-                <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
+                <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
-                <% end %>
+                <% end %>&nbsp&nbsp
 
-                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
                 <% end %>
                 </td> 
 
