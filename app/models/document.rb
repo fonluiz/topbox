@@ -9,5 +9,8 @@ class Document < ApplicationRecord
   	return self.folder.user
   end
 
+  def get_nome
+    self.name
+  end
  
 end

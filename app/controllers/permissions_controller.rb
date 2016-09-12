@@ -128,7 +128,7 @@ class PermissionsController < ApplicationController
 
     Notification.create(user_id: user_id,
                         notified_by_id: get_current_user.id,
-                        document_id: shareable.id)
+                        document_id: document.id)
   end
 
 end

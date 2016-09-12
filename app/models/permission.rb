@@ -1,5 +1,4 @@
 class Permission < ApplicationRecord
-
 	enum status: [ :Visualizar, :Editar]
 	belongs_to :privacy, :dependent => :destroy
 	has_one :user

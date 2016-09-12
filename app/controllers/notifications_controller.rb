@@ -47,12 +47,6 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def link_through
-    @notification = Notification.find(params[:id])
-    @notification.update read: true
-    redirect_to document_path @notification.document
-  end
-
   def destroy
     @notification.destroy
     respond_to do |format|
