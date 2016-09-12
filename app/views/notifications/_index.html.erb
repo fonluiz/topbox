@@ -1,30 +1,20 @@
 <div class="pre-scrollable">
-<div class="container">
-
-<strong> Notificações </strong>
-
-
-<% if current_user_notifications.empty? %>
-    <li><%= NotificationsHelper::DEFAULT_MESSAGE_NO_NOTIFICATIONS %></li>
-<% end %>
-
-
-      <ul class="list-group">
-
-<%  current_user_notifications.each do |notification| %>
-
-    <% mode1 = '<a href='+ notification_url(notification) + ' class="list-group-item" style="border: none" >' %>
-    <% if notification.read  %>
-    <% mode1 = '<a href='+ notification_url(notification) + ' class="list-group-item list-group-item-action disabled" style="border: none" >' %>
+  <div class="container">
+    <strong> Notificações </strong>
+    <% if current_user_notifications.empty? %>
+      <li><%= NotificationsHelper::DEFAULT_MESSAGE_NO_NOTIFICATIONS %></li>
     <% end %>
-
+    <ul class="list-group">
+    <%  current_user_notifications.each do |notification| %>
+      <% notification.read ? state = 'disabled' : state ='' %>
+      <% mode1 = '<a href='+ notification_url(notification) + ' class="list-group-item list-group-item-action '+ state+'" style="border: none" >' %>
       <%= mode1.html_safe %>
-    <p><strong><%= notification.notified_by.get_name %></strong> compartilhou o documento <strong><%= notification.notifiable.name%></strong> com você. <h6> <span class ="glyphicon glyphicon-file"> </span> há cerca de <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> horas atrás</h6> </p>
-  </a>
-  <% if notification.read  %>
-  <% end %>
-<% end %>
-</ul>
-
-</div>
+      <p>
+        <strong><%= notification.notified_by.get_name %></strong> compartilhou o documento 
+        <strong><%= notification.notifiable.name%></strong> com você.
+        <h6> <span class ="glyphicon glyphicon-file"> </span> há cerca de <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> horas atrás</h6></p>
+      </a>
+    <% end %>
+    </ul>
+  </div>
 </div>
