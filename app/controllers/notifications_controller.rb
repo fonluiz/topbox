@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
 
   def show
     @notification.update read: true
-    redirect_to @notification.document
+    redirect_to @notification.notifiable
   end
 
   def new

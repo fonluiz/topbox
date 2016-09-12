@@ -19,7 +19,7 @@
     <% end %>
 
       <%= mode1.html_safe %>
-    <p><strong><%= notification.notified_by.get_name %></strong> compartilhou o documento <strong><%= notification.document.name%></strong> com você. <h6> <span class ="glyphicon glyphicon-file"> </span> há cerca de <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> horas atrás</h6> </p>
+    <p><strong><%= notification.notified_by.get_name %></strong> compartilhou o documento <strong><%= notification.notifiable.name%></strong> com você. <h6> <span class ="glyphicon glyphicon-file"> </span> há cerca de <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> horas atrás</h6> </p>
   </a>
   <% if notification.read  %>
   <% end %>

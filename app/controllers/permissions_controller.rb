@@ -119,16 +119,18 @@ class PermissionsController < ApplicationController
     end
 
   def create_notification
+
     user_id = params[:permission][:user_id]
 
     privacy_id = params[:permission][:privacy_id]
     privacy = Privacy.find(privacy_id)
 
     shareable = privacy.get_shareable
+    Notification.create(notified_by: get_current_user, 
+          user_id: user_id, 
+          notifiable: shareable)
 
-    Notification.create(user_id: user_id,
-                        notified_by_id: get_current_user.id,
-                        document_id: document.id)
+    
   end
 
 end
