@@ -72,13 +72,18 @@
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
                 <% end %>&nbsp&nbsp
 
+                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
+                <% end %>&nbsp&nbsp
+
+                <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                <% end %>&nbsp&nbsp
+
                 <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
                 <% end %>&nbsp&nbsp
 
-                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
-                <% end %>
                 </td> 
 
               </tr>

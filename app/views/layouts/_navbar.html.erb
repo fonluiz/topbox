@@ -9,7 +9,7 @@
 
 
 	<ul class="nav navbar-nav navbar-right">
-
+<% unless get_current_user.nil? %>
  <!-- Notification Dropdown -->
       <li>
         <div class="dropdown">
@@ -42,6 +42,7 @@
       <li><a href="/mytopbox/"><b style="color: #DAE5F8" onclick='refresh()'>Meu Topbox</b></a></li>
 
       <li><a href=<%=logout_path %> data-method="delete" rel="nofollow" style="margin-right: 60px"><b style="color: #DAE5F8">Sair</b></a></li>
+      <% end %>
   </ul>
 
 </nav>

@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
   get 'notifications' => 'notification#index'
 
+  get 'documents/:id/visibility' => 'privacies#switch_visibility', :as => 'document_visibility'
+  get 'documents/:id/download' => 'documents#download', :as => 'document_download'
+
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through
 

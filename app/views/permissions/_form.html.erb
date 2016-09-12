@@ -1,23 +1,13 @@
 <body class="login-bg">
-  <% if permission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
-
-      <ul>
-      <% permission.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="login-page">
-    <div class="form">
+<div class="col-sm-offset-4 col-sm-4" >
+  <div class="panel">
       <center>
               <h3 class="subtitle">
               Compartilhar <%= @permission.privacy.shareable.name %>
               </h3>            
                 <br>
+                  <div class="panel-body">
+
                 <%= form_for(@permission) do  |f| %>               
 
                 <p><a class="subtitle">Tipo de compartilhamento:</a></p>
@@ -34,8 +24,17 @@
                 <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
                 <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary', :onclick => 'refresh()' %>
             <% end %>
+            </div>
+            <div class="alert alert-info" role="alert">É possível tornar seu documento visível para qualquer pessoa que contenha o link. 
+            <%= link_to document_visibility_url(@permission.privacy.shareable) do %>
+            <% if @permission.privacy.open? %> <span class="label label-success">Ativado</span> 
+            <% else %> <span class="label label-default">Desativado</span>
+            <% end %>
+            
+            <% end %>
+            </div>
         </center>
-      </div>
+
+    </div>
     </div>
 </body>
-

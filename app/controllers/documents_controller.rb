@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
-  helper_method :share, :user
+  helper_method :share, :user, :download
 
   def user
     return @document.folder.user
@@ -26,11 +26,16 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    require_user
     @document = Document.find(params[:id])
     unless has_read_permission?
       render "permissions/denied"
     end
+  end
+
+  def download
+    @document = Document.find(params[:id])
+    filename = @document.name + "." + @document.extension
+    send_data @document.content, :filename => filename
   end
 
   def destroy
@@ -78,6 +83,8 @@ class DocumentsController < ApplicationController
   end
 
   def has_read_permission?
+    return true if @document.privacy.open?
+    return false if get_current_user.nil?
     return true if has_edit_permission?
     @document.privacy.permissions.each do |permission|
       return true if (permission.user_id == get_current_user.id)

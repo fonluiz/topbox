@@ -38,7 +38,7 @@ class PermissionsController < ApplicationController
   def authorPermission?
     @permission.privacy.permissions.each do |permission|
       if (permission.user_id == get_current_user.id) 
-        return permission.author?
+        return permission.editar?
       end
     end
   end

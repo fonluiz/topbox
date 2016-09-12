@@ -1,8 +1,11 @@
 <div class= "container-fluid"> 
-  <div class="col-sm-9" >
-  	<div class ="document-text">
-      <h1 class="page-header"> <center><%= @document.name + "." %><strong><%= @document.extension %></strong> </center></h1>
-    
+  <div class="row pull-center" >
+  <div class="col-sm-offset-2 col-sm-8 pull-center" >
+    <div class="list-group-item" style="border: none; ">
+      <h1><strong><%= @document.name %> </strong></h1><br />
+
+
+
 		    <p> <% if @document.md? %>
               <%= @document.content.try(:html_safe) %>
             <% else %>
@@ -12,31 +15,77 @@
 
     </div>
   </div>
+  </div>
+  <div class="row" >
 
-    <div class="col-sm-3 table-col">
+  <div class="col-sm-offset-2 col-sm-8" style="border: none" >
 
-       <footer class="blockquote-footer"><span class="pull-right"> Criado por <strong class="subtitle"><%= @document.folder.user.first_name.to_s %></strong></span></footer><br>
-    <div class="panel panel-default">
-		  	<div class="panel-body">
-          <b class="subtitle"> Compartilhado com: </b>
-			  	<p align=right>
+  <div class="list-group-item" >
+    <div class="panel-body">
+
+      <div class= "container-fluid"> 
+
+          <div class="col-sm-3">
+          <b class="subtitle"> Autores </b>
+			  	<p align=left>
+          <%= @document.user.first_name %> <br />
           <% @document.privacy.permissions.each do |permission| %>
-			    <%= User.find(permission.user_id).first_name %> <br>
+          <% if permission.status == "Editar" %>
+			    <%= User.find(permission.user_id).first_name %> <br />
+          <% end %>
 			   <% end %> </p>
 			   </div>  
-			</div>
+          <div class="col-sm-4">
+          <b class="subtitle"> Data de Publicação </b>
+          <p align=left>
+          <%= @document.updated_at %> <br />
+          </p>
+         </div>  
+          <div class="col-sm-5">
+            <% unless get_current_user.nil? %>
+            <% if @document.user.id == get_current_user.id || @document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%> 
+              <%= link_to edit_document_path(@document)  do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
+                <% end %>
+                Editar documento <br />
+                <% end %>
+
+          
+         <%= link_to document_download_url(@document), data: { no_turbolink: true }, :target => "_blank" do  %> 
+         <content class='glyphicon glyphicon-download-alt'/> 
+         <% end %> 
+         Fazer download do documento em ".<%= @document.extension %> " <br />
+
+
+          <% if @document.user.id == get_current_user.id %>
+                <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true } do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
+                <% end %> Compartilhar documento <br />
+              <% end %>
+              <% end %>
+
+
+         <% if @document.user.id == get_current_user.id %>
+                <%= link_to document_visibility_url(@document),  data: { no_turbolink: true } do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-link') %>
+                <% end %> Compartilhamento por link <% if @document.privacy.open? %> <span class="label label-success">Ativado</span>  <span class="input-group-addon" id="basic-addon3"><%= document_url(@document) %></span>
+
+            <% else %> <span class="label label-default">Desativado</span>
+            <% end %><br />
+              <% end %>
+
+
+        </div>
+
+         </div>
+
       </div>
 
-  <% if @document.user.id == get_current_user.id || @document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%>	  <%= link_to edit_document_path(@document), class: 'btn btn-primary btn-circle btn-xl lower-left' do %>
-    <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
-    <% end %>
-    <% end %>
-
-
-    <% if @document.user.id == get_current_user.id %>
-      <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: 'btn btn-primary btn-circle btn-xl lower-right' do %>
-      <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
-      <% end %>
-    <% end %>
+  
     </div>
+    </div>
+   
+
+
+  
 </div>

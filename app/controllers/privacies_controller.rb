@@ -21,11 +21,15 @@ class PrivaciesController < ApplicationController
   def edit
   end
 
-  def open
-    privacy = params[:p]
-    #visibility = params[:v]
-    @privacy = Privacy.find(privacy)
-    @privacy.visibility = open
+  def switch_visibility
+    document = Document.find(params[:id])
+    @privacy = document.privacy
+    if @privacy.visibility == "open"
+      @privacy.update visibility: "closed"
+    else
+      @privacy.update visibility: "open"
+    end
+    redirect_to document
   end
 
   # POST /privacies
