@@ -27,8 +27,8 @@
             </div>
             <div class="alert alert-info" role="alert">É possível tornar seu documento visível para qualquer pessoa que contenha o link. 
             <%= link_to document_visibility_url(@permission.privacy.shareable) do %>
-            <% if @permission.privacy.open? %> <span class="label label-success">Ativado</span> 
-            <% else %> <span class="label label-default">Desativado</span>
+            <% if @permission.privacy.open? %> <span class="label label-success">Ativado/Desativar</span> 
+            <% else %> <span class="label label-default">Desativado/Ativar</span>
             <% end %>
             
             <% end %>

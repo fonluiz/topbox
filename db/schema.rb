@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 20160823022400) do
   create_table "documents", force: :cascade do |t|
     t.integer  "folder_id"
     t.integer  "privacy_id"
-    t.string   "content"
-    t.string   "name"
+    t.string   "content",    default: ""
+    t.string   "name",       default: "Documento Sem Titulo"
     t.integer  "extension",  default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
     t.index ["privacy_id"], name: "index_documents_on_privacy_id", using: :btree
   end

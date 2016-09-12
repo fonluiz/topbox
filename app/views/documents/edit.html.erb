@@ -11,24 +11,33 @@
 	<br>
 	<div class="content">
 		<%= form_for @document do |d| %>
-			<a class="subtitle">Título:</a> <%= d.text_field :name, class: 'form-control' %>
-	    	<br>
+			<div class="col-lg-12">
+				<a class="subtitle">Título:</a>
+	    			<div class="input-group">
+		      			<%= d.text_field :name, class: 'form-control' %>
+		      			<!-- Extension select dropdown -->
+		      			<div class="input-group-btn">
+		      				<%= d.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => @document.extension}, {class: "btn btn-default dropdown-toggle" }%>
+		      			</div>
+	    			</div>				
+		    		<br>
+			    	<p>
+				    	<% if @document.md? %>
+				            <%= d.bootsy_area(:content, class: 'form-control doc-area', rows: 18) %>
+				        <% else %>
+				              <%= d.text_area(:content, class: 'form-control doc-area', rows: 18) %>
+				        <% end %>
+			        </p>
+				    <% if @document.user == get_current_user %>
+				    	<p><a class="subtitle">Mover para:</a></p>
+				    	<p><%= d.collection_select :folder, get_user_folders, :id, :name, {:selected => @document.folder.id}, {class: "select"}%></p>
+			            <br>
+		            <% end %>
 
-	    	<p> <% if @document.md? %>
-              <%= d.bootsy_area(:content, class: 'form-control doc-area', rows: 18) %>
-            <% else %>
-              <%= d.text_area(:content, class: 'form-control doc-area', rows: 18) %>
-            <% end %>
-        	</p>
-	    	<% if @document.user == get_current_user %>
-	    	<p><a class="subtitle">Mover para:</a></p>
-	    	<p><%= d.collection_select :folder, get_user_folders, :id, :name, {:selected => @document.folder.id}, {class: "select"}%></p>
-            <br>
-            <% end %>
-
-		<%= link_to "Compartilhar", new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: ' btn btn-primary pull-left'   %>
-	  		<%= d.submit "Salvar", :class => 'btn btn-primary pull-right' %>
-	  		<%= link_to 'Cancelar', get_current_folder, class: 'btn btn-primary pull-right', :onclick => 'refresh()' %>
+			<%= link_to "Compartilhar", new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: ' btn btn-primary pull-left'   %>
+		  		<%= d.submit "Salvar", :class => 'btn btn-primary pull-right' %>
+		  		<%= link_to 'Cancelar', get_current_folder, class: 'btn btn-primary pull-right', :onclick => 'refresh()' %>
+		  	</div>
 	  	<% end %>
 	</div>
 </body>

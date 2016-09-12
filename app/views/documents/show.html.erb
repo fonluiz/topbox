@@ -7,7 +7,7 @@
           <% if @document.md? %>
             <%= @document.content.try(:html_safe) %>
           <% else %>
-            <%= @document.content %>
+            <%= sanitize @document.content.gsub(/\n/,"<br/>"), :tags => ['br']  %>
           <% end %>
         </p>
       </div>

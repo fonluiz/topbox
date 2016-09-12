@@ -1,11 +1,11 @@
- <body class="login-bg">
- <div class="login-page">
-  <center>
+<div class= "container-fluid"> 
+<div class="row">
+ <div class="col-sm-2">
+  <%= render 'folders/sidebar' %>
+</div>
+ <div class="col-sm-10">
     <p id="notice"><%= notice %></p>
-
-    <h3 class="subtitle">Meus compartilhamentos</h3>
-    <br>
-    <table>
+      <table class="table table-hover">
 
       <% unless @permissions.select{|permission| permission.privacy.shareable.user.id == get_current_user.id}.length == 0 %>
 
@@ -13,6 +13,7 @@
           <tr>
             <th class="subtitle">Documento</th>
             <th class="subtitle">Usuário</th>
+            <th class="subtitle">Opção</th>
             <th colspan="3"></th>
             
           </tr>
@@ -21,23 +22,19 @@
           <% @permissions.each do |permission| %>
             <% if permission.privacy.shareable.user.id == get_current_user.id %>
               <tr>
-                <td><%= permission.privacy.shareable.name %>&nbsp &nbsp &nbsp &nbsp</td>
+              <td>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>
+                <% shareable = permission.privacy.shareable %>
+                &nbsp&nbsp<%= link_to shareable.name, shareable, :onclick => 'refresh()' %>
+                </td>
                 <td><%= User.find(permission.user_id).first_name %>&nbsp &nbsp &nbsp &nbsp</td>
+                <td>
+                <%= link_to edit_permission_path(permission) do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <% end %>&nbsp&nbsp
 
-
-                <td>
-                <%= link_to permission, class: 'btn btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-eye-open white') %>
-                <% end %>&nbsp
-                </td>
-                <td>
-                <%= link_to edit_permission_path(permission), class: 'btn btn-info btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
-                <% end %>&nbsp
-                </td>
-                <td>
-                <%= link_to permission, method: :delete, data: {confirm: 'Você tem certeza?'}, class: 'btn btn-primary btn-circle btn-sm blue' do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash') %>
+                <%= link_to permission, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                 <% end %>
                 </td>
               </tr>
@@ -45,10 +42,10 @@
           <% end %>
         </tbody>
       <% else %>
-        <h3 class="light-silver"><center>Você não compartilhou nenhum arquivo.</center></h2>
+        <h3 class="light-silver"><center>Você não compartilhou nenhum arquivo.</center></h3>
       <% end %>
     </table>
     <br>
-    </center>
 </div>
-</body>
+</div>
+</div>

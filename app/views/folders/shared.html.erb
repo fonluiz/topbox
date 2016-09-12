@@ -13,6 +13,7 @@
       <thead>
       <tr class="subtitle">
         <th>Nome</th>
+        <th>Proprietário</th>
         <th>Última modificação</th>
         <th>Opções</th>
       </tr>
@@ -27,9 +28,10 @@
             <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
             <%= link_to document.name + "." + document.extension, document %>
             </td>
+            <td>
+            <%= permission.privacy.shareable.user.get_name %>
+            </td>
             <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
-
-
             <td>
             
             <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
