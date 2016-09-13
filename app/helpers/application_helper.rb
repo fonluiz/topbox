@@ -7,6 +7,7 @@ module ApplicationHelper
 
   ACTION_NEW = 'new'
   ACTION_SHOW = 'show'
+  ACTION_INDEX = 'index'
 
 
   def current_user_notifications

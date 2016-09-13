@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:login_password])
       log_in @user
-      redirect_to url_for(:controller => 'folders', :action => 'index')
+      redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
     else
       flash.now[:danger] = INVALID_AUTHENTICATION_ERROR
       render :new
