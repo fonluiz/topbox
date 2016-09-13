@@ -15,6 +15,14 @@ Departamento de Sistemas e Computação <br/>
   <li>Rafaela Lacerda</li>
 </ul>
 
+<p> A participação dos integrantes e divisão do trabalho está descrita no <a href="https://trello.com/b/mHfHdimU/sprint-2">Trello</a>. Vale ressaltar que essa divisão só se aproxima do real esforço dedicado de cada integrante.  </p>
+
+<p> O documento de decisões para a segunda entrega está acessível por meio <a href="https://docs.google.com/document/d/1LGJvQNwoKSo03mv93JI85PBSIa4ms6oCE8iPMTtTMRU/edit?usp=sharing">deste link</a>.</p>
+
+<p> Link para o <a href="https://topboxapp.herokuapp.com/">aplicação</a> hospedada em Heroku.</p>
+
+<br>
+
 <h3> Configurando o ambiente </h3>
 	
 	Ruby - versão 2.3
@@ -44,10 +52,6 @@ Departamento de Sistemas e Computação <br/>
 <b> Passo 8) </b> Antes de executar a aplicação é necessário criar e fazer as migrações do banco de dados. Para isso, basta executar < rake db:create > e depois executar < rake db:migrate > </br>
 <b> Passo 9) </b> Digite o comando < rails server > <br/>
 <b> Passo 10) </b> Entre no seu navegador e digite http://localhost:3000 <br/>
-
-<p> A participação dos integrantes e divisão do trabalho está descrita no <a href="https://trello.com/b/mHfHdimU/sprint-2">Trello</a>. Vale ressaltar que essa divisão só se aproxima do real esforço dedicado de cada integrante.  </p>
-
-<p> O documento de decisões para a segunda entrega está acessível por meio <a href="https://docs.google.com/document/d/1LGJvQNwoKSo03mv93JI85PBSIa4ms6oCE8iPMTtTMRU/edit?usp=sharing">deste link</a>.</p>
 
 
 
