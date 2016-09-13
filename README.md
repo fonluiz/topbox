@@ -19,11 +19,25 @@ Departamento de Sistemas e Computação <br/>
 	
 	Ruby - versão 2.3
 	Ruby on Rails - versão 5.0
-	sqlite3 - versão 3.11
+	Psql (PostgreSQL) - versão 9.5.4
 
 <b> Passo 1) </b> Instalar Ruby. Você pode seguir <a href="https://www.ruby-lang.org/pt/documentation/installation/">este tutorial</a>. <br/>
 <b> Passo 2) </b> Instalar Ruby on Rails. Voce pode seguir <a href="http://installrails.com/">este tutorial</a>. <br/>
-<b> Passo 3) </b> Instalar o sqlite3, caso não o tenha. Você pode seguir <a href="http://www.tutorialspoint.com/sqlite/sqlite_installation.htm">este tutorial</a>. <br/>
+<b> Passo 3) </b> Configure o PSQL. No Linux, abra o terminal e digite os seguintes comandos:  <br/>
+	 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; $ sudo apt-get install postgresql
+	<br>
+	 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; $ sudo apt-get install libpq-dev
+	<br>	
+	&emsp; &emsp; &emsp; Em /topbox:
+	<br>
+	&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; $ gem install pg -v ‘0.18.4’
+	<br>
+	<br>
+	&emsp; &emsp; &emsp; Obs: caso seja apresentado o erro “FATAL: role < usuario > does not exist”, dê o seguinte comando:
+	<br>
+	&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; $ sudo -u postgres creatuser --superuser < usuario >
+	<br>
+	
 <b> Passo 4) </b> Baixe o projeto pelo GitHub. <br/>
 <b> Passo 5) </b> No terminal, Entre no diretório “Topbox”.  < cd topbox/Topbox > <br/>
 <b> Passo 7) </b> Antes de mais nada será preciso instalar as gems usadas na aplicação. Para isso, basta executar < bundle install >. Isso instalará as gems necessárias, que estão listadas no arquivo GEMFILE. </br>
@@ -31,5 +45,10 @@ Departamento de Sistemas e Computação <br/>
 <b> Passo 9) </b> Digite o comando < rails server > <br/>
 <b> Passo 10) </b> Entre no seu navegador e digite http://localhost:3000 <br/>
 
-<p> As atividades foram realizadas, em sua maioria, por meio de implementação colaborativas em branches. Sendo seu conteúdo mesclado posteriormente com o da branch principal (master). Sendo assim, alguns membros do grupo não constam nas estatísticas de contribuição do github. Embora algumas branches tenham sido deletadas, algumas ainda constam no repositório. Além disso, está disponível no Trello a distribuição das atividades. </p>
+<p> A participação dos integrantes e divisão do trabalho está descrita no <a href="https://trello.com/b/mHfHdimU/sprint-2">Trello</a>. Vale ressaltar que essa divisão só se aproxima do real esforço dedicado de cada integrante.  </p>
+
+<p> O documento de decisões para a segunda entrega está acessível por meio <a href="https://docs.google.com/document/d/1LGJvQNwoKSo03mv93JI85PBSIa4ms6oCE8iPMTtTMRU/edit?usp=sharing">deste link</a>.</p>
+
+
+
 
