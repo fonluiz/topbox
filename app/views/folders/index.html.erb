@@ -7,7 +7,10 @@
     
       <% set_current_folder(@folder) %>
 
-      <p id="notice"><%= notice %></p>
+      <p id="notice">
+      <% unless notice.nil? %>
+      <div class="alert alert-info" role="alert"><%= notice %></div><% end %>
+      </p>
 
       <!-- Caminho clicável de pastas -->
       <ol class="breadcrumb">
@@ -93,7 +96,16 @@
           </tbody>
 
         <% else %>
-          <h2 class="light-silver"><center>Sua pasta está vazia.</center></h2>
+          <h2 class="light-silver">
+          <center>
+            <%if @folder == find_mytopbox %>
+                  Sua Topbox está vazia!<br />
+                  <%= image_tag('open_box.png', :size =>'150x150' ,:alt => 'Nova Pasta!', :onclick => 'refresh()') %><br /> <small class="light-silver"> Crie seu primeiro arquivo! </small>
+            <% else %>
+              Esta pasta está vazia!
+              <%= image_tag('open_box.png', :size =>'100x100' ,:alt => 'Nova Pasta!', :onclick => 'refresh()') %><br />
+              <% end %>
+                  </center></h2>
         <% end %>
       </table>
 
