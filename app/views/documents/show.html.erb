@@ -43,7 +43,6 @@
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
                 <% end %>
                 Editar documento <br />
-              <% end %>
      
               <%= link_to document_download_url(@document), data: { no_turbolink: true }, :target => "_blank" do  %> 
                 <content class='glyphicon glyphicon-download-alt'/> 
@@ -68,6 +67,8 @@
             <span class="label label-default">Desativado</span>
             <% end %><br />
           <% end %>
+          <% end %>
+
           </div>
         </div>
       </div>
