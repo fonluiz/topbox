@@ -1,23 +1,25 @@
 class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
-  before_action :set_folder, only: [:show, :edit, :update, :destroy]
-  helper_method :get_folder_path
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash]
+  helper_method :get_folder_path, :move_to_trash
 
 
   # GET /folders
   # GET /folders.json
   def index
     require_user
-    @folder = find_mytopbox    #redirect_to_mytopbox
+    @folder = find_mytopbox 
+    redirect_to_mytopbox   #redirect_to_mytopbox
   end
 
   # GET /folders/1
   # GET /folders/1.json
   def show
     require_user
-    if has_folder?
+    @my_folders = get_my_folders
+    @my_documents = get_my_documents
+    if has_folder? && !@folder.trash
       set_current_folder(@folder)    
-      render 'folders/index'
     else
       render 'permissions/denied'
     end
@@ -66,6 +68,32 @@ class FoldersController < ApplicationController
     end
   end
 
+  def show_trash
+    @trash_documents = get_trash_documents
+    @trash_folders = get_trash_folders
+    render 'folders/trash'
+  end
+  def move_to_trash
+    set_folder
+    unless @folder == find_mytopbox 
+      @folder.make_trash
+      redirect_to_mytopbox
+    end
+  end
+
+  def recycle
+    set_folder
+    unless @folder == find_mytopbox
+      @folder.make_recycle
+      redirect_to_mytopbox      
+    end
+  end
+
+  def recycle_all
+    get_trash_folders.each{|folder| folder.make_recycle}
+    get_trash_documents.each{|document| document.make_recycle}
+    redirect_to trash_path
+  end
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
@@ -104,6 +132,24 @@ class FoldersController < ApplicationController
 
   def has_folder?
     return @folder.user.id == get_current_user.id
+  end
+
+  def get_my_folders
+    Folder.where(parent_id: @folder.id, user_id: get_current_user.id, trash: false)
+  end
+
+  def get_my_documents
+    Document.where(folder_id: @folder.id, trash: false)
+  end
+
+  def get_trash_folders
+    all_user_trash_folders = Folder.where(user: get_current_user, trash:true)
+    no_parents= all_user_trash_folders.select{|folder| !folder.parent.trash}
+  end
+
+  def get_trash_documents
+    all_trash_documents = Document.where(trash: true)
+    all_user_trash_document = all_trash_documents.select {|document| document.folder.user == get_current_user && !(document.folder.trash)}
   end
 
 

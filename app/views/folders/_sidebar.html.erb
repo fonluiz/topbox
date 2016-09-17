@@ -1,8 +1,25 @@
 <div class="content-fluid">
-	<ul class="nav nav-pills nav-stacked">
-	<li role="presentation" ><%= link_to "Meu Topbox",find_mytopbox, :onclick => 'refresh()'%></li>
-	<li role="presentation" ><%= link_to "Compartilhados Comigo", :controller => :folders, :action => :shared
-%></li>
-	<li role="presentation" ><%= link_to "Meus Compartilhamentos", permissions_path%></li>
+	<ul class="nav nav-pills nav-stacked" >
+	<li role="presentation"  >
+	<%= link_to find_mytopbox, :onclick => 'refresh()' do%>
+		<span class = "glyphicon glyphicon glyphicon-th-large white"></span> Meu Topbox 
+	<% end %></li>
+	<li role="presentation" >
+	<%= link_to :controller => :folders, :action => :shared  do%>
+	<span class= "glypicon glyphicon glyphicon-share white"> </span> Compartilhados Comigo
+	<% end %>	
+	</li>
+	<li role="presentation" >
+		<%= link_to permissions_path do %>
+			<span class= "glypicon glyphicon glyphicon-lock white"> </span> 
+			Permissões
+			<% end %>
+		</li>
+	<li role="presentation" >
+		<%= link_to trash_path do %>
+		<span class = "glyphicon glyphicon glyphicon-trash white"></span>
+		Lixeira
+		<% end %>
+	</li>
 	</ul>
 </div>

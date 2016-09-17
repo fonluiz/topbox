@@ -12,5 +12,13 @@ class Document < ApplicationRecord
   def get_nome
     self.name
   end
+
+  def make_trash
+    self.update trash: true
+  end
+
+  def make_recycle
+    self.update trash: false
+  end
  
 end

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160823022400) do
     t.string   "content",    default: ""
     t.string   "name",       default: "Documento Sem Titulo"
     t.integer  "extension",  default: 0
+    t.boolean  "trash",      default: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id", using: :btree
@@ -45,8 +46,9 @@ ActiveRecord::Schema.define(version: 20160823022400) do
     t.integer  "parent_id"
     t.integer  "user_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "trash",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["parent_id"], name: "index_folders_on_parent_id", using: :btree
     t.index ["user_id"], name: "index_folders_on_user_id", using: :btree
   end
