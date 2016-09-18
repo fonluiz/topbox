@@ -4,7 +4,6 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash]
   helper_method :get_folder_path, :move_to_trash
 
-
   # GET /folders
   # GET /folders.json
   def index
@@ -17,6 +16,11 @@ class FoldersController < ApplicationController
   def show
     @my_folders = get_my_folders
     @my_documents = get_my_documents
+    @folder_content = get_my_folders + get_my_documents
+    @initial_index = 1
+    @page = [params[:pg].to_i,1].max
+    @initial_index = (@page-1)*PAGE_MAX unless @page <= 1
+    @folder_page_content = @folder_content[@initial_index-1..((@initial_index+8))]
     if has_folder? && !@folder.trash
       set_current_folder(@folder)    
     else
