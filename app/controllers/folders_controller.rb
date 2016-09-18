@@ -1,13 +1,13 @@
 class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash]
+  before_action :require_user, only: [:index, :show, :edit, :update, :destroy, :move_to_trash]
+  before_action :set_folder, only: [ :show, :edit, :update, :destroy, :move_to_trash]
   helper_method :get_folder_path, :move_to_trash
 
 
   # GET /folders
   # GET /folders.json
   def index
-    require_user
     @folder = find_mytopbox 
     redirect_to_mytopbox   #redirect_to_mytopbox
   end
@@ -15,7 +15,6 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
-    require_user
     @my_folders = get_my_folders
     @my_documents = get_my_documents
     if has_folder? && !@folder.trash
@@ -151,6 +150,5 @@ class FoldersController < ApplicationController
     all_trash_documents = Document.where(trash: true)
     all_user_trash_document = all_trash_documents.select {|document| document.folder.user == get_current_user && !(document.folder.trash)}
   end
-
 
 end

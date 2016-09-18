@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  #recycle
   post "documents/:id/recycle" => "documents#recycle", as: :document_recycle
   post "documents/:id/trash" => "documents#move_to_trash", as: :document_move_to_trash
   post "folders/:id/recycle" => "folders#recycle", as: :folder_recycle
