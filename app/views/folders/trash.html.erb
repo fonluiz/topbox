@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render 'sidebar' %>
+    </div>
+    <div class="col-sm-10">
+      <% set_current_folder(@folder) %>
+
+      <p id="notice">
+        <% unless notice.nil? %>
+          <div class="alert alert-info" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <%= notice %>
+          </div>
+        <% end %>
+      </p>
+
+     
+
+      <table class="table table-hover">
+
+        <% unless @trash_folders.empty? && @trash_documents.empty? %>
+
+          <thead>
+          <tr class="subtitle">
+            <th>Nome</th>
+            <th>Última modificação</th>
+            <th>Opções</th>
+          </tr>
+          </thead>
+
+          <!-- Folders -->
+          <% @trash_folders.each do |folder| %>
+              <tr >
+                <td>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-close white blue') %>
+                &nbsp&nbsp<%= link_to folder.name, folder, :onclick => 'refresh()' %>
+                </td>
+                <td><p class="text-muted">--</p></td>
+
+                <td><%= link_to folder_recycle_path(folder), method: :post do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <% end %>&nbsp&nbsp
+                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
+                <% end %>
+
+                </td>              
+
+              </tr>
+          <% end %>
+
+          <!-- Documents -->
+          <% @trash_documents.each do |document| %>
+              <tr >
+                <td>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
+                &nbsp <%= link_to document.name + "." + document.extension, document %>
+                </td>
+                <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
+
+                <td>
+                <%= link_to document_recycle_path(document), method: :post do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <% end %>&nbsp&nbsp
+
+                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
+                <% end %>&nbsp&nbsp
+
+                <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                <% end %>&nbsp&nbsp
+
+                <%= link_to document_url(document), method: :delete, data: {confirm: 'Você tem certeza?'} do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                <% end %>&nbsp&nbsp
+
+                </td> 
+
+              </tr>
+
+          <% end %>
+          </tbody>
+
+        <% else %>
+          <h2 class="light-silver">
+          <center>
+              Sua lixeira está vazia!
+              <%= image_tag('open_box.png', :size =>'100x100' ,:alt => 'Nova Pasta!', :onclick => 'refresh()') %><br />
+                  </center></h2>
+        <% end %>
+      </table>
+
+     
+
+    </div>
+  </div>
+ 
+</div>
