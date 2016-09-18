@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     unless (user.nil?)
       @folder = Folder.create(name: MAIN_FOLDER_NAME, parent: nil , user: user)
       @folder.save(validate: false)
-    end #else deveria lançar exceção
+    end 
   end
 
 end

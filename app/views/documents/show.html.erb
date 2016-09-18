@@ -3,7 +3,6 @@
     <div class="col-sm-offset-2 col-sm-8 pull-center" >
       <div class="list-group-item" style="border: none; ">
         <h1><strong><%= @document.name %> </strong></h1><br />
-        <p><%= @document.trash%></p>
   		  <p>
           <% if @document.md? %>
             <%= @document.content.try(:html_safe) %>

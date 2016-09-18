@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
   before_action :require_user, only: [:index, :show, :edit, :update, :destroy, :move_to_trash]
-  before_action :set_folder, only: [ :show, :edit, :update, :destroy, :move_to_trash]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash]
   helper_method :get_folder_path, :move_to_trash
 
 
