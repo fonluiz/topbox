@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get 'documents/:id/visibility' => 'privacies#switch_visibility', :as => 'document_visibility'
   get 'documents/:id/download' => 'documents#download', :as => 'document_download'
+  get 'documents/:id/gzip_compress' => 'documents#gzip_compress', :as => 'document_gzipcompress'
 
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through
