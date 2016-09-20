@@ -68,24 +68,20 @@ class DocumentsController < ApplicationController
     redirect_to action: ACTION_SHOW, id: @document
   end
 
-  def gzip_compress
+  def compress(compression_method)
     @document = Document.find(params[:id])
-    if @document.extension == GZIP_EXTENSION
-      @document.content = ActiveSupport::Gzip.decompress(@document.content)
-      @document.extension = get_extension_out_of_name(@document.name)
-      @document.name = @document.name[0..(-@document.extension.length - 2)]
-    elsif @document.extension == ZIP_EXTENSION
-      @document.content = Zlib.inflate(@document.content)
-      @document.extension = get_extension_out_of_name(@document.name)
-      @document.name = @document.name[0..(-@document.extension.length - 2)]
-    else
-      @document.content = Zlib.deflate(@document.content)
-      @document.name += ('.' + @document.extension)
-      @document.extension = ZIP_EXTENSION
-      # @document.content = ActiveSupport::Gzip.compress(@document.content)
-      # @document.name += ('.' + @document.extension)
-      # @document.extension = GZIP_EXTENSION
-    end
+    @document.content = compression_method.compress(@document.content)
+    @document.name += ('.' + @document.extension)
+    @document.extension = compression_method.get_extension
+    @document.save
+    redirect_to :controller => 'folders', :action => 'index'
+  end
+
+  def decompress(compression_method)
+    @document = Document.find(params[:id])
+    @document.content = compression_method.decompress(@document.content)
+    @document.extension = get_extension_out_of_name(@document.name)
+    @document.name = @document.name[0..(-@document.extension.length - 2)]
     @document.save
     redirect_to :controller => 'folders', :action => 'index'
   end

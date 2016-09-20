@@ -1,19 +1,17 @@
 class ZipMethod < CompressionMethod
 
-  ZIP_EXTENSION = 'zip'
+  EXTENSION = 'zip'
 
-  def compress(document)
-    document.content = Zlib.deflate(document.content)
-    document.name += ('.' + document.extension)
-    document.extension = ZIP_EXTENSION
-    document
+  def compress(text)
+    Zlib.deflate(text)
   end
 
-  def decompress(document)
-    document.content = Zlib.inflate(document.content)
-    document.extension = get_extension_out_of_name(document.name)
-    document.name = document.name[0..(-ZIP_EXTENSION.length - 2)]
-    document
+  def decompress(compressed_text)
+    Zlib.inflate(compressed_text)
+  end
+
+  def get_extension
+    EXTENSION
   end
 
 end

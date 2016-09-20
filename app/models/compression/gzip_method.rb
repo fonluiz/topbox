@@ -1,19 +1,17 @@
 class GzipMethod < CompressionMethod
 
-  GZIP_EXTENSION = 'gz'
+  EXTENSION = 'gz'
 
-  def compress(document)
-    document.content = ActiveSupport::Gzip.compress(document.content)
-    document.name += ('.' + document.extension)
-    document.extension = GZIP_EXTENSION
-    document
+  def compress(text)
+    ActiveSupport::Gzip.compress(text)
   end
 
-  def decompress(document)
-    document.content = ActiveSupport::Gzip.decompress(document.content)
-    document.extension = get_extension_out_of_name(document.name)
-    document.name = document.name[0..(-GZIP_EXTENSION.length - 2)]
-    document
+  def decompress(compressed_text)
+    ActiveSupport::Gzip.decompress(compressed_text)
+  end
+
+  def get_extension
+    EXTENSION
   end
 
 end

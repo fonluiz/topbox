@@ -89,7 +89,7 @@
                         <span class="glyphicon glyphicon-compressed blue"></span></button>
                       <ul class="dropdown-menu btn-sm">
                         <%= DocumentsHelper::COMPRESSION_METHODS.each do |method| %>
-                        <li><%= link_to method.to_s, document_gzipcompress_url(document) %></li>
+                        <li><%= link_to method.to_s, document_compress_url(document) %></li>
                         <% end %>
                       </ul>
                     </content>

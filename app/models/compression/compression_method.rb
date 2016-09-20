@@ -9,4 +9,8 @@ class CompressionMethod
     raise NotImplementedError, 'The method "decompress" is not implemented!'
   end
 
+  def get_extension
+    raise NotImplementedError, 'The method "get_extension" is not implemented!'
+  end
+
 end
