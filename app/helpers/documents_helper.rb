@@ -1,8 +1,11 @@
 module DocumentsHelper
 
-    NEW_DOCUMENT_NAME = "Documento sem título"
+    NEW_DOCUMENT_NAME = 'Documento sem título'
 
     GZIP_EXTENSION = 'gz'
+    ZIP_EXTENSION = 'zip'
+
+    COMPRESSION_METHODS = [:gz, :zip]
 
     def get_extension_out_of_name(title)
         extension = ''

@@ -1,6 +1,5 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
-  #require ActiveSupport::Gzip
   helper_method :share, :user, :download
 
   def user
@@ -75,10 +74,17 @@ class DocumentsController < ApplicationController
       @document.content = ActiveSupport::Gzip.decompress(@document.content)
       @document.extension = get_extension_out_of_name(@document.name)
       @document.name = @document.name[0..(-@document.extension.length - 2)]
+    elsif @document.extension == ZIP_EXTENSION
+      @document.content = Zlib.inflate(@document.content)
+      @document.extension = get_extension_out_of_name(@document.name)
+      @document.name = @document.name[0..(-@document.extension.length - 2)]
     else
-      @document.content = ActiveSupport::Gzip.compress(@document.content)
+      @document.content = Zlib.deflate(@document.content)
       @document.name += ('.' + @document.extension)
-      @document.extension = GZIP_EXTENSION
+      @document.extension = ZIP_EXTENSION
+      # @document.content = ActiveSupport::Gzip.compress(@document.content)
+      # @document.name += ('.' + @document.extension)
+      # @document.extension = GZIP_EXTENSION
     end
     @document.save
     redirect_to :controller => 'folders', :action => 'index'
