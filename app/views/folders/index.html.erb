@@ -84,15 +84,20 @@
                         <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
                     <% end %>&nbsp&nbsp
 
-                    <content class="dropdown">
-                      <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-compressed blue"></span></button>
-                      <ul class="dropdown-menu btn-sm">
-                        <%= DocumentsHelper::COMPRESSION_METHODS.each do |method| %>
-                        <li><%= link_to method.to_s, document_compress_url(document) %></li>
-                        <% end %>
-                      </ul>
-                    </content>
+                    <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
+                        <%= link_to document_decompress_url(document) do %>
+                            <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
+                        <% end %>&nbsp&nbsp
+                    <% else %>
+                        <content class="dropdown">
+                          <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-compressed blue"></span></button>
+                          <ul class="dropdown-menu btn-sm">
+                            <li><%= link_to 'Comprimir para Gzip', document_compress_url(document, :compression_method => 'gz') %></li>
+                            <li><%= link_to 'Comprimir para Zip', document_compress_url(document, :compression_method => 'zip') %></li>
+                          </ul>
+                        </content>
+                    <% end %>
 
                     <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} do %>
                         <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>

@@ -4,8 +4,6 @@ class Document < ApplicationRecord
   has_many :notifications, as: :notifiable, :dependent => :destroy
   enum extension: [:txt, :md, :gz, :zip]
 
-  @@compress
-
   def user
   	return self.folder.user
   end

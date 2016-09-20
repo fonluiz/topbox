@@ -1,16 +1,15 @@
 class GzipMethod < CompressionMethod
-
   EXTENSION = 'gz'
 
-  def compress(text)
+  def self.compress(text)
     ActiveSupport::Gzip.compress(text)
   end
 
-  def decompress(compressed_text)
+  def self.decompress(compressed_text)
     ActiveSupport::Gzip.decompress(compressed_text)
   end
 
-  def get_extension
+  def self.get_extension
     EXTENSION
   end
 
