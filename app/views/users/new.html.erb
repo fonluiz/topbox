@@ -11,14 +11,14 @@
 
         <!--Sign up form-->
         <%= form_for(@user) do |f| %>
-            <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :required => true, :class => "form-control" %>
-            <%= f.text_field :last_name, :placeholder => 'Sobrenome', :required => true, :class => "form-control" %>
-            <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :required => true, :class => "form-control" %>
-            <%= f.email_field :email, :placeholder => 'E-mail', :required => true, :class => "form-control" %>
-            <%= f.password_field :password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
-            <%= f.password_field :password_confirmation, :placeholder => 'Confirme senha', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.text_field :first_name, :placeholder => t(:user_name), :autofocus => true, :required => true, :class => "form-control" %>
+            <%= f.text_field :last_name, :placeholder => t(:user_surname), :required => true, :class => "form-control" %>
+            <%= f.text_field :username, :placeholder => t(:user), :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.email_field :email, :placeholder => t(:user_mail), :required => true, :class => "form-control" %>
+            <%= f.password_field :password, :placeholder => t(:user_password), :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.password_field :password_confirmation, :placeholder => t(:user_confirm), :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
             <!--Submit sign up form button-->
-            <%= f.submit 'Criar conta', class: 'btn btn-login' %>
+            <%= f.submit t(:user_create), class: 'btn btn-login' %>
 
             <!--Flash messages-->
             <% flash.each do |key, value| %>
@@ -28,7 +28,7 @@
                 </div>
             <% end %>
 
-            <p class="message">Já possui uma conta? Por favor, <a href="/login">acesse-a</a></p>
+            <p class="message"> <%=t(:user_account)%> <a href="/login"><%=t(:user_access)%></a></p>
         <% end %>
 
       </div>

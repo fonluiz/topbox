@@ -19,21 +19,21 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  login_user: "Username or e-mail"
-  login_password: "Password"
-  login: "Log in"
-  login_msg: "Haven't an account?"
-  login_singup: "Sing up."
-  authentication_error: "User or password is invalid."
-  logout: "Successfully logout!"
+pt:
+  login_user: "Nome de usuario ou e-mail"
+  login_password: "Senha"
+  login: "Entrar"
+  login_msg: "Não possui conta?"
+  login_singup: "Cadastre-se."
+  authentication_error: "Usuário e/ou senha invalídos."
+  logout: "Logout realizado com sucesso!"
 
-  user_name: "Name"
-  user_surname: "Surname"
-  user: "Username"
+  user_name: "Nome"
+  user_surname: "Sobrenome"
+  user: "Nome de usuário"
   user_mail: "E-mail"
-  user_password: "Password"
-  user_confirm: "Password confirmation"
-  user_account: "Have an account? Please, "
-  user_access: "sign in."
-  user_create: "Sign up"
+  user_password: "Senha"
+  user_confirm: "Confirme senha"
+  user_account: "Já possui uma conta? Por favor, "
+  user_access: "acesse-a."
+  user_create: "Criar conta"

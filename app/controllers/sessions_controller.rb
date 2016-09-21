@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   skip_before_filter :show_navbar, only: [:new, :create]
 
   def new
+
   end
 
   def create
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
       log_in @user
       redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
     else
-      flash.now[:danger] = INVALID_AUTHENTICATION_ERROR
+      flash.now[:danger] = t(:authentication_error)
       render :new
     end
   end
@@ -21,7 +22,7 @@ class SessionsController < ApplicationController
   def destroy
     respond_to do |format|
         log_out
-        format.html { redirect_to :action => ACTION_NEW, :notice => 'Log out realizado com sucesso!'}
+        format.html { redirect_to :action => ACTION_NEW, :notice => t(:logout)}
     end
   end
 
