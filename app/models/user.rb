@@ -7,7 +7,8 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :username, uniqueness: true, length: { in: 6..30 }
   validates :email, presence: true, uniqueness: true
-  validates :password, length: { in: 6..30 }
+  validates :password, confirmation: true, length: { in: 6..30 }
+  validates :password_confirmation, presence: true
 
   def get_name
     self.first_name + ' ' + self.last_name
