@@ -37,3 +37,11 @@ pt:
   user_account: "Já possui uma conta? Por favor, "
   user_access: "acesse-a."
   user_create: "Criar conta"
+
+  account_msg: 'Sua conta foi criada com sucesso!'
+  email_used_msg: 'Esse email já está registrado. Por favor, escolha outro.'
+  username_used_msg: 'Esse nome de usuário já está registrado. Por favor, escolha outro.'
+  password_not_confirmed: 'Confirme senha corretamente.'
+  empty_field: 'Preencha todos os campos'
+  short_username: "Username deve conter no mínimo seis caracteres"
+  email_error: "E-mail deve conter um '@' e algo depois dele."

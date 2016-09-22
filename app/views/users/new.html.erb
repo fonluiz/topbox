@@ -11,12 +11,12 @@
 
         <!--Sign up form-->
         <%= form_for(@user) do |f| %>
-            <%= f.text_field :first_name, :placeholder => t(:user_name), :autofocus => true, :required => true, :class => "form-control" %>
-            <%= f.text_field :last_name, :placeholder => t(:user_surname), :required => true, :class => "form-control" %>
-            <%= f.text_field :username, :placeholder => t(:user), :minlength => 6, :required => true, :class => "form-control" %>
-            <%= f.email_field :email, :placeholder => t(:user_mail), :required => true, :class => "form-control" %>
-            <%= f.password_field :password, :placeholder => t(:user_password), :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
-            <%= f.password_field :password_confirmation, :placeholder => t(:user_confirm), :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
+            <%= f.text_field :first_name, :placeholder => t(:user_name), :autofocus => true, :class => "form-control" %>
+            <%= f.text_field :last_name, :placeholder => t(:user_surname), :class => "form-control" %>
+            <%= f.text_field :username, :placeholder => t(:user), :class => "form-control" %>
+            <%= f.text_field :email, :placeholder => t(:user_mail), :class => "form-control" %>
+            <%= f.password_field :password, :placeholder => t(:user_password), :class => "form-control" %>
+            <%= f.password_field :password_confirmation, :placeholder => t(:user_confirm), :class => "form-control" %>
             <!--Submit sign up form button-->
             <%= f.submit t(:user_create), class: 'btn btn-login' %>
 

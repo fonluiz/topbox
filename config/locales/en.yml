@@ -37,3 +37,11 @@ en:
   user_account: "Have an account? Please, "
   user_access: "sign in."
   user_create: "Sign up"
+
+  account_msg: "Your account was successfully created!"
+  email_used_msg: "This email is already taken. Please chose another."
+  username_used_msg: "This username is already taken. Please chose another."
+  password_not_confirmed: "Passwords don't match."
+  empty_field: 'Fill all fields.'
+  short_username: "Username must be bigger than six characters"
+  email_error: "E-mail must include '@' and something after."
