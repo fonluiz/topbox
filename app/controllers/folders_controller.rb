@@ -7,7 +7,7 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folder = find_mytopbox 
+    @folder = find_mytopbox
     redirect_to_mytopbox   #redirect_to_mytopbox
   end
 
@@ -22,7 +22,7 @@ class FoldersController < ApplicationController
     @initial_index = (@page-1)*PAGE_MAX unless @page <= 1
     @folder_page_content = @folder_content[@initial_index-1..((@initial_index+8))]
     if has_folder? && !@folder.trash
-      set_current_folder(@folder)    
+      set_current_folder(@folder)
     else
       render 'permissions/denied'
     end

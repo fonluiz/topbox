@@ -84,6 +84,25 @@ class DocumentsController < ApplicationController
     redirect_to action: ACTION_SHOW, id: @document
   end
 
+  def compress
+    @document = Document.find(params[:id])
+    compression_method = get_compression_method(params[:compression_method])
+    @document.content = compression_method.compress(@document.content)
+    @document.name += ('.' + @document.extension)
+    @document.extension = compression_method.get_extension
+    @document.save
+    redirect_to :controller => 'folders', :action => 'index'
+  end
+
+  def decompress
+    @document = Document.find(params[:id])
+    compression_method = get_compression_method(@document.extension)
+    @document.content = compression_method.decompress(@document.content)
+    @document.extension = get_extension_out_of_name(@document.name)
+    @document.name = @document.name[0..(-@document.extension.length - 2)]
+    @document.save
+    redirect_to :controller => 'folders', :action => 'index'
+  end
   
   private
   def get_document_params
@@ -114,6 +133,14 @@ class DocumentsController < ApplicationController
       return true
     else
       return is_in_user_folders?(folder.parent)
+    end
+  end
+
+  def get_compression_method(extension)
+    if extension == GzipMethod.get_extension
+      return GzipMethod
+    elsif extension == ZipMethod.get_extension
+      return ZipMethod
     end
   end
 

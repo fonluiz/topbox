@@ -61,8 +61,10 @@ gem 'rspec-html-matchers', '0.6.1'
 # Install material icons
 gem 'material_icons'
 
-
 # Heroku integration. Enable features such as static asset serving and logging on Heroku.
 gem 'rails_12factor', group: :production
+
+# Rubyzip is a ruby library for reading and writing zip files.
+gem 'rubyzip'
 
 ruby '2.3.1'

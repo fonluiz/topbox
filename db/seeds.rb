@@ -9,25 +9,25 @@
 # Users
 
 andre = User.create(first_name: 'Andre', last_name: 'Andrade', username: 'oandrevictor',
-            email: 'oandrevictor@gmail.com', password: 'andre123')
+            email: 'oandrevictor@gmail.com', password: 'andre123', password_confirmation: 'andre123')
 
 gabriel = User.create(first_name: 'Gabriel', last_name: 'Morais', username: 'gabrielm',
-            email: 'gabriel@gmail.com', password: 'gabriel123')
+            email: 'gabriel@gmail.com', password: 'gabriel123', password_confirmation: 'gabriel123')
 
 italo = User.create(first_name: 'Ítalo', last_name: 'Batista', username: 'italob',
-            email: 'italo@gmail.com', password: 'italo123')
+            email: 'italo@gmail.com', password: 'italo123', password_confirmation: 'italo123')
 
 laybson = User.create(first_name: 'Laybson', last_name: 'Cunha', username: 'laybsonc',
-            email: 'laybson@gmail.com', password: 'laybson123')
+            email: 'laybson@gmail.com', password: 'laybson123', password_confirmation: 'laybson123')
 
 luiz = User.create(first_name: 'Luiz', last_name: 'Fonseca', username: 'luizfo',
-            email: 'luiz@gmail.com', password: 'luiz123')
+            email: 'luiz@gmail.com', password: 'luiz123', password_confirmation: 'luiz123')
 
 jair = User.create(first_name: 'Jair', last_name: 'Neto', username: 'jairne',
-            email: 'jair@gmail.com', password: 'jair123')
+            email: 'jair@gmail.com', password: 'jair123', password_confirmation: 'jair123')
             
 rafaela = User.create(first_name: 'Rafaela', last_name: 'Lacerda', username: 'rafaela',
-            email: 'rafaela@gmail.com', password: 'rafaela123')
+            email: 'rafaela@gmail.com', password: 'rafaela123', password_confirmation: 'rafaela123')
 
 # Home Folders
 homean = Folder.create(name: 'Meu Topbox', parent: nil , user: andre)
