@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = EMAIL_USED_MSG if used_email?
       flash.now[:danger] = USERNAME_USED_MSG if used_username?
+      flash.now[:danger] = PASSWORD_NOT_CONFIRMED if not_confirmed_password
       render :new
     end
   end
@@ -32,6 +33,10 @@ class UsersController < ApplicationController
 
   def used_username?
     User.exists?(username: @user.username)
+  end
+
+  def not_confirmed_password
+    return (params[:user][:password] != params[:user][:password_confirmation])
   end
 
   def create_main_folder(user)

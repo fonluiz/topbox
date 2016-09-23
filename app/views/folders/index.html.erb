@@ -1,0 +1,188 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render 'sidebar' %>
+    </div>
+    <div class="col-sm-10">
+
+      <% set_current_folder(@folder) %>
+
+      <p id="notice">
+        <% unless notice.nil? %>
+          <div class="alert alert-info" role="alert"><%= notice %></div>
+      <% end %>
+      </p>
+
+      <!-- Caminho clicável de pastas -->
+      <ol class="breadcrumb">
+        <% parents = [] %>
+        <% parent = @folder.parent %>
+        <%= until parent.nil? do %>
+            <% parents.push(parent) %>
+            <% parent = parent.parent %>
+        <% end %>
+
+        <% parents.reverse.each do |folder| %>
+            <li><%= link_to folder.name, folder, :onclick => 'refresh()' %></li>
+        <% end %>
+
+        <li class="active"> <%= @folder.name unless @folder.nil? %></li>
+      </ol>
+
+
+      <table class="table table-hover">
+
+        <% unless Folder.where(parent_id: @folder.id, user_id: get_current_user.id).length == 0 && Document.where(folder_id: @folder.id).length == 0 %>
+
+            <thead>
+            <tr class="subtitle">
+              <th>Nome</th>
+              <th>Última modificação</th>
+              <th>Opções</th>
+            </tr>
+            </thead>
+
+            <!-- Folders -->
+            <% Folder.where(parent_id: @folder.id, user_id: get_current_user.id).each do |folder| %>
+                <tr>
+                  <td>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-close white blue') %>
+                    &nbsp&nbsp<%= link_to folder.name, folder, :onclick => 'refresh()' %>
+                  </td>
+                  <td><p class="text-muted">--</p></td>
+
+                  <td><%= link_to edit_folder_path(folder) do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                    <% end %>&nbsp&nbsp
+
+                    <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'} do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
+                    <% end %></td>
+
+                </tr>
+            <% end %>
+
+            <!-- Documents -->
+            <% Document.where(folder_id: @folder.id).each do |document| %>
+                <tr>
+                  <td>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>
+                    &nbsp <%= link_to document.name + "." + document.extension, document %>
+                  </td>
+                  <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
+
+                  <td>
+                    <%= link_to edit_document_path(document) do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                    <% end %>&nbsp&nbsp
+
+                    <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: {no_turbolink: true} do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
+                    <% end %>&nbsp&nbsp
+
+                    <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank" do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                    <% end %>&nbsp&nbsp
+
+                    <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
+                        <%= link_to document_decompress_url(document) do %>
+                            <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
+                        <% end %>&nbsp&nbsp
+                    <% else %>
+                        <content class="dropdown">
+                          <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-compressed blue"></span></button>
+                          <ul class="dropdown-menu btn-sm">
+                            <li><%= link_to 'Comprimir para Gzip', document_compress_url(document, :compression_method => 'gz') %></li>
+                            <li><%= link_to 'Comprimir para Zip', document_compress_url(document, :compression_method => 'zip') %></li>
+                          </ul>
+                        </content>
+                    <% end %>
+
+                    <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: 'Você tem certeza?'} do %>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                    <% end %>&nbsp&nbsp
+
+                  </td>
+
+                </tr>
+
+            <% end %>
+            </tbody>
+
+        <% else %>
+            <h2 class="light-silver">
+              <center>
+                <% if @folder == find_mytopbox %>
+                    Sua Topbox está vazia!<br/>
+                    <%= image_tag('open_box.png', :size => '150x150', :alt => 'Nova Pasta!', :onclick => 'refresh()') %>
+                    <br/>
+                    <small class="light-silver"> Crie seu primeiro arquivo!</small>
+                <% else %>
+                    Esta pasta está vazia!
+                    <%= image_tag('open_box.png', :size => '100x100', :alt => 'Nova Pasta!', :onclick => 'refresh()') %>
+                    <br/>
+                <% end %>
+              </center>
+            </h2>
+        <% end %>
+      </table>
+
+      <!-- Folder Modal -->
+      <div id="createFolderModal" class="modal" tabindex="1" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <%= render 'folders/create' %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Modal -->
+      <div id="createDocumentModal" class="modal" tabindex="1" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <%= render 'documents/create' %>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Menu -->
+      <div id="menu" class="modal fade" role="dialog">
+        <div class="btn-menu">
+
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createDocumentModal">
+            <content class='glyphicon glyphicon-file'/>
+          </button>
+
+
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createFolderModal">
+            <content class='glyphicon glyphicon-folder-open'/>
+          </button>
+          <% unless @folder == find_mytopbox %>
+
+              <%= link_to @folder, method: :delete, data: {confirm: 'Você tem certeza?'}, class: 'btn btn-info btn-primary btn-circle btn-xl' do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+              <% end %>
+
+              <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl' do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+              <% end %>
+
+          <% end %>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="footer">
+    <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
+      <i class="glyphicon glyphicon-plus"></i></button>
+  </div>
+</div>
