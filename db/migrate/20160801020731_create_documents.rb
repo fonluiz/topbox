@@ -7,6 +7,7 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.binary :content, default: ""
       t.string :name, default: "Documento Sem Titulo"
       t.column :extension, :integer, default: 0
+      t.boolean :trash, default: false
       t.timestamps
     end
   end

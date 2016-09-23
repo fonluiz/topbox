@@ -9,20 +9,19 @@ class ApplicationController < ActionController::Base
   helper_method :find_mytopbox
   helper_method :all_users_except_current
 
-  @@current_folder #The Current folder should remain the same.
-  @@current_docucument #The current/lastest document
 
 
   def get_current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    User.find(session[:user_id]) if session[:user_id]
   end
 
   def get_current_folder
-    return (@@current_folder ||= Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id))
+    current_folder = Folder.find(session[:current_folder_id]) if session[:user_id]
+    return (current_folder ||= Folder.find_by(name: MAIN_FOLDER_NAME, user_id: get_current_user.id))
   end
 
   def set_current_folder(folder)
-    @@current_folder = folder
+    session[:current_folder_id] = folder.id 
   end
 
   
@@ -99,4 +98,3 @@ class ApplicationController < ActionController::Base
   end
 
 end
-

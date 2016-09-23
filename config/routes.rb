@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  #recycle
+  post "documents/:id/recycle" => "documents#recycle", as: :document_recycle
+  post "documents/:id/trash" => "documents#move_to_trash", as: :document_move_to_trash
+  post "folders/:id/recycle" => "folders#recycle", as: :folder_recycle
+  post "folders/:id/trash" => "folders#move_to_trash", as: :folder_move_to_trash
+  get "trash" => "folders#show_trash"
+  post "trash/recycle" => "folders#recycle_all", as: :recycle_all
+
   resources :documents
   resources :folders, :path => 'mytopbox'
   resources :permissions

@@ -99,7 +99,7 @@
                         </content>
                     <% end %>
 
-                    <%= link_to document, method: :delete, data: {confirm: 'Você tem certeza?'} do %>
+                    <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: 'Você tem certeza?'} do %>
                         <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
                     <% end %>&nbsp&nbsp
 

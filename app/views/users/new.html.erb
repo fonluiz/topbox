@@ -16,7 +16,7 @@
             <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :required => true, :class => "form-control" %>
             <%= f.email_field :email, :placeholder => 'E-mail', :required => true, :class => "form-control" %>
             <%= f.password_field :password, :placeholder => 'Senha', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
-
+            <%= f.password_field :password_confirmation, :placeholder => 'Confirme senha', :maxlength => 30, :minlength => 6, :required => true, :class => "form-control" %>
             <!--Submit sign up form button-->
             <%= f.submit 'Criar conta', class: 'btn btn-login' %>
 

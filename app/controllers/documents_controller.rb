@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   include DocumentsHelper, ApplicationHelper
-  helper_method :share, :user, :download
+  helper_method :share, :user, :download, :recycle
 
   def user
     return @document.folder.user
@@ -27,9 +27,25 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
-    unless has_read_permission?
-      render "permissions/denied"
-    end
+      unless has_read_permission? 
+        render "permissions/denied"
+      end
+      if @document.trash
+        render "permissions/denied"
+      end
+  end
+
+  def move_to_trash
+    @document = Document.find(params[:id])
+    @document.make_trash 
+    redirect_to_current_folder
+  end
+
+  def recycle
+    @document = Document.find(params[:id])
+    @document.update trash: false
+    @document.make_recycle
+    redirect_to @document
   end
 
   def download
