@@ -32,5 +32,12 @@
           <p class="message"> <%= t(:login_msg) %> <a href="/signup"> <%= t(:login_singup) %> </a></p>
       <% end %>
     </div>
+
   </div>
 </body>
+
+<div class="idiom">
+  <%= link_to 'Português (Brasil)', change_idiom_pt_url, method: :post, :onclick => 'refresh()' %>
+  &emsp;
+  <%= link_to 'English (US)', change_idiom_en_url, method: :post, :onclick => 'refresh()' %>
+</div>

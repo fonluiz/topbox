@@ -14,4 +14,4 @@ Rails.application.initialize!
 # config.i18n.default_locale = :de
 
 # definindo o local padrão para outra coisa que não :en
-I18n.default_locale = :en
+I18n.default_locale = :pt

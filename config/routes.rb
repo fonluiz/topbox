@@ -42,5 +42,7 @@ Rails.application.routes.draw do
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through
 
+  post 'idiom_pt' => 'application#change_idiom_pt', :as => 'change_idiom_pt'
+  post 'idiom_en' => 'application#change_idiom_en', :as => 'change_idiom_en'
 
 end

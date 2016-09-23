@@ -25,5 +25,14 @@ module ApplicationHelper
     return size
   end
 
+  def change_idiom_en
+    I18n.default_locale = :en
+    redirect_to :back
+  end
+
+  def change_idiom_pt
+    I18n.default_locale = :pt
+    redirect_to :back
+  end
 
 end

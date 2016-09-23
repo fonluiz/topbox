@@ -61,7 +61,6 @@ class ApplicationController < ActionController::Base
     return folders - @result
   end
 
-
   private
   def get_children_folders(children)
     if children.length != 0
