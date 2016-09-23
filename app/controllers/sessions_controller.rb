@@ -14,8 +14,22 @@ class SessionsController < ApplicationController
       log_in @user
       redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
     else
-      flash.now[:danger] = t(:authentication_error)
+      if empty_field?
+        flash.now[:danger] = t(:empty_field)
+      else
+        flash.now[:danger] = t(:authentication_error)
+      end
       render :new
+    end
+  end
+
+  def empty_field?
+    if ( (params[:session][:find_user].empty?)    or
+        (params[:session][:login_password].empty?)  )
+      #retorna verdadeiro se algum campo estiver vazio
+      return true
+    else
+      return false
     end
   end
 

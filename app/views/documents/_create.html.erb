@@ -1,20 +1,20 @@
 <div class="modal-header-primary">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Novo Documento</h4>
+    <h4 class="modal-title"> <%=t(:new_doc)%> </h4>
 </div>
 <div class="modal-body format">
     <%= form_for(:document, :url => url_for(:controller => 'documents', :action => 'create')) do |f| %>
-    	<a class="subtitle">Nome do documento</a>
-        <%= f.text_field :name, :value => 'Documento sem título', :autofocus => true, :required => true, :class => 'form-control' %>
+    	<a class="subtitle"> <%=t(:new_doc)%> </a>
+        <%= f.text_field :name, :value => t(:untitled_doc), :autofocus => true, :required => true, :class => 'form-control' %>
         <br>
-        <p><a class="subtitle">Extensão</a></p>
+        <p><a class="subtitle"> <%=t(:extension)%> </a></p>
 
         <p><%= f.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => Document.extensions.keys.to_a[0]}, {class: "select"}%></p>
         <br>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-		<%= f.submit 'Criar', class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-primary" data-dismiss="modal"> <%=t(:cancel)%> </button>
+		<%= f.submit t(:create), class: 'btn btn-primary' %>
     <% end %>
     
 </div>

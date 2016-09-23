@@ -45,3 +45,28 @@ en:
   empty_field: 'Fill all fields.'
   short_username: "Username must be bigger than six characters"
   email_error: "E-mail must include '@' and something after."
+
+  # Folder SHOW View
+  name: 'Name'
+  last_modification: 'Last modification'
+  options: 'Options'
+  confirm: 'Are you sure?'
+  create_first_file: 'Create your first file!'
+  empty_topbox: 'Your Topbox is empty!'
+  empty_fold: 'Nothing here!'
+  new_folder: 'New folder!'
+  previous: 'Previous'
+  next: 'Next'
+  compress_gzip: 'compress to gzip'
+  compress_zip: 'compress to zip'
+
+
+  # Document MODAL
+  new_doc: 'New document'
+  untitled_doc: 'Untitled document'
+  extension: 'Extension'
+  cancel: 'Cancel'
+  create: 'Create'
+
+  # Folder MODAL
+  untitled_folder: 'Untitled folder'

@@ -45,3 +45,29 @@ pt:
   empty_field: 'Preencha todos os campos'
   short_username: "Username deve conter no mínimo seis caracteres"
   email_error: "E-mail deve conter um '@' e algo depois dele."
+
+  # Folder SHOW View
+  name: 'Nome'
+  last_modification: 'Última modificação'
+  options: 'Opções'
+  confirm: 'Você tem certeza?'
+  create_first_file: 'Crie seu primeiro arquivo!'
+  empty_topbox: 'Sua Topbox está vazia!'
+  empty_fold: 'Nada aqui!'
+  new_folder: 'Nova pasta!'
+  previous: 'Anterior'
+  next: 'Próxima'
+  compress_gzip: 'comprimir para gzip'
+  compress_zip: 'comprimir para zip'
+
+  # Document MODAL
+  new_doc: 'Novo documento'
+  untitled_doc: 'Documento sem título'
+  extension: 'Extensão'
+  cancel: 'Cancelar'
+  create: 'Criar'
+
+  # Folder MODAL
+  untitled_folder: 'Pasta sem nome'
+
+

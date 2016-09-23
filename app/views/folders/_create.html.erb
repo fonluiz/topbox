@@ -1,16 +1,16 @@
 <div class="modal-header-primary">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Nova Pasta</h4>
+    <h4 class="modal-title"> <%=t(:new_folder)%> </h4>
 </div>
 <div class="modal-body format">
     <%= form_for(Folder.new, :url => url_for(:action => 'create')) do |f| %>
-    	<a class="subtitle">Nome da pasta</a>
-        <%= f.text_field :name, :value => 'Pasta sem nome', :autofocus => true, :required => true, :class => 'form-control' %>
+    	<a class="subtitle"> <%=t(:new_folder)%> </a>
+        <%= f.text_field :name, :value => t(:untitled_folder), :autofocus => true, :required => true, :class => 'form-control' %>
 </div>
 <div class="modal-footer">
 	<!--Submit sign up form button-->
-	<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-        <%= f.submit 'Criar', class: 'btn btn-primary' %>
+	<button type="button" class="btn btn-primary" data-dismiss="modal"> <%=t(:cancel)%> </button>
+        <%= f.submit t(:create), class: 'btn btn-primary' %>
     <% end %>
     
 </div>
