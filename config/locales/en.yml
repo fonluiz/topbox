@@ -77,3 +77,11 @@ en:
 
   # Folder MODAL
   untitled_folder: 'Untitled folder'
+
+  # Notification
+  not_dft_msg: 'No document has been shared with you recently.'
+  notifications: 'Notifications'
+  notf_1: 'shared the document'
+  notf_2: 'with you.'
+  notf_3: 'about'
+  notf_4: 'hours ago'

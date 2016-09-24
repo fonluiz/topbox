@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def short_username?
-    return params[:user][:username].size < 6
+    params[:user][:username].size < 6
   end
 
   def email_error?
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
   end
 
   def not_confirmed_password
-    return (params[:user][:password] != params[:user][:password_confirmation])
+    (params[:user][:password] != params[:user][:password_confirmation])
   end
 
   def create_main_folder(user)

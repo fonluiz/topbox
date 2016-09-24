@@ -76,4 +76,11 @@ pt:
   # Folder MODAL
   untitled_folder: 'Pasta sem nome'
 
+  # Notification
+  not_dft_msg: 'Nenhum documento foi compartilhado com você recentemente.'
+  notifications: 'Notificações'
+  notf_1: 'compartilhou o documento'
+  notf_2: 'com você.'
+  notf_3: 'há cerca de'
+  notf_4: 'horas atrás'
 

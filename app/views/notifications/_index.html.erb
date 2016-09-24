@@ -1,8 +1,8 @@
 <div class="pre-scrollable">
   <div class="container">
-    <strong> Notificações </strong>
+    <strong> <%= t(:notifications)%> </strong>
     <% if current_user_notifications.empty? %>
-      <li><%= NotificationsHelper::DEFAULT_MESSAGE_NO_NOTIFICATIONS %></li>
+      <li><%= t(:not_dft_msg) %></li>
     <% end %>
     <ul class="list-group">
     <%  current_user_notifications.each do |notification| %>
@@ -10,9 +10,9 @@
       <% mode1 = '<a href='+ notification_url(notification) + ' class="list-group-item list-group-item-action '+ state+'" style="border: none" >' %>
       <%= mode1.html_safe %>
       <p>
-        <strong><%= notification.notified_by.get_name %></strong> compartilhou o documento 
-        <strong><%= notification.notifiable.name%></strong> com você.
-        <h6> <span class ="glyphicon glyphicon-file"> </span> há cerca de <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> horas atrás</h6></p>
+        <strong><%= notification.notified_by.get_name %></strong> <%= t(:notf_1)%>
+        <strong><%= notification.notifiable.name%></strong> <%= t(:notf_2)%>
+          <h6> <span class ="glyphicon glyphicon-file"> </span>  <%= t(:notf_3)%> <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> <%= t(:notf_4)%> </h6></p>
       </a>
     <% end %>
     </ul>

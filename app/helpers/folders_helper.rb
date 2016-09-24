@@ -1,6 +1,5 @@
 module FoldersHelper
   PAGE_MAX = 10 
-  NEW_FOLDER_NAME = "Nova Pasta"
 
   def folder_created_msg(folder_name)
     "A pasta #{folder_name} foi criada com sucesso."
