@@ -1,30 +1,37 @@
 <body class="login-bg">
 <div class="col-sm-offset-4 col-sm-4" >
-  <div class="panel">
-      <center>
-              <h3 class="subtitle">
-              Compartilhar <%= @permission.privacy.shareable.name %>
-              </h3>            
-                <br>
-                  <div class="panel-body">
-
+    <div class="panel">
+        <center>
+            <h3 class="subtitle">
+            Compartilhar <%= @permission.privacy.shareable.name %>
+            </h3>            
+            <br>
+            <div class="panel-body">
                 <%= form_for(@permission) do  |f| %>               
 
                 <p><a class="subtitle">Tipo de compartilhamento:</a></p>
                 <p><%= f.collection_select :status, Permission.statuses.keys.to_a, :to_s, :to_s, {:selected => Permission.statuses.keys.to_a[0]}, {class: "select"}%> </p>
 
-                <%= f.hidden_field :privacy_id%>
+                <%= f.hidden_field :privacy_id %>
              
                 <p><a class="subtitle">Compartilhar com:</a></p>
-
-                <p><%= f.collection_select :user_id, all_users_except_current.order(:first_name), :id, :first_name, {include_blank:false}, {class: "select"}%> </p>
-                <br>
-                <br>            
+                <p><%= f.email_field :email , :required => true, :class => 'form-control' %></p>
+                <%= f.hidden_field :user_id %>
+                <br>         
                 <!--Submit sign up form button-->
                 <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
                 <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary', :onclick => 'refresh()' %>
+                
             <% end %>
             </div>
+            <p id="notice">
+                <% unless notice.nil? %>
+                    <div class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <%= notice %>
+                    </div>
+                <% end %>
+            </p>
             <div class="alert alert-info" role="alert">É possível tornar seu documento visível para qualquer pessoa que contenha o link. 
             <%= link_to document_visibility_url(@permission.privacy.shareable) do %>
             <% if @permission.privacy.open? %> <span class="label label-success">Ativado/Desativar</span> 
