@@ -88,7 +88,7 @@
                 <% end %>&nbsp&nbsp
 
                   <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
-                      <%= link_to document_decompress_url(document) do %>
+                      <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()' do %>
                           <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
                       <% end %>&nbsp&nbsp
                   <% else %>
@@ -96,8 +96,8 @@
                         <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
                           <span class="glyphicon glyphicon-compressed blue"></span></button>
                         <ul class="dropdown-menu btn-sm">
-                          <li><%= link_to 'Comprimir para Gzip', document_compress_url(document, :compression_method => 'gz') %></li>
-                          <li><%= link_to 'Comprimir para Zip', document_compress_url(document, :compression_method => 'zip') %></li>
+                          <li><%= link_to 'Comprimir para Gzip', document_compress_url(document, :compression_method => 'gz'), method: :post, :onclick => 'refresh()' %></li>
+                          <li><%= link_to 'Comprimir para Zip', document_compress_url(document, :compression_method => 'zip'), method: :post, :onclick => 'refresh()' %></li>
                         </ul>
                       </content>
                   <% end %>

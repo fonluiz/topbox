@@ -20,4 +20,8 @@ class Document < ApplicationRecord
     self.update trash: false
   end
 
+  def primary_extensions
+    Document.extensions.keys.to_a - ["gz", "zip"]
+  end
+
 end

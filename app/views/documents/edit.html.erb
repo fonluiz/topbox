@@ -17,7 +17,7 @@
 		      			<%= d.text_field :name, class: 'form-control' %>
 		      			<!-- Extension select dropdown -->
 		      			<div class="input-group-btn">
-		      				<%= d.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => @document.extension}, {class: "btn btn-default dropdown-toggle" }%>
+		      				<%= d.collection_select :extension, @document.primary_extensions, :to_s, :to_s, {:selected => @document.extension}, {class: "btn btn-default dropdown-toggle" }%>
 		      			</div>
 	    			</div>				
 		    		<br>
