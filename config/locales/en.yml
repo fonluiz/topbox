@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+
+  mytopbox: "My Topbox"
+  logout_nav: "Log out"
+  shared: "Shared with me"
+  permissions: "Permissions"
+  trash: "Trash"
+
   login_user: "Username or e-mail"
   login_password: "Password"
   login: "Log in"
