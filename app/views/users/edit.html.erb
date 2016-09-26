@@ -1,0 +1,16 @@
+<h4> Seus dados </h4>
+
+<%= form_for @user do |u| %>
+	<div id="edit-fields">
+	    <%= u.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control", :value => get_current_user.first_name %>
+	    <%= u.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control", :value => get_current_user.last_name %>
+	    <%= u.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control", :value => get_current_user.username %>
+	    <%= u.email_field :email, :placeholder => 'E-mail', :class => "form-control", :value => get_current_user.email %>
+	    <%= u.password_field :email, :placeholder => 'Senha antiga', :id => "old-password", :class => "form-control hidden" %>
+	    <%= u.password_field :email, :placeholder => 'Nova senha', :id => "new-password", :class => "form-control hidden" %>
+	    <%= u.password_field :email, :placeholder => 'Confirmar senha', :id => "confirm-password", :class => "form-control hidden"%>
+    </div>
+
+    <button type="button" class='btn' onclick="editpassword()"> Editar senha</button>
+    <%= u.submit 'Editar conta', class: 'btn' %>
+<% end %>

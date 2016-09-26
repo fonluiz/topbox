@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   get 'signup'  => 'users#new'
+  get 'edit' => 'users#edit'
+  post  'edit'   => 'users#update'
   resources :users
 
   get 'login' => 'sessions#new'
