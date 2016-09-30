@@ -19,7 +19,7 @@
         <div class="panel-body">
           <div class= "container-fluid"> 
             <div class="col-sm-3">
-              <b class="subtitle"> Autores </b>
+              <b class="subtitle"> <%= t(:authors) %> </b>
   			  	  <p align=left>
                 <%= @document.user.first_name %> <br />
                 <% @document.privacy.permissions.each do |permission| %>
@@ -30,7 +30,7 @@
   			     </div>  
 
           <div class="col-sm-4">
-            <b class="subtitle"> Data de Publicação </b>
+            <b class="subtitle"> <%= t(:publication_date)%> </b>
             <p align=left>
               <%= @document.updated_at %> <br />
             </p>
@@ -42,29 +42,29 @@
                 <%= link_to edit_document_path(@document)  do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
                 <% end %>
-                Editar documento <br />
+                <%= t(:edit_doc)%> <br />
      
               <%= link_to document_download_url(@document), data: { no_turbolink: true }, :target => "_blank" do  %> 
                 <content class='glyphicon glyphicon-download-alt'/> 
               <% end %> 
-              Fazer download do documento em ".<%= @document.extension %> " <br />
+              <%= t(:download_doc)%> ".<%= @document.extension %> " <br />
 
               <% if @document.user.id == get_current_user.id %>
                 <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true } do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
-                <% end %> Compartilhar documento <br />
+                <% end %> <%= t(:share_doc)%> <br />
               <% end %>
             <% end %>
 
            <% if @document.user.id == get_current_user.id %>
             <%= link_to document_visibility_url(@document),  data: { no_turbolink: true } do %>
               <%= content_tag('i', nil, class: 'glyphicon glyphicon-link') %>
-              <% end %> Compartilhamento por link 
+              <% end %> <%= t(:sharing_link)%>
               <% if @document.privacy.open? %>
-                <span class="label label-success">Ativado</span>
+                <span class="label label-success"> <%= t(:activated)%> </span>
                 <span class="input-group-addon" id="basic-addon3"><%= document_url(@document) %></span>
               <% else %>
-            <span class="label label-default">Desativado</span>
+            <span class="label label-default"> <%= t(:disabled)%> </span>
             <% end %><br />
           <% end %>
           <% end %>
@@ -74,4 +74,5 @@
       </div>
     </div>
   </div>  
+</div>
 </div>

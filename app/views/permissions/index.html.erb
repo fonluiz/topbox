@@ -11,9 +11,9 @@
 
         <thead>
           <tr>
-            <th class="subtitle">Documento</th>
-            <th class="subtitle">Usuário</th>
-            <th class="subtitle">Opção</th>
+            <th class="subtitle"> <%=t(:document)%> </th>
+            <th class="subtitle"> <%=t(:user)%> </th>
+            <th class="subtitle"> <%=t(:option)%> </th>
             <th colspan="3"></th>
             
           </tr>
@@ -42,7 +42,11 @@
           <% end %>
         </tbody>
       <% else %>
-        <h3 class="light-silver"><center>Você não compartilhou nenhum arquivo.</center></h3>
+        <h3 class="light-silver">
+          <div align="center">
+            <%= t(:didnt_share)%>
+          </div>
+        </h3>
       <% end %>
     </table>
     <br>

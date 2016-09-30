@@ -25,6 +25,11 @@ pt:
   shared: "Compartilhados comigo"
   permissions: "Permissões"
   trash: "Lixeira"
+  document: 'Documento'
+  user: 'Usuário'
+  option: 'Opção'
+  save: 'Salvar'
+  cancel: 'Cancelar'
 
   login_user: "Nome de usuario ou e-mail"
   login_password: "Senha"
@@ -70,8 +75,19 @@ pt:
   new_doc: 'Novo documento'
   untitled_doc: 'Documento sem título'
   extension: 'Extensão'
-  cancel: 'Cancelar'
   create: 'Criar'
+  # EDIT
+  title: 'Título'
+  move_to: 'Mover para'
+  authors: 'Autores'
+  publication_date: 'Data de publicação'
+  edit_doc: 'Editar documento'
+  download_doc: 'Fazer download do documento em'
+  share_doc: 'Compartilhar documento'
+  sharing_link: 'Compartilhamento por link'
+  activated: 'Ativado'
+  disabled: 'Desativado'
+
 
   # Folder MODAL
   untitled_folder: 'Pasta sem nome'
@@ -84,3 +100,16 @@ pt:
   notf_3: 'há cerca de'
   notf_4: 'horas atrás'
 
+  # Permissions VIEWS
+  share: 'Compartilhar'
+  permission_type: 'Tipo de compartilhamento:'
+  share_with: 'Compartilhar com:'
+  share_with_link: 'É possível tornar seu documento visível para qualquer pessoa que contenha o link.'
+  act_des: 'Ativado/Desativar'
+  des_act: 'Desativado/Ativar'
+  #DENIED
+  denied_title: 'Você não tem acesso a este documento ou diretório!'
+  denied_msg_1: 'A página que você está tentando acessar não é pública e você não tem permissão para visualizá-la.'
+  denied_msg_2: 'Peça permissão ao dono do documento ou diretório ou entre com uma conta que tenha acesso ao mesmo.'
+  # INDEX
+  didnt_share: 'Você não compartilhou nenhum arquivo.'

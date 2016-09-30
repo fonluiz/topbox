@@ -26,11 +26,16 @@ en:
   shared: "Shared with me"
   permissions: "Permissions"
   trash: "Trash"
+  document: 'Document'
+  user: 'User'
+  option: 'Option'
+  save: 'Save'
+  cancel: 'Cancel'
 
   login_user: "Username or e-mail"
   login_password: "Password"
   login: "Log in"
-  login_msg: "Haven't an account?"
+  login_msg: "Don't have an account?"
   login_singup: "Sing up."
   authentication_error: "User or password is invalid."
   logout: "Successfully logout!"
@@ -72,8 +77,18 @@ en:
   new_doc: 'New document'
   untitled_doc: 'Untitled document'
   extension: 'Extension'
-  cancel: 'Cancel'
   create: 'Create'
+  # EDIT
+  title: 'Title'
+  move_to: 'Move to'
+  authors: 'Authors'
+  publication_date: 'Publication date'
+  edit_doc: 'Edit document'
+  download_doc: 'Download document as'
+  share_doc: 'Share document'
+  sharing_link: 'Share with link'
+  activated: 'Activated'
+  disabled: 'Disabled'
 
   # Folder MODAL
   untitled_folder: 'Untitled folder'
@@ -85,3 +100,17 @@ en:
   notf_2: 'with you.'
   notf_3: 'about'
   notf_4: 'hours ago'
+
+   # Permissions VIEWS
+  share: 'Share'
+  permission_type: 'Sharing type:'
+  share_with: 'Share with:'
+  share_with_link: 'It is possible to turn your document visible to everyone who has its link.'
+  act_des: 'Activated/Deactivate'
+  des_act: 'Disabled/Activate.'
+  #DENIED
+  denied_title: 'You do not have acess to this document or directory!'
+  denied_msg_1: 'The page you are trying to access is not public. You do not have the permission to open it.'
+  denied_msg_2: 'Ask the permission to its owner or sign in with as account that has access.'
+  # INDEX
+  didnt_share: 'You have not shared any file.'
