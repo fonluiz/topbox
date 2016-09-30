@@ -30,6 +30,7 @@ pt:
   option: 'Opção'
   save: 'Salvar'
   cancel: 'Cancelar'
+  back: 'Voltar'
 
   login_user: "Nome de usuario ou e-mail"
   login_password: "Senha"

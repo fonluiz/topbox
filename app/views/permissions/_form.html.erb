@@ -21,8 +21,8 @@
                 <br>         
 
                 <!--Submit sign up form button-->
-                <%= f.submit 'Salvar', :"data-no-turbolink" => true, class: 'btn btn-login' %>
-                <%= link_to 'Voltar', get_current_folder, class: 'btn btn-secondary', :onclick => 'refresh()' %>
+                <%= f.submit t(:save), :"data-no-turbolink" => true, class: 'btn btn-login' %>
+                <%= link_to t(:back), get_current_folder, class: 'btn btn-secondary', :onclick => 'refresh()' %>
                 
             <% end %>
             </div>
