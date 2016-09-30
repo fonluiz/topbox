@@ -34,6 +34,10 @@ class FoldersController < ApplicationController
   end
 
   def shared
+    permissions = Permission.where(user_id: get_current_user.id)
+    @shared_files = permissions.select do |permission|
+      (permission.privacy.shareable.trash ==  false)
+    end
   end
 
 
@@ -52,6 +56,10 @@ class FoldersController < ApplicationController
   # GET /folders/1/edit
   def edit
     set_current_folder(@folder)
+    if @folder.trash
+      render "permissions/denied"
+      
+    end
   end
 
   # PATCH/PUT /folders/1
@@ -71,7 +79,34 @@ class FoldersController < ApplicationController
     end
   end
 
-  def show_trash
+
+  # DELETE /folders/1
+  # DELETE /folders/1.json
+  def destroy
+    parent = @folder.parent
+    folder_name = @folder.name
+    @folder.destroy
+    respond_to do |format|
+      format.html { redirect_to parent, action: :show, notice: folder_destroyed_msg(folder_name) }
+      format.json { head :no_content }
+    end
+  end
+
+
+  # Returns the path of a folder
+  public
+  def get_folder_path(folder)
+    full_path = folder.name
+    divider = '<b style="color: #2251A6">  >  </b>'
+    parent_folder = folder.parent
+    until (parent_folder.nil?)
+      full_path = (parent_folder.name + divider + full_path)
+      parent_folder = parent_folder.parent
+    end
+    return full_path.html_safe
+  end
+
+    def show_trash
     @trash_documents = get_trash_documents
     @trash_folders = get_trash_folders
     render 'folders/trash'
@@ -97,30 +132,12 @@ class FoldersController < ApplicationController
     get_trash_documents.each{|document| document.make_recycle}
     redirect_to trash_path
   end
-  # DELETE /folders/1
-  # DELETE /folders/1.json
-  def destroy
-    parent = @folder.parent
-    folder_name = @folder.name
-    @folder.destroy
-    respond_to do |format|
-      format.html { redirect_to parent, action: :show, notice: folder_destroyed_msg(folder_name) }
-      format.json { head :no_content }
-    end
-  end
 
 
-  # Returns the path of a folder
-  public
-  def get_folder_path(folder)
-    full_path = folder.name
-    divider = '<b style="color: #2251A6">  >  </b>'
-    parent_folder = folder.parent
-    until (parent_folder.nil?)
-      full_path = (parent_folder.name + divider + full_path)
-      parent_folder = parent_folder.parent
-    end
-    return full_path.html_safe
+  def trash_destroy_all
+    get_trash_folders.each{|folder| folder.destroy}
+    get_trash_documents.each{|document| document.destroy}
+    redirect_to trash_path
   end
 
   private

@@ -34,6 +34,7 @@
       <table class="table table-hover">
 
         <% unless @folder_page_content.nil? %>
+        
 
           <thead>
           <tr class="subtitle">
@@ -129,10 +130,10 @@
       <nav aria-label="...">
         <ul class="pager">
           <% unless @page<=1 %>
-          <li><a href=<%='?pg=' + (@page-1).to_s %>>Previous</a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page-1).to_s %>>Previous</a></li>
           <% end%>
           <% if ((@folder_content.length / FoldersHelper::PAGE_MAX )> (@page-1)  ) %>
-          <li><a href=<%='?pg=' + (@page+1).to_s %>>Next</a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page+1).to_s %>>Next</a></li>
           <% end %>
         </ul>
       </nav>

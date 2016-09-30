@@ -62,7 +62,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
-    unless has_edit_permission?
+    unless (has_edit_permission? and !@document.trash)
       redirect_to MAIN_FOLDER_PATH
     end
   end
