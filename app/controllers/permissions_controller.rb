@@ -43,10 +43,8 @@ class PermissionsController < ApplicationController
     end
   end
 
-
   def denied
   end
-
   
   # GET /permissions/1/edit
   def edit
@@ -56,25 +54,22 @@ class PermissionsController < ApplicationController
   # POST /permissions.json
   def create
     @permission = Permission.new(permission_params)
+    @permission.user_id = User.find_by_email(@permission.email).id if User.exists?(email: @permission.email)
     if already_shared?
       redirect_to edit_permission_path(get_permission), notice: 'Esse compartilhamento já existe. Deseja atualizar?'
     else 
       respond_to do |format|
-      if @permission.save
-
+      if @permission.user_id && @permission.save
         create_notification
         format.html { redirect_to @permission.privacy.shareable }
-
         format.json { render :show, status: :created, location: @permission }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: "Usuário não encontrado." }
         format.json { render json: @permission.errors, status: :unprocessable_entity }
         end
       end
     end
   end
-
-
 
   # PATCH/PUT /permissions/1
   # PATCH/PUT /permissions/1.json
@@ -100,14 +95,13 @@ class PermissionsController < ApplicationController
     end
   end
 
-
   private
     def set_permission
       @permission = Permission.find(params[:id])
     end
 
     def permission_params
-      params.require(:permission).permit(:privacy_id,:user_id, :status)
+      params.require(:permission).permit(:privacy_id, :email, :user_id, :status)
     end
 
     def already_shared?
@@ -120,7 +114,7 @@ class PermissionsController < ApplicationController
 
   def create_notification
 
-    user_id = params[:permission][:user_id]
+    user_id = @permission.user_id
 
     privacy_id = params[:permission][:privacy_id]
     privacy = Privacy.find(privacy_id)
@@ -129,8 +123,6 @@ class PermissionsController < ApplicationController
     Notification.create(notified_by: get_current_user, 
           user_id: user_id, 
           notifiable: shareable)
-
-    
   end
 
 end

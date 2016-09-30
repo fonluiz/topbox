@@ -1,0 +1,19 @@
+<div class="modal-header-primary">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Enviar Documento</h4>
+</div>
+<div class="modal-body format">
+    <%= form_for(Document.new) do |f| %>
+            <div class="field">
+            <%= f.file_field :file, :autofocus => true%>
+            </div>
+</div>
+<div class="modal-footer">
+    <!--Submit sign up form button-->
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+        <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+    <% end %> 
+</div>
+
+
+

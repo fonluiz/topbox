@@ -1,10 +1,18 @@
 <div class= "container-fluid"> 
-<div class="row">
- <div class="col-sm-2">
-  <%= render 'folders/sidebar' %>
-</div>
- <div class="col-sm-10">
-    <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render 'folders/sidebar' %>
+    </div>
+    <div class="col-sm-10">
+      <p id="notice">
+        <% unless notice.nil? %>
+          <div class="alert alert-info" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <%= notice %>
+          </div>
+        <% end %>
+      </p>
+
       <table class="table table-hover">
 
       <% unless @permissions.select{|permission| permission.privacy.shareable.user.id == get_current_user.id}.length == 0 %>
@@ -41,11 +49,11 @@
             <% end %>
           <% end %>
         </tbody>
-      <% else %>
-        <h3 class="light-silver"><center>Você não compartilhou nenhum arquivo.</center></h3>
-      <% end %>
-    </table>
+          <% else %>
+          <h3 class="light-silver"><center>Você não compartilhou nenhum arquivo.</center></h3>
+          <% end %>
+      </table>
     <br>
-</div>
-</div>
+    </div>
+  </div>
 </div>

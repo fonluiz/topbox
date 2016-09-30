@@ -21,7 +21,7 @@
 
 
       <!-- Documents -->
-      <% Permission.where(user_id: get_current_user.id).each do |permission| %>
+      <% @shared_files.each do |permission| %>
       <% document = permission.privacy.shareable %>
       <tr>
             <td>
