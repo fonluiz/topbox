@@ -3,7 +3,6 @@ class Permission < ApplicationRecord
 	belongs_to :privacy
 	has_one :user
 
-
 	def get_user_notified
 		return self.user
 	end

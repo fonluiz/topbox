@@ -10,18 +10,17 @@
   <table class="table table">
 
     <% unless Permission.where(user_id: get_current_user.id).length == 0 %>
-      <thead>
-      <tr class="subtitle">
-        <th>Nome</th>
-        <th>Proprietário</th>
-        <th>Última modificação</th>
-        <th>Opções</th>
-      </tr>
-      </thead>
-
+        <thead>
+        <tr class="subtitle">
+          <th> <%= t(:name) %> </th>
+          <th> <%= t(:owner) %> </th>
+          <th> <%= t(:last_modification) %> </th>
+          <th> <%= t(:options) %> </th>
+        </tr>
+        </thead>
 
       <!-- Documents -->
-      <% Permission.where(user_id: get_current_user.id).each do |permission| %>
+      <% @shared_files.each do |permission| %>
       <% document = permission.privacy.shareable %>
       <tr>
             <td>
@@ -48,9 +47,10 @@
       <% end %> 
       </tbody>
     <% else %>
-      <h2 class="light-silver"><center>Nenhum arquivo foi compartilhado com você.</center></h2>
+      <h2 class="light-silver"><center> <%= t(:nothing_shared)%> </center></h2>
     <% end %>
   </table>
 </div>
     
+</div>
 </div>

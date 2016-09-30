@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160823022400) do
   create_table "permissions", force: :cascade do |t|
     t.integer  "privacy_id"
     t.integer  "user_id"
+    t.string   "email"
     t.integer  "status",     default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

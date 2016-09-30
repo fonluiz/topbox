@@ -20,4 +20,28 @@ class Document < ApplicationRecord
     self.update trash: false
   end
 
+  def primary_extensions
+    Document.extensions.keys.to_a - ["gz", "zip"]
+  end
+
+  def initialize(params = {})
+    file = params.delete(:file)
+    super
+    if file
+      file_name = sanitize_filename(file.original_filename)
+      dot = file_name.index(".")
+      len = file_name.length
+      self.name = file_name[0...dot]
+      self.extension = file_name[dot+1..len]
+      self.content = file.read
+    end
+  end
+
+  private
+    def sanitize_filename(filename)
+      # Get only the filename, not the whole path (for IE)
+      # Thanks to this article I just found for the tip: http://mattberther.com/2007/10/19/uploading-files-to-a-database-using-rails
+      return File.basename(filename)
+  end
+
 end

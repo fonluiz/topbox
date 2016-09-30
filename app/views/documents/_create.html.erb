@@ -9,7 +9,7 @@
         <br>
         <p><a class="subtitle"> <%=t(:extension)%> </a></p>
 
-        <p><%= f.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => Document.extensions.keys.to_a[0]}, {class: "select"}%></p>
+        <p><%= f.collection_select :extension, Document.extensions.keys.to_a - ["gz", "zip"], :to_s, :to_s, {:selected => Document.extensions.keys.to_a[0]}, {class: "select"}%></p>
         <br>
 </div>
 <div class="modal-footer">

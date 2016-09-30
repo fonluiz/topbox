@@ -17,16 +17,32 @@
      
 
       <table class="table table-hover">
-
         <% unless @trash_folders.empty? && @trash_documents.empty? %>
 
-          <thead>
-          <tr class="subtitle">
-            <th>Nome</th>
-            <th>Última modificação</th>
-            <th>Opções</th>
-          </tr>
-          </thead>
+        <!-- Basic Menu -->
+        <div class="content-fluid">
+          <div class="col-sm-offset-3 col-sm-7" >
+          <ul class="nav nav-pills" >
+          <li role="presentation"  >
+          <%= link_to recycle_all_path, method: :post, data: {confirm: t(:confirm)}, :onclick => 'refresh()' do%>
+            <span class = "glyphicon glyphicon glyphicon-repeat white"></span> <%= t(:restore)%>>
+          <% end %></li>
+          <li role="presentation"  >
+          <%= link_to recycle_all_path, method: :post, data: {confirm: t(:confirm_empty)}, :onclick => 'refresh()' do%>
+            <span class = "glyphicon glyphicon glyphicon-trash white"></span> <%= t(:empty)%>>
+          <% end %></li>
+          </ul>
+          </div>
+          </div>
+
+
+            <thead>
+            <tr class="subtitle">
+              <th> <%= t(:name) %> </th>
+              <th> <%= t(:last_modification) %> </th>
+              <th> <%= t(:options) %> </th>
+            </tr>
+            </thead>
 
           <!-- Folders -->
           <% @trash_folders.each do |folder| %>
@@ -38,7 +54,7 @@
                 <td><p class="text-muted">--</p></td>
 
                 <td><%= link_to folder_recycle_path(folder), method: :post do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-repeat blue') %>
                 <% end %>&nbsp&nbsp
                 <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
@@ -60,18 +76,10 @@
 
                 <td>
                 <%= link_to document_recycle_path(document), method: :post do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                <%= content_tag('i', nil, class: 'glyphicon glyphicon-repeat blue') %>
                 <% end %>&nbsp&nbsp
 
-                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
-                <% end %>&nbsp&nbsp
-
-                <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
-                <% end %>&nbsp&nbsp
-
-                <%= link_to document_url(document), method: :delete, data: {confirm: 'Você tem certeza?'} do %>
+                <%= link_to document_url(document), method: :delete, data: {confirm: t(:confirm)} do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
                 <% end %>&nbsp&nbsp
 
@@ -85,8 +93,8 @@
         <% else %>
           <h2 class="light-silver">
           <center>
-              Sua lixeira está vazia!
-              <%= image_tag('open_box.png', :size =>'100x100' ,:alt => 'Nova Pasta!', :onclick => 'refresh()') %><br />
+              <%= t(:empty_msg)%>
+              <%= image_tag('open_box.png', :size =>'100x100' ,:alt => t(:new_folder), :onclick => 'refresh()') %><br />
                   </center></h2>
         <% end %>
       </table>

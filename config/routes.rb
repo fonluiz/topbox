@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   resources :notifications
   resources :privacies
   resources :permissions
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'sessions#new'
-
-  get 'signup'  => 'users#new'
   resources :users
+  resources :documents
+  resources :folders, :path => 'mytopbox'
+  resources :permissions
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+
+  #Login / Sign Up / Session
+  root 'sessions#new'
+  get 'signup'  => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
@@ -20,24 +23,19 @@ Rails.application.routes.draw do
   post "folders/:id/trash" => "folders#move_to_trash", as: :folder_move_to_trash
   get "trash" => "folders#show_trash"
   post "trash/recycle" => "folders#recycle_all", as: :recycle_all
+  post "trash/destroy_all" => "folders#trash_destroy_all", as: :trash_destroy_all
 
-  resources :documents
-  resources :folders, :path => 'mytopbox'
-  resources :permissions
+
+
 
   get 'denied' => 'permissions#denied'
-
   get 'makeopen' => 'privacies#open'
-
   get 'shared' => 'folders#shared'
-
   get 'notifications' => 'notification#index'
-
   get 'documents/:id/visibility' => 'privacies#switch_visibility', :as => 'document_visibility'
   get 'documents/:id/download' => 'documents#download', :as => 'document_download'
-
-  get 'documents/:id/compress' => 'documents#compress', :as => 'document_compress'
-  get 'documents/:id/decompress' => 'documents#decompress', :as => 'document_decompress'
+  post 'documents/:id/compress' => 'documents#compress', :as => 'document_compress'
+  post 'documents/:id/decompress' => 'documents#decompress', :as => 'document_decompress'
 
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through

@@ -33,8 +33,8 @@
 
       <table class="table table-hover">
 
-        <% unless @folder_page_content.nil? %>
-
+        <% unless @folder_page_content.empty? %>
+        
           <thead>
           <tr class="subtitle">
             <th> <%= t(:name) %> </th>
@@ -88,7 +88,7 @@
                 <% end %>&nbsp&nbsp
 
                   <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
-                      <%= link_to document_decompress_url(document) do %>
+                      <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()' do %>
                           <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
                       <% end %>&nbsp&nbsp
                   <% else %>
@@ -96,8 +96,8 @@
                         <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
                           <span class="glyphicon glyphicon-compressed blue"></span></button>
                         <ul class="dropdown-menu btn-sm">
-                          <li><%= link_to t(:compress_gzip), document_compress_url(document, :compression_method => 'gz') %></li>
-                          <li><%= link_to t(:compress_zip), document_compress_url(document, :compression_method => 'zip') %></li>
+                          <li><%= link_to t(:compress_gzip), document_compress_url(document, :compression_method => 'gz'), method: :post, :onclick => 'refresh()' %></li>
+                          <li><%= link_to t(:compress_zip), document_compress_url(document, :compression_method => 'zip'), method: :post, :onclick => 'refresh()' %></li>
                         </ul>
                       </content>
                   <% end %>
@@ -129,17 +129,17 @@
       <nav aria-label="...">
         <ul class="pager">
           <% unless @page<=1 %>
-          <li><a href=<%='?pg=' + (@page-1).to_s %>> <%t(:previous)%> </a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page-1).to_s %>> <%t(:previous)%> </a></li>
           <% end%>
           <% if ((@folder_content.length / FoldersHelper::PAGE_MAX )> (@page-1)  ) %>
-          <li><a href=<%='?pg=' + (@page+1).to_s %>> <%t(:next)%> </a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page+1).to_s %>> <%t(:next)%> </a></li>
           <% end %>
         </ul>
       </nav>
 
 
       <!-- Folder Modal -->
-      <div id="createFolderModal" class="modal" tabindex="1" role="dialog">
+      <div id="createFolderModal" class="modal"  role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -150,7 +150,7 @@
       </div>
 
       <!-- Document Modal -->
-      <div id="createDocumentModal" class="modal" tabindex="1" role="dialog">
+      <div id="createDocumentModal" class="modal" role="dialog" autofocus="true">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -161,9 +161,25 @@
         </div>
       </div>
 
+      <!-- Upload Modal -->
+      <div id="uploadDocumentModal" class="modal" role="dialog" autofocus="true">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <%= render 'folders/upload' %>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Menu -->
       <div id="menu" class="modal fade" role="dialog">
         <div class="btn-menu">
+
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#uploadDocumentModal">
+            <content class='glyphicon glyphicon-cloud-upload'/>
+          </button>
 
           <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createDocumentModal">
             <content class='glyphicon glyphicon-file'/>
@@ -173,6 +189,8 @@
           <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createFolderModal">
             <content class='glyphicon glyphicon-folder-open'/>
           </button>
+
+
           <% unless @folder == find_mytopbox%>
 
               <%= link_to @folder, method: :delete, data: {confirm: t(:confirm)} , class: 'btn btn-info btn-primary btn-circle btn-xl' do %>

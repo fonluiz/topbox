@@ -1,12 +1,18 @@
+<body class="login-bg">
+<div class="panel-body">
 <div id="container-fluid">
-		<div class="jumbotron">
-		<center>
-			<h2 class="subtitle"> <%= t(:denied_title)%> </h2>
-			<h4> <%= t(:denied_msg_1) %> <br>
-           <%= t(:denied_msg_2) %> </h4>
+
+			<center>
+			<h1 class ="subtitle"><span class ="glyphicon glyphicon-lock" ></span></h1>
+			<h2 class="subtitle">
+      <%= t(:denied_title)%>  </h2>
+      <%= t(:denied_msg_1) %> <br>
+      <%= t(:denied_msg_2) %> </i></h4>
+
 <br>
 			<% unless get_current_user.nil?%> <%=  link_to 'Voltar', get_current_folder, class: 'btn btn-primary' %> <% end %>
 			</center>
 
 	</div>
 </div>
+</body>

@@ -11,11 +11,15 @@ class DocumentsController < ApplicationController
   end
 
   def create
+    @file = params.delete(:file)
     @document = Document.new(get_document_params)
     @document.folder = get_current_folder
     privacy = Privacy.new
     privacy.shareable = @document
     @document.privacy = privacy
+    if @file 
+      @document.content = file.read
+    end
     if @document.save
       redirect_to_current_folder
     end
@@ -62,7 +66,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
-    unless has_edit_permission?
+    unless (has_edit_permission? and !@document.trash)
       redirect_to MAIN_FOLDER_PATH
     end
   end
@@ -106,7 +110,7 @@ class DocumentsController < ApplicationController
   
   private
   def get_document_params
-    params.require(:document).permit(:name, :content, :extension)
+    params.require(:document).permit(:name, :content, :extension, :file)
   end
 
     def has_edit_permission?

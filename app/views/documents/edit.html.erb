@@ -17,7 +17,7 @@
 		      			<%= d.text_field :name, class: 'form-control' %>
 		      			<!-- Extension select dropdown -->
 		      			<div class="input-group-btn">
-		      				<%= d.collection_select :extension, Document.extensions.keys.to_a, :to_s, :to_s, {:selected => @document.extension}, {class: "btn btn-default dropdown-toggle" }%>
+		      				<%= d.collection_select :extension, @document.primary_extensions, :to_s, :to_s, {:selected => @document.extension}, {class: "btn btn-default dropdown-toggle" }%>
 		      			</div>
 	    			</div>				
 		    		<br>
@@ -34,9 +34,24 @@
 			            <br>
 		            <% end %>
 
-			<%= link_to t(:share), new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: ' btn btn-primary pull-left'   %>
-		  		<%= d.submit t(:save), :class => 'btn btn-primary pull-right' %>
-		  		<%= link_to t(:cancel), get_current_folder, class: 'btn btn-primary pull-right', :onclick => 'refresh()' %>
+				<!-- Basic Menu -->
+		        <div class="content-fluid">
+		          <div class="col-sm-offset-4 col-sm-8" >
+				        <ul class="list-inline" >
+							<li>
+					          <%= link_to t(:cancel), get_current_folder, class: 'btn btn-primary', :onclick => 'refresh()' %>
+					        </li>
+					        <li>
+					          <%= link_to t(:share), new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, class: ' btn btn-primary '   %>
+					       	</li>
+					        <li role="presentation" class="active" >
+					          <%= d.submit t(:save),:class => "btn btn-primary" do %>
+					          <% end %>
+					        </li>
+				        </ul>
+		          	</div>
+		        </div>
+
 		  	</div>
 	  	<% end %>
 	</div>

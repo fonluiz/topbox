@@ -12,7 +12,7 @@
       <p>
         <strong><%= notification.notified_by.get_name %></strong> <%= t(:notf_1)%>
         <strong><%= notification.notifiable.name%></strong> <%= t(:notf_2)%>
-          <h6> <span class ="glyphicon glyphicon-file"> </span>  <%= t(:notf_3)%> <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> <%= t(:notf_4)%> </h6></p>
+        <h6> <span class ="glyphicon glyphicon-time"> </span> <%= t(:notf_3)%> <%= ((Time.parse(DateTime.now.to_s) - Time.parse(notification.created_at.to_s))/3600).round(0) %> <%= t(:notf_4)%> </h6></p>
       </a>
     <% end %>
     </ul>

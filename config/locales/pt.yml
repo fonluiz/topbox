@@ -57,6 +57,7 @@ pt:
   short_username: "Username deve conter no mínimo seis caracteres"
   email_error: "E-mail deve conter um '@' e algo depois dele."
 
+
   # Folder SHOW View
   name: 'Nome'
   last_modification: 'Última modificação'
@@ -70,8 +71,20 @@ pt:
   next: 'Próxima'
   compress_gzip: 'comprimir para gzip'
   compress_zip: 'comprimir para zip'
+  owner: 'Proprietário'
+  nothing_shared: 'Nenhum arquivo foi compartilhado com você.'
 
-  # Document MODAL
+
+  #TRASH
+  restore: 'Restaurar Todos os Itens'
+  empty: 'Esvaziar lixeira'
+  confirm_empty: 'Esta ação não pode ser desfeita. \nVocê tem certeza que deseja deletar todos os itens?'
+  empty_msg: 'Sua lixeira está vazia!'
+
+
+  # Document
+  send_doc: 'Enviar documento'
+  # MODAL
   new_doc: 'Novo documento'
   untitled_doc: 'Documento sem título'
   extension: 'Extensão'
@@ -100,13 +113,15 @@ pt:
   notf_3: 'há cerca de'
   notf_4: 'horas atrás'
 
+
   # Permissions VIEWS
   share: 'Compartilhar'
   permission_type: 'Tipo de compartilhamento:'
   share_with: 'Compartilhar com:'
   share_with_link: 'É possível tornar seu documento visível para qualquer pessoa que contenha o link.'
   act_des: 'Ativado/Desativar'
-  des_act: 'Desativado/Ativar'
+  des_act:
+  type_email: 'Digite o email aqui'
   #DENIED
   denied_title: 'Você não tem acesso a este documento ou diretório!'
   denied_msg_1: 'A página que você está tentando acessar não é pública e você não tem permissão para visualizá-la.'
