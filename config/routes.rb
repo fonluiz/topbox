@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   get 'documents/:id/download' => 'documents#download', :as => 'document_download'
   post 'documents/:id/compress' => 'documents#compress', :as => 'document_compress'
   post 'documents/:id/decompress' => 'documents#decompress', :as => 'document_decompress'
-  get 'mytopbox/:id/upload' => 'folders#upload_file', :as => 'document_upload'
 
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through

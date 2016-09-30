@@ -34,6 +34,23 @@
   border-radius: 5px;
 }
 
+
+.document-show {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 860px;
+  margin: 1 auto 100px;
+  padding: 45px;
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -moz-box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  box-shadow: 0 5px 15px rgba(0,0,0,.50);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;

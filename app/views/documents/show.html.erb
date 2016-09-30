@@ -1,8 +1,9 @@
+<body class="login-bg">
 <div class= "container-fluid"> 
   <div class="row pull-center" >
     <div class="col-sm-offset-2 col-sm-8 pull-center" >
-      <div class="list-group-item" style="border: none; ">
-        <h1><strong><%= @document.name %> </strong></h1><br />
+      <div class="document-show"><center>
+        <h1><strong><%= @document.name %> </strong></h1></center><br />
   		  <p>
           <% if @document.md? %>
             <%= @document.content.try(:html_safe) %>
@@ -72,6 +73,7 @@
           </div>
         </div>
       </div>
-    </div>
   </div>  
 </div>
+</div>
+</body>
