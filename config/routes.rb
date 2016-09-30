@@ -29,18 +29,14 @@ Rails.application.routes.draw do
 
 
   get 'denied' => 'permissions#denied'
-
   get 'makeopen' => 'privacies#open'
-
   get 'shared' => 'folders#shared'
-
   get 'notifications' => 'notification#index'
-
   get 'documents/:id/visibility' => 'privacies#switch_visibility', :as => 'document_visibility'
   get 'documents/:id/download' => 'documents#download', :as => 'document_download'
-
   post 'documents/:id/compress' => 'documents#compress', :as => 'document_compress'
   post 'documents/:id/decompress' => 'documents#decompress', :as => 'document_decompress'
+  get 'mytopbox/:id/upload' => 'folders#upload_file', :as => 'document_upload'
 
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through

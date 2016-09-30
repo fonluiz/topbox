@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   include FoldersHelper, ApplicationHelper
   before_action :require_user, only: [:index, :show, :edit, :update, :destroy, :move_to_trash]
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :move_to_trash, :upload_file]
   helper_method :get_folder_path, :move_to_trash
 
   # GET /folders
@@ -20,7 +20,7 @@ class FoldersController < ApplicationController
     @initial_index = 1
     @page = [params[:pg].to_i,1].max
     @initial_index = (@page-1)*PAGE_MAX unless @page <= 1
-    @folder_page_content = @folder_content[@initial_index-1..((@initial_index+8))]
+    @folder_page_content = @folder_content[@initial_index-1..((@initial_index+6))]
     if has_folder? && !@folder.trash
       set_current_folder(@folder)
     else
@@ -40,6 +40,10 @@ class FoldersController < ApplicationController
     end
   end
 
+  def upload
+    @document = Document.new
+    render 'upload'
+  end
 
   # POST /folders
   # POST /folders.json

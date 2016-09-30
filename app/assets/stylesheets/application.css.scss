@@ -116,13 +116,13 @@ body {
 .btn-primary {
     font-family: "Roboto", sans-serif;
     font-weight: bold;
-    background: #008BED;
+    background: #2251A6;
     color: #ffffff;
 }
 
 .btn-primary:hover {
   color: #FFFFFF !important;
-  background: #2251A6 !important;
+  background: #008BED !important;
 }
 
 .form .message {
@@ -295,10 +295,12 @@ margin: 2px;
 padding: 10px 10px;
 font-size: 22px;
 border-radius: 35px;
+border: 0px;
 }
 
 .btn-circle.btn-sm {
 border-radius: 35px;
+border: 0px;
 }
 
 .lower-right {
@@ -321,8 +323,21 @@ right: 115px;
 
 /* Modals */
 
+.modal-dialog{
+ position: absolute;
+  top: 25%;
+  left: 27%;
+
+
+}
 .modal-backdrop {
-background: none;
+}
+
+.modal-backdrop.in
+{
+    opacity:0.5 !important;
+    /*position:fixed;*/
+    height:100%;
 }
 
 .modal-title {
@@ -332,10 +347,10 @@ font-weight: bold;
 
 .modal-header-primary {
 color:#fff;
-  padding:5px 10px;
+  padding:5px 15px;
   max-height: 80px;
   border-bottom:1px solid #eee;
-  background-color: #008BED;
+  background-color: #2251A6;
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
   -moz-border-radius-topleft: 5px;

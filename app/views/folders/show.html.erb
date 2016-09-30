@@ -140,7 +140,7 @@
 
 
       <!-- Folder Modal -->
-      <div id="createFolderModal" class="modal" tabindex="1" role="dialog">
+      <div id="createFolderModal" class="modal"  role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -151,7 +151,7 @@
       </div>
 
       <!-- Document Modal -->
-      <div id="createDocumentModal" class="modal" tabindex="1" role="dialog">
+      <div id="createDocumentModal" class="modal" role="dialog" autofocus="true">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -162,9 +162,25 @@
         </div>
       </div>
 
+      <!-- Upload Modal -->
+      <div id="uploadDocumentModal" class="modal" role="dialog" autofocus="true">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <%= render 'folders/upload' %>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Menu -->
       <div id="menu" class="modal fade" role="dialog">
         <div class="btn-menu">
+
+          <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#uploadDocumentModal">
+            <content class='glyphicon glyphicon-cloud-upload'/>
+          </button>
 
           <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createDocumentModal">
             <content class='glyphicon glyphicon-file'/>
@@ -174,6 +190,8 @@
           <button type="button" class='btn btn-info btn-primary btn-circle btn-xl opm' data-modal="#createFolderModal">
             <content class='glyphicon glyphicon-folder-open'/>
           </button>
+
+
           <% unless @folder == find_mytopbox%>
 
               <%= link_to @folder, method: :delete, data: {confirm: 'Você tem certeza?'} , class: 'btn btn-info btn-primary btn-circle btn-xl' do %>
