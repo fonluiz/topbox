@@ -117,10 +117,10 @@
           <h2 class="light-silver">
           <center>
             <%if @folder == find_mytopbox  && @page== 1%>
-                  <%t(:empty_topbox)%> <br />
+                  <%= t(:empty_topbox)%> <br />
                   <%= image_tag('open_box.png', :size =>'150x150' ,:alt => t(:new_folder), :onclick => 'refresh()') %><br /> <small class="light-silver"> <%t(:create_first_file)%> </small>
             <% else %>
-              <%t(:empty_fold)%>  <br />
+              <%= t(:empty_fold)%>  <br />
               <%= image_tag('open_box.png', :size =>'100x100' ,:alt => t(:new_folder), :onclick => 'refresh()') %><br />
               <% end %>
                   </center></h2>
@@ -129,10 +129,10 @@
       <nav aria-label="...">
         <ul class="pager">
           <% unless @page<=1 %>
-          <li><a onclick='refresh()' href=<%='?pg=' + (@page-1).to_s %>> <%t(:previous)%> </a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page-1).to_s %>> <%= t(:previous)%> </a></li>
           <% end%>
           <% if ((@folder_content.length / FoldersHelper::PAGE_MAX )> (@page-1)  ) %>
-          <li><a onclick='refresh()' href=<%='?pg=' + (@page+1).to_s %>> <%t(:next)%> </a></li>
+          <li><a onclick='refresh()' href=<%='?pg=' + (@page+1).to_s %>> <%= t(:next)%> </a></li>
           <% end %>
         </ul>
       </nav>

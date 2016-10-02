@@ -52,7 +52,7 @@ pt:
 
   account_msg: 'Sua conta foi criada com sucesso!'
   email_used_msg: 'Esse email já está registrado. Por favor, escolha outro.'
-  username_used_msg: 'Esse nome de usuário já está registrado. Por favor, escolha outro.'
+  username_used_msg: 'Esse usuário já está registrado. Por favor, escolha outro Nome de Usuario.'
   password_not_confirmed: 'Confirme senha corretamente.'
   empty_field: 'Preencha todos os campos'
   short_username: "Username deve conter no mínimo seis caracteres"
