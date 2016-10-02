@@ -21,7 +21,7 @@
 
 en:
 
-  mytopbox: "My Topbox"
+  mytopbox: 'My Topbox'
   logout_nav: "Log out"
   shared: "Shared with me"
   permissions: "Permissions"
