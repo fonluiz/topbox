@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(get_user_params)
-
     if @user.save
       create_main_folder(@user)
       flash[:success] = t(:account_msg)
@@ -22,7 +21,7 @@ class UsersController < ApplicationController
 
       private
   def get_user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 
   def verify_error
@@ -38,6 +37,7 @@ class UsersController < ApplicationController
       flash.now[:danger] = t(:email_error)
     elsif not_confirmed_password
       flash.now[:danger] = t(:password_not_confirmed)
+    else flash.now[:danger] = t(:username_used_msg)
     end
   end
 
@@ -47,7 +47,8 @@ class UsersController < ApplicationController
          (params[:user][:username].empty?) or
          (params[:user][:email].empty?) or
          (params[:user][:password].empty?) or
-         (params[:user][:password_confirmation].empty?) )
+        (params[:user][:password_confirmation].empty?)
+         )
 
       #retorna verdadeiro se algum campo estiver vazio
       return true
