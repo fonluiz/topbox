@@ -22,7 +22,5 @@ function refresh() {
 }
 
 function editpassword() {
-	$("#old-password").removeClass("hidden");
-	$("#new-password").removeClass("hidden");
-	$("#confirm-password").removeClass("hidden");
+	$("#password-fields").removeClass("hidden");
 }

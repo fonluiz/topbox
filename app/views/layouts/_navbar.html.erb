@@ -39,7 +39,7 @@
      
       <li>
         <%= link_to edit_user_path(get_current_user) do %>
-          <%= get_current_user.first_name + " " + get_current_user.last_name %>
+          <b style="color: #DAE5F8"><%= get_current_user.first_name + " " + get_current_user.last_name %></b>
         <% end %>
       </li>
         <li class="nav-divider"></li>

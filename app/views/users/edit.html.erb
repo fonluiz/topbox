@@ -1,19 +1,22 @@
-<h4> Seus dados </h4>
+<div class="container-fluid">
+	<%= form_for(@user) do |f| %>
+		<div>
+			<a class="subtitle">Seus dados</a>
+		    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control", :value => @user.first_name %>
+		    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control", :value => @user.last_name %>
+		    <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control", :value => @user.username %>
+		    <%= f.email_field :email, :placeholder => @user.email, :class => "form-control"%>
+		</div>
+		<br>
+		<div id="password-fields" class="hidden">
+			<a class="subtitle">Editar senha</a>
+		    <%= f.password_field :old_password, :placeholder => 'Senha antiga', :class => "form-control", :value => @user.password %>
+		    <%= f.password_field :new_password, :placeholder => 'Nova senha', :class => "form-control" %>
+		    <%= f.password_field :new_password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control" %>
+		    <br>
+	    </div>
 
-
-<%= form_for(@user) do |f| %>
-	<div id="edit-fields">
-	    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control", :value => @user.first_name %>
-	    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control", :value => @user.last_name %>
-	    <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control", :value => @user.username %>
-	    <%= f.email_field :email, :placeholder => @user.email, :class => "form-control"%>
-	    <%= f.hidden_field :password, :value => @user.password %>
-	    <%= f.hidden_field :password_confirmation, :value => @user.password_confirmation %>
-	    <!--<%= f.password_field :email, :placeholder => 'Senha antiga', :id => "old-password", :class => "form-control hidden" %>
-	    <%= f.password_field :email, :placeholder => 'Nova senha', :id => "new-password", :class => "form-control hidden" %>
-	    <%= f.password_field :email, :placeholder => 'Confirmar senha', :id => "confirm-password", :class => "form-control hidden"%>-->
-    </div>
-
-    <!--<button type="button" class='btn' onclick="editpassword()"> Editar senha</button>-->
-    <%= f.submit 'Editar conta', class: 'btn' %>
-<% end %>
+	    <%= f.submit 'Editar conta', class: 'btn btn-primary pull-right' %>
+	    <button type="button" class='btn btn-primary pull-right' onclick="editpassword()"> Editar senha</button>
+	<% end %>
+</div>
