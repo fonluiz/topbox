@@ -12,7 +12,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <%= notice %>
           </div>
-        <% end %>
+      <% end %>
       </p>
 
       <!-- Caminho clicável de pastas -->
@@ -25,121 +25,146 @@
         <% end %>
 
         <% parents.reverse.each do |folder| %>
-            <li><%=link_to folder.name, folder, :onclick => 'refresh()'%></li>
+            <li><%= link_to folder.name, folder, :onclick => 'refresh()' %></li>
         <% end %>
 
-        <li class="active"> <%= @folder.name unless @folder.nil?%></li>
+        <li class="active"> <%= @folder.name unless @folder.nil? %></li>
       </ol>
 
       <table class="table table-hover">
 
         <% unless @folder_page_content.empty? %>
-        
-          <thead>
-          <tr class="subtitle">
-            <th> <%= t(:name) %> </th>
-            <th> <%= t(:last_modification) %> </th>
-            <th> <%= t(:options) %> </th>
-          </tr>
-          </thead>
 
-          <!-- Folders -->
-          <% @folder_page_content.each do |item| %>
-          <% if item.class== Folder%>
-          <% folder = item %>
-              <tr >
-                <td>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-close white blue') %>
-                &nbsp&nbsp<%= link_to folder.name, folder, :onclick => 'refresh()' %>
-                </td>
-                <td><p class="text-muted">--</p></td>
+            <thead>
+            <tr class="subtitle">
+              <th> <%= t(:name) %> </th>
+              <th> <%= t(:last_modification) %> </th>
+              <th> <%= t(:options) %> </th>
+            </tr>
+            </thead>
 
-                <td><%= link_to edit_folder_path(folder) do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
-                <% end %>&nbsp&nbsp
-                <%= link_to folder_move_to_trash_path(folder), method: :post, data: {confirm: t(:confirm)}  do %>
-                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
+            <!-- Folders -->
+            <% @folder_page_content.each do |item| %>
+                <% if item.class== Folder %>
+                    <% folder = item %>
+                    <tr>
+                      <td>
+                        <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-folder-close white blue') %>
+                        &nbsp&nbsp<%= link_to folder.name, folder, :onclick => 'refresh()' %>
+                      </td>
+                      <td><p class="text-muted">--</p></td>
+
+                      <td><%= link_to edit_folder_path(folder) do %>
+                            <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                        <% end %>&nbsp&nbsp
+                        <%= link_to folder_move_to_trash_path(folder), method: :post, data: {confirm: t(:confirm)} do %>
+                            <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
+                        <% end %>
+
+                      </td>
+
+                    </tr>
+                <% else %>
+                    <% document= item %>
+                    <!-- Documents -->
+                    <tr>
+                      <td>
+                        <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
+                            <%= image_tag('compressed_file_icon.png', :size => '15x15', :alt => 'logo') %>
+                            &nbsp <%= document.name + "." + document.extension %>
+                        <% else %>
+                            <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>
+                            &nbsp <%= link_to document.name + "." + document.extension, document %>
+                        <% end %>
+
+                      </td>
+                      <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p>
+                      </td>
+
+                      <td>
+
+                        <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
+
+                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank" do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                            <% end %>&nbsp&nbsp
+
+                            <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()' do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
+                            <% end %>&nbsp&nbsp
+
+                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)} do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                            <% end %>&nbsp&nbsp
+
+                        <% else %>
+
+                            <%= link_to edit_document_path(document) do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
+                            <% end %>&nbsp&nbsp
+
+                            <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: {no_turbolink: true} do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
+                            <% end %>&nbsp&nbsp
+
+                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank" do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                            <% end %>&nbsp&nbsp
+
+                            <content class="dropdown">
+                              <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-compressed blue"></span></button>
+                              <ul class="dropdown-menu btn-sm">
+                                <li><%= link_to t(:compress_gzip), document_compress_url(document, :compression_method => 'gz'), method: :post, :onclick => 'refresh()' %></li>
+                                <li><%= link_to t(:compress_zip), document_compress_url(document, :compression_method => 'zip'), method: :post, :onclick => 'refresh()' %></li>
+                              </ul>
+                            </content>
+
+                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)} do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                            <% end %>&nbsp&nbsp
+
+                        <% end %>
                 <% end %>
-
-                </td>              
-
-              </tr>
-              <% else %>
-              <% document= item %>
-          <!-- Documents -->
-              <tr >
-                <td>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon glyphicon-file blue') %>           
-                &nbsp <%= link_to document.name + "." + document.extension, document %>
                 </td>
-                <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
 
-                <td>
-                <%= link_to edit_document_path(document) do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
-                <% end %>&nbsp&nbsp
+                </tr>
 
-                <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: { no_turbolink: true } do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
-                <% end %>&nbsp&nbsp
-
-                <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
-                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
-                <% end %>&nbsp&nbsp
-
-                  <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
-                      <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()' do %>
-                          <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
-                      <% end %>&nbsp&nbsp
-                  <% else %>
-                      <content class="dropdown">
-                        <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
-                          <span class="glyphicon glyphicon-compressed blue"></span></button>
-                        <ul class="dropdown-menu btn-sm">
-                          <li><%= link_to t(:compress_gzip), document_compress_url(document, :compression_method => 'gz'), method: :post, :onclick => 'refresh()' %></li>
-                          <li><%= link_to t(:compress_zip), document_compress_url(document, :compression_method => 'zip'), method: :post, :onclick => 'refresh()' %></li>
-                        </ul>
-                      </content>
-                  <% end %>
-
-                <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)} do %>
-                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
-                <% end %>&nbsp&nbsp
             <% end %>
-                </td> 
-
-              </tr>
-
-          <% end %>
-          </tbody>
+            </tbody>
 
         <% else %>
-          <h2 class="light-silver">
-          <center>
-            <%if @folder == find_mytopbox  && @page== 1%>
-                  <%= t(:empty_topbox)%> <br />
-                  <%= image_tag('open_box.png', :size =>'150x150' ,:alt => t(:new_folder), :onclick => 'refresh()') %><br /> <small class="light-silver"> <%t(:create_first_file)%> </small>
-            <% else %>
-              <%= t(:empty_fold)%>  <br />
-              <%= image_tag('open_box.png', :size =>'100x100' ,:alt => t(:new_folder), :onclick => 'refresh()') %><br />
-              <% end %>
-                  </center></h2>
+            <h2 class="light-silver">
+              <center>
+                <% if @folder == find_mytopbox && @page== 1 %>
+                    <%= t(:empty_topbox) %> <br/>
+                    <%= image_tag('open_box.png', :size => '150x150', :alt => t(:new_folder), :onclick => 'refresh()') %>
+                    <br/>
+                    <small class="light-silver">
+                      <% t(:create_first_file) %> </small>
+                <% else %>
+                    <%= t(:empty_fold) %>  <br/>
+                    <%= image_tag('open_box.png', :size => '100x100', :alt => t(:new_folder), :onclick => 'refresh()') %>
+                    <br/>
+                <% end %>
+              </center>
+            </h2>
         <% end %>
       </table>
       <nav aria-label="...">
         <ul class="pager">
           <% unless @page<=1 %>
-          <li><a onclick='refresh()' href=<%='?pg=' + (@page-1).to_s %>> <%= t(:previous)%> </a></li>
-          <% end%>
-          <% if ((@folder_content.length / FoldersHelper::PAGE_MAX )> (@page-1)  ) %>
-          <li><a onclick='refresh()' href=<%='?pg=' + (@page+1).to_s %>> <%= t(:next)%> </a></li>
+              <li><a onclick='refresh()' href=<%= '?pg=' + (@page-1).to_s %>> <%= t(:previous) %> </a></li>
+          <% end %>
+          <% if ((@folder_content.length / FoldersHelper::PAGE_MAX)> (@page-1)) %>
+              <li><a onclick='refresh()' href=<%= '?pg=' + (@page+1).to_s %>> <%= t(:next) %> </a></li>
           <% end %>
         </ul>
       </nav>
 
 
       <!-- Folder Modal -->
-      <div id="createFolderModal" class="modal"  role="dialog">
+      <div id="createFolderModal" class="modal" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -191,14 +216,14 @@
           </button>
 
 
-          <% unless @folder == find_mytopbox%>
+          <% unless @folder == find_mytopbox %>
 
-              <%= link_to @folder, method: :delete, data: {confirm: t(:confirm)} , class: 'btn btn-info btn-primary btn-circle btn-xl' do %>
+              <%= link_to @folder, method: :delete, data: {confirm: t(:confirm)}, class: 'btn btn-info btn-primary btn-circle btn-xl' do %>
                   <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
               <% end %>
 
               <%= link_to edit_folder_path(@folder.id), class: 'btn btn-primary btn-circle btn-xl' do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil white') %>
               <% end %>
 
           <% end %>
@@ -209,10 +234,10 @@
 
     </div>
   </div>
-  <div class="footer"> <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
-    <i class="glyphicon glyphicon-plus"></i></button>
+  <div class="footer">
+    <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
+      <i class="glyphicon glyphicon-plus"></i></button>
   </div>
 
-  
 
 </div>
