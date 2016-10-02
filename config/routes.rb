@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   resources :notifications
   resources :privacies
   resources :permissions
+  resources :users
+  resources :documents
+  resources :folders, :path => 'mytopbox'
+  resources :permissions
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#new'
 
   get 'signup'  => 'users#new'
-  get 'edit' => 'users#edit'
-  post  'edit'   => 'users#update'
-  resources :users
+  
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -22,10 +24,6 @@ Rails.application.routes.draw do
   post "folders/:id/trash" => "folders#move_to_trash", as: :folder_move_to_trash
   get "trash" => "folders#show_trash"
   post "trash/recycle" => "folders#recycle_all", as: :recycle_all
-
-  resources :documents
-  resources :folders, :path => 'mytopbox'
-  resources :permissions
 
   get 'denied' => 'permissions#denied'
 

@@ -23,21 +23,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(session[:user_id])
-    if @user.update(get_user_params)
-     render :edit
+    @user = User.find(params[:id])
+    if @user.update_attributes(get_user_params)
+      flash[:success] = "Profile updated"
+      redirect_to_mytopbox
     else
-     render :edit
+      render :edit
     end
   end
 
   private
   def get_user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 
   def used_email?
