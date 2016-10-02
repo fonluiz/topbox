@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(get_user_params)
+    if @user.update(get_user_params)
       flash[:success] = "Profile updated"
       redirect_to_mytopbox
     else

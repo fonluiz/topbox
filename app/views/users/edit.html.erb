@@ -10,13 +10,12 @@
 		<br>
 		<div id="password-fields" class="hidden">
 			<a class="subtitle">Editar senha</a>
-		    <%= f.password_field :old_password, :placeholder => 'Senha antiga', :class => "form-control", :value => @user.password %>
-		    <%= f.password_field :new_password, :placeholder => 'Nova senha', :class => "form-control" %>
-		    <%= f.password_field :new_password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control" %>
+		    <%= f.password_field :password, :placeholder => 'Nova antiga', :class => "form-control", :value => @user.password %>
+		    <%= f.password_field :password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control" %>
 		    <br>
 	    </div>
 
 	    <%= f.submit 'Editar conta', class: 'btn btn-primary pull-right' %>
-	    <button type="button" class='btn btn-primary pull-right' onclick="editpassword()"> Editar senha</button>
+	    <button type="button" class='btn btn-primary' onclick="editpassword()"> Editar senha</button>
 	<% end %>
 </div>
