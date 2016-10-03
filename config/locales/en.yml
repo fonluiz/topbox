@@ -41,6 +41,8 @@ en:
   authentication_error: "User or password is invalid."
   logout: "Successfully logout!"
 
+  # User
+  # SHOW
   user_name: "Name"
   user_surname: "Surname"
   user: "Username"
@@ -50,6 +52,13 @@ en:
   user_account: "Have an account? Please, "
   user_access: "sign in."
   user_create: "Sign up"
+  # EDIT
+  your_data: "Your personal data"
+  edit_password: "Edit password"
+  edit_account: "Edit account"
+  new_password: "New password"
+  confirm_new_password: "Confirm new password"
+  language: "Language"
 
   account_msg: "Your account was successfully created!"
   email_used_msg: "This email is already taken. Please chose another."
