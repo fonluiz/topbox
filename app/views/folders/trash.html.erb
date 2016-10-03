@@ -25,11 +25,11 @@
           <ul class="nav nav-pills" >
           <li role="presentation"  >
           <%= link_to recycle_all_path, method: :post, data: {confirm: t(:confirm)}, :onclick => 'refresh()' do%>
-            <span class = "glyphicon glyphicon glyphicon-repeat white"></span> <%= t(:restore)%>>
+            <span class = "glyphicon glyphicon glyphicon-repeat white"></span> <%= t(:restore)%>
           <% end %></li>
           <li role="presentation"  >
-          <%= link_to recycle_all_path, method: :post, data: {confirm: t(:confirm_empty)}, :onclick => 'refresh()' do%>
-            <span class = "glyphicon glyphicon glyphicon-trash white"></span> <%= t(:empty)%>>
+          <%= link_to trash_destroy_all_path, method: :post, data: {confirm: t(:confirm_empty)}, :onclick => 'refresh()' do%>
+            <span class = "glyphicon glyphicon glyphicon-trash white"></span> <%= t(:empty)%> 
           <% end %></li>
           </ul>
           </div>
