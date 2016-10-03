@@ -1,17 +1,27 @@
-<div class="container-fluid">
+<div class="container-fluid-ex">
 	<%= form_for(@user) do |f| %>
 		<div>
-			<a class="subtitle">Seus dados</a>
-		    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control", :value => @user.first_name %>
-		    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control", :value => @user.last_name %>
-		    <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control", :value => @user.username %>
-		    <%= f.email_field :email, :placeholder => @user.email, :class => "form-control"%>
+			<div>
+				<a class="subtitle">Seus dados</a>
+				<div class="dropdown pull-right">
+				  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i>
+				  <span class="caret"></span></button>
+				  <ul class="dropdown-menu">
+				    <li><a>Português</a></li>
+				    <li><a>Inglês</a></li>
+				  </ul>
+				</div>
+			</div>
+		    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control spc", :value => @user.first_name %>
+		    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control spc", :value => @user.last_name %>
+		    <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control spc", :value => @user.username %>
+		    <%= f.email_field :email, :placeholder => @user.email, :class => "form-control spc"%>
 		</div>
 		<br>
 		<div id="password-fields" class="hidden">
 			<a class="subtitle">Editar senha</a>
-		    <%= f.password_field :password, :placeholder => 'Nova antiga', :class => "form-control", :value => @user.password %>
-		    <%= f.password_field :password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control" %>
+		    <%= f.password_field :password, :placeholder => 'Nova antiga', :class => "form-control spc", :value => @user.password %>
+		    <%= f.password_field :password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control spc" %>
 		    <br>
 	    </div>
 
