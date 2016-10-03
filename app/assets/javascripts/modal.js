@@ -20,3 +20,7 @@ function refresh() {
     	location.reload();
     }
 }
+
+function editpassword() {
+	$("#password-fields").removeClass("hidden");
+}

@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   post "trash/destroy_all" => "folders#trash_destroy_all", as: :trash_destroy_all
 
 
-
-
   get 'denied' => 'permissions#denied'
   get 'makeopen' => 'privacies#open'
   get 'shared' => 'folders#shared'
