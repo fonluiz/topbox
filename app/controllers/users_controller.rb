@@ -19,7 +19,21 @@ class UsersController < ApplicationController
     end
   end
 
-      private
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(get_user_params)
+      flash[:success] = "Profile updated"
+      redirect_to_mytopbox
+    else
+      render :edit
+    end
+  end
+
+  private
   def get_user_params
     params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end

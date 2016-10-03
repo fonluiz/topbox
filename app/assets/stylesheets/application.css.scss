@@ -180,6 +180,21 @@ body {
   font-weight: 300;
   color: #1a1a1a;
 }
+
+.container-fluid-ex {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-top: 15px;
+}
+
+.spc, .spc:focus {
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
 .container .info span {
   color: #4d4d4d;
   font-size: 12px;
@@ -226,8 +241,6 @@ body {
 .select:hover {
   background-color: #FFFFFF;
 }
-
-
 
 
 /* Navbar */
@@ -424,6 +437,10 @@ font-family: 'Roboto', sans-serif;
   position: fixed;
   left: 30px;
   bottom: 20px;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 /* Sidebar 

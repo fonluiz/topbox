@@ -49,6 +49,4 @@ class SessionsController < ApplicationController
     end
     return user
   end
-
-
 end
