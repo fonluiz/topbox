@@ -16,4 +16,7 @@ module Topbox
     config.autoload_paths += %W(#{config.root}/lib)
 
   end
+
+  I18n.available_locales = [:en, :pt]
+
 end

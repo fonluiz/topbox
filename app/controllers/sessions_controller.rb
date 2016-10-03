@@ -40,6 +40,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def change_locale
+    l = params[:locale].to_s.strip.to_sym
+    l = I18n.default_locale unless I18n.available_locales.include?(l)
+    cookies.permanent[:educator_locale] = l
+    redirect_to request.referer || root_url
+  end
+
   # Returns the user in the database that corresponds to the email or username passed as arguments.
   private
   def find_user(email_or_username="")

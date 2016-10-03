@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :show_navbar, :set_locale
+  before_action :set_locale
+  before_filter :show_navbar
   helper_method :get_current_user, :get_current_folder, :set_current_folder, :get_user_folders, :get_not_children_folders
   helper_method :redirect_to_mytopbox, :redirect_to_current_folder
   helper_method :find_mytopbox
@@ -11,8 +12,13 @@ class ApplicationController < ActionController::Base
 
 
   def set_locale
-    # se params[:locale] for nulo, então deve-se utilizar I18n.default_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    if cookies[:educator_locale] && I18n.available_locales.include?(cookies[:educator_locale].to_sym)
+      l = cookies[:educator_locale].to_sym
+    else
+      l = I18n.default_locale
+      cookies.permanent[:educator_locale] = l
+    end
+    I18n.locale = l
   end
 
   def get_current_user
