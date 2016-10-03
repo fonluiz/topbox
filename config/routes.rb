@@ -38,6 +38,6 @@ Rails.application.routes.draw do
   get 'notifications/:id/link_through', to: 'notifications#link_through',
                                         as: :link_through
 
-  get '/change_locale/:locale', to: 'sessions#change_locale', as: :change_locale
+  get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
 
 end
