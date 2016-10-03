@@ -24,8 +24,8 @@
 		    <%= f.password_field :password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control spc" %>
 		    <br>
 	    </div>
-
 	    <%= f.submit 'Editar conta', class: 'btn btn-primary pull-right' %>
-	    <button type="button" class='btn btn-primary' onclick="editpassword()"> Editar senha</button>
+	    <%= link_to 'Voltar', folders_path, :onclick => 'refresh()', class: 'btn btn-primary pull-right' %>
+	    <button type="button" class='btn btn-primary' onclick="editpassword()", id="edit-password"> Editar senha</button>
 	<% end %>
 </div>
