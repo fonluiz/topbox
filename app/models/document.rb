@@ -27,14 +27,17 @@ class Document < ApplicationRecord
   def initialize(params = {})
     file = params.delete(:file)
     super
-    if file
-      file_name = sanitize_filename(file.original_filename)
-      dot = file_name.index(".")
-      len = file_name.length
-      self.name = file_name[0...dot]
-      self.extension = file_name[dot+1..len]
-      self.content = file.read
-    end
+      if file
+        file_name = sanitize_filename(file.original_filename)
+        dot = file_name.index(".")
+        len = file_name.length
+        ext = file_name[dot+1..len]
+        if (ext == 'txt' || ext == 'md') 
+          self.name = file_name[0...dot]
+          self.extension = file_name[dot+1..len]
+          self.content = file.read
+        end
+      end
   end
 
   private

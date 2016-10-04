@@ -5,7 +5,7 @@
 <div class="modal-body format">
     <%= form_for(Document.new) do |f| %>
             <div class="field">
-            <%= f.file_field :file, :autofocus => true, accept: 'text/plain,image/gif,image/jpeg,image/jpg,image/doc,image/docx' %>
+            <%= f.file_field :file, :autofocus => true, accept: 'text/plain' %>
             </div>
 </div>
 <div class="modal-footer">
