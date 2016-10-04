@@ -33,11 +33,11 @@
             <td><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></td>
             <td>
             
-            <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank" do %>
+            <%= link_to document_download_url(document) , data: { no_turbolink: true }, :target => "_blank", tooltip: t(:download_btn) do %>
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
                 <% end %>&nbsp&nbsp
 
-            <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%><%= link_to edit_document_path(document) do %>
+            <% if document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%><%= link_to edit_document_path(document), tooltip: t(:edit_btn) do %>
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
                 <% end %>&nbsp&nbsp
             <% end %>

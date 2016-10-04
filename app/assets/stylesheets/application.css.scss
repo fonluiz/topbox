@@ -10,7 +10,7 @@
 
 
 .blue {
-  color: #337ab7;
+  color: #2251A6;
 }
 
 .list-show
@@ -453,6 +453,67 @@ font-family: 'Roboto', sans-serif;
 .hidden {
   visibility: hidden;
 }
+
+
+
+
+
+/**
+ * Tooltip
+ */
+
+
+[tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+[tooltip]:before,
+[tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+[tooltip]:before {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -150%;
+  padding: 7px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #2251A6;
+  color: #fff;
+  content: attr(tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+[tooltip]:after {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #2251A6;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+[tooltip]:hover:before,
+[tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 /* Sidebar 
 

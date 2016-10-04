@@ -2,22 +2,22 @@
 	<ul class="nav nav-pills nav-stacked" >
 	<li role="presentation"  >
 	<%= link_to find_mytopbox, :onclick => 'refresh()' do%>
-		<span class = "glyphicon glyphicon glyphicon-th-large white"></span> <%= t(:mytopbox) %>
+		<span class = "glyphicon glyphicon glyphicon-th-large blue"></span> <%= t(:mytopbox) %>
 	<% end %></li>
 	<li role="presentation" >
 	<%= link_to :controller => :folders, :action => :shared  do%>
-	<span class= "glypicon glyphicon glyphicon-share white"> </span> <%= t(:shared) %>
+	<span class= "glypicon glyphicon glyphicon-share blue"> </span> <%= t(:shared) %>
 	<% end %>	
 	</li>
 	<li role="presentation" >
 		<%= link_to permissions_path do %>
-			<span class= "glypicon glyphicon glyphicon-lock white"> </span> 
+			<span class= "glypicon glyphicon glyphicon-lock blue"> </span> 
 			<%= t(:permissions) %>
 			<% end %>
 		</li>
 	<li role="presentation" >
 		<%= link_to trash_path do %>
-		<span class = "glyphicon glyphicon glyphicon-trash white"></span>
+		<span class = "glyphicon glyphicon glyphicon-trash blue"></span>
 		<%= t(:trash) %>
 		<% end %>
 	</li>

@@ -95,6 +95,7 @@ en:
 
   # Document
   send_doc: 'Send document'
+  send: 'Send'
   # MODAL
   new_doc: 'New document'
   untitled_doc: 'Untitled document'
@@ -139,3 +140,13 @@ en:
   denied_msg_2: 'Ask the permission to its owner or sign in with as account that has access.'
   # INDEX
   didnt_share: 'You have not shared any file.'
+
+  #Tooltips
+  edit_btn: 'Edit'
+  share_btn: 'Share'
+  trash_btn: 'Move to trash'
+  zip_btn: 'Compress'
+  download_btn: 'Download'
+  share_link_btn: 'Share with link'
+  delete_btn: 'Delete'
+  recover_btn: 'Recover'
