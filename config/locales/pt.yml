@@ -40,6 +40,8 @@ pt:
   authentication_error: "Usuário e/ou senha invalídos."
   logout: "Logout realizado com sucesso!"
 
+  # User
+  # SHOW
   user_name: "Nome"
   user_surname: "Sobrenome"
   user: "Nome de usuário"
@@ -49,6 +51,13 @@ pt:
   user_account: "Já possui uma conta? Por favor, "
   user_access: "acesse-a."
   user_create: "Criar conta"
+  # EDIT
+  your_data: "Seus dados"
+  edit_password: "Editar senha"
+  edit_account: "Editar conta"
+  new_password: "Nova senha"
+  confirm_new_password: "Confirmar nova senha"
+  language: "Língua"
 
   account_msg: 'Sua conta foi criada com sucesso!'
   email_used_msg: 'Esse email já está registrado. Por favor, escolha outro.'

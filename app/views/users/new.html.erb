@@ -36,8 +36,9 @@
 </body>
 
 
+<!-- Change idiom -->
 <div class="idiom">
-  <%= link_to 'Português (Brasil)', change_idiom_pt_url, method: :post, :onclick => 'refresh()' %>
+  <%= link_to 'Português (Brasil)',  change_locale_path(:pt) %>
   &emsp;
-  <%= link_to 'English (US)', change_idiom_en_url, method: :post, :onclick => 'refresh()' %>
+  <%= link_to 'English (US)', change_locale_path(:en) %>
 </div>

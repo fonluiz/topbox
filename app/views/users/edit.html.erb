@@ -2,15 +2,21 @@
 	<%= form_for(@user) do |f| %>
 		<div>
 			<div>
-				<a class="subtitle">Seus dados</a>
+				<a class="subtitle"> <%= t(:your_data)%> </a>
+
+        <!-- Change idiom -->
 				<div class="dropdown pull-right">
-				  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-globe"></i>
-				  <span class="caret"></span></button>
+				  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+            <%= t(:language)%>&nbsp;
+            <i class="glyphicon glyphicon-globe"></i>
+            <span class="caret"></span>
+          </button>
 				  <ul class="dropdown-menu">
-				    <li><a>  <%= link_to 'Ingles', change_locale_path(:en) %>  </a></li>
-				    <li><a>  <%= link_to 'Portugues', change_locale_path(:pt) %>  </a></li>
+				    <li><a>  <%= link_to 'English (US)', change_locale_path(:en) %>  </a></li>
+				    <li><a>  <%= link_to 'Português (Brasil)', change_locale_path(:pt) %>  </a></li>
 				  </ul>
 				</div>
+
 			</div>
 		    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control spc", :value => @user.first_name %>
 		    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control spc", :value => @user.last_name %>
@@ -19,13 +25,14 @@
 		</div>
 		<br>
 		<div id="password-fields" class="hidden">
-			<a class="subtitle">Editar senha</a>
-		    <%= f.password_field :password, :placeholder => 'Nova antiga', :class => "form-control spc", :value => @user.password %>
-		    <%= f.password_field :password_confirmation, :placeholder => 'Confirmar nova senha', :class => "form-control spc" %>
+			<a class="subtitle">  <%= t(:edit_password)%> </a>
+		    <%= f.password_field :password, :placeholder => t(:new_password), :class => "form-control spc", :value => @user.password %>
+		    <%= f.password_field :password_confirmation, :placeholder => t(:confirm_new_password), :class => "form-control spc" %>
 		    <br>
 	    </div>
-
-	    <%= f.submit 'Editar conta', class: 'btn btn-primary pull-right' %>
-	    <button type="button" class='btn btn-primary' onclick="editpassword()"> Editar senha</button>
+	    <%= f.submit t(:edit_account), class: 'btn btn-primary pull-right' %>
+	    <%= link_to t(:back), folders_path, :onclick => 'refresh()', class: 'btn btn-primary pull-right' %>
+	    <button type="button" class='btn btn-primary' onclick="editpassword()", id="edit-password"> <%= t(:edit_password)%>  </button>
 	<% end %>
 </div>
+

@@ -22,5 +22,9 @@ function refresh() {
 }
 
 function editpassword() {
-	$("#password-fields").removeClass("hidden");
+	if($("#password-fields").hasClass("hidden")) {
+		$("#password-fields").removeClass("hidden");
+	} else {
+		$("#password-fields").addClass("hidden");
+	}
 }
