@@ -138,3 +138,13 @@ pt:
   denied_msg_2: 'Peça permissão ao dono do documento ou diretório ou entre com uma conta que tenha acesso ao mesmo.'
   # INDEX
   didnt_share: 'Você não compartilhou nenhum arquivo.'
+
+  #Tooltips
+  edit_btn: 'Editar'
+  share_btn: 'Compartilhar'
+  trash_btn: 'Enviar para lixeira'
+  zip_btn: 'Comprimir'
+  download_btn: 'Baixar'
+  share_link_btn: 'Compartilhar por link'
+  delete_btn: 'Excluir'
+  recover_btn: 'Recuperar'

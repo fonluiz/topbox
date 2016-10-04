@@ -54,10 +54,10 @@
                       </td>
                       <td><p class="text-muted">--</p></td>
 
-                      <td><%= link_to edit_folder_path(folder) do %>
+                      <td><%= link_to edit_folder_path(folder), tooltip: t(:edit_btn) do %>
                             <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
                         <% end %>&nbsp&nbsp
-                        <%= link_to folder_move_to_trash_path(folder), method: :post, data: {confirm: t(:confirm)} do %>
+                        <%= link_to folder_move_to_trash_path(folder), method: :post, data: {confirm: t(:confirm)}, tooltip: t(:trash_btn) do %>
                             <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                         <% end %>
 
@@ -85,34 +85,34 @@
 
                         <% if document.extension.in?(DocumentsHelper::COMPRESSION_EXTENSIONS) %>
 
-                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank" do %>
-                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
+                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank", tooltip: t(:download_btn) do %>                            
+                               <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
                             <% end %>&nbsp&nbsp
 
-                            <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()' do %>
+                            <%= link_to document_decompress_url(document), method: :post, :onclick => 'refresh()', tooltip: t(:zip_btn) do %>
                                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-compressed blue') %>
                             <% end %>&nbsp&nbsp
 
-                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)} do %>
-                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)}, tooltip: t(:trash_btn) do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                             <% end %>&nbsp&nbsp
 
                         <% else %>
 
-                            <%= link_to edit_document_path(document) do %>
+                            <%= link_to edit_document_path(document), tooltip: t(:edit_btn) do %>
                                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
                             <% end %>&nbsp&nbsp
 
-                            <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: {no_turbolink: true} do %>
+                            <%= link_to new_permission_path + '?p='+document.privacy.id.to_s, data: {no_turbolink: true}, tooltip: t(:share_btn) do %>
                                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
                             <% end %>&nbsp&nbsp
 
-                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank" do %>
+                            <%= link_to document_download_url(document), data: {no_turbolink: true}, :target => "_blank", tooltip: t(:download_btn) do %>
                                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-download-alt blue') %>
                             <% end %>&nbsp&nbsp
 
                             <content class="dropdown">
-                              <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown">
+                              <button style="background-color: transparent; border: none; outline: none;" data-toggle="dropdown", tooltip="Comprimir">
                                 <span class="glyphicon glyphicon-compressed blue"></span></button>
                               <ul class="dropdown-menu btn-sm">
                                 <li><%= link_to t(:compress_gzip), document_compress_url(document, :compression_method => 'gz'), method: :post, :onclick => 'refresh()' %></li>
@@ -120,8 +120,8 @@
                               </ul>
                             </content>
 
-                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)} do %>
-                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                            <%= link_to document_move_to_trash_path(document), method: :post, data: {confirm: t(:confirm)}, tooltip: t(:trash_btn) do %>
+                                <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                             <% end %>&nbsp&nbsp
 
                         <% end %>
@@ -234,6 +234,7 @@
 
     </div>
   </div>
+
   <div class="footer">
     <button type="button" data-toggle="modal" data-target="#menu" class="btn btn-primary btn-circle btn-xl lower-right">
       <i class="glyphicon glyphicon-plus"></i></button>

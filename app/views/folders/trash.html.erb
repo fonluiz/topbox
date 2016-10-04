@@ -53,10 +53,10 @@
                 </td>
                 <td><p class="text-muted">--</p></td>
 
-                <td><%= link_to folder_recycle_path(folder), method: :post do %>
+                <td><%= link_to folder_recycle_path(folder), method: :post, tooltip: t(:recover_btn) do %>
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-repeat blue') %>
                 <% end %>&nbsp&nbsp
-                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
+                <%= link_to folder, method: :delete, data: {confirm: 'Você tem certeza?'}, tooltip: t(:delete_btn)  do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                 <% end %>
 
@@ -75,12 +75,12 @@
                 <td><p class="text-muted"><%= document.updated_at.localtime.strftime('%d/%m/%Y às %H:%M') %></p></td>
 
                 <td>
-                <%= link_to document_recycle_path(document), method: :post do %>
+                <%= link_to document_recycle_path(document), method: :post, tooltip: t(:recover_btn) do %>
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-repeat blue') %>
                 <% end %>&nbsp&nbsp
 
-                <%= link_to document_url(document), method: :delete, data: {confirm: t(:confirm)} do %>
-                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash white') %>
+                <%= link_to document_url(document), method: :delete, data: {confirm: t(:confirm)}, tooltip: t(:delete_btn) do %>
+                    <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                 <% end %>&nbsp&nbsp
 
                 </td> 
