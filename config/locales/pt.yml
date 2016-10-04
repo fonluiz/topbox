@@ -94,6 +94,7 @@ pt:
 
   # Document
   send_doc: 'Enviar documento'
+  send: 'Enviar'
   # MODAL
   new_doc: 'Novo documento'
   untitled_doc: 'Documento sem título'

@@ -95,6 +95,7 @@ en:
 
   # Document
   send_doc: 'Send document'
+  send: 'Send'
   # MODAL
   new_doc: 'New document'
   untitled_doc: 'Untitled document'

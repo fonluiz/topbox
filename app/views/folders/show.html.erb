@@ -25,10 +25,18 @@
         <% end %>
 
         <% parents.reverse.each do |folder| %>
-            <li><%= link_to folder.name, folder, :onclick => 'refresh()' %></li>
+            <% if folder.name == ApplicationHelper::MAIN_FOLDER_NAME %>
+                <li><%= link_to t(:mytopbox), folder, :onclick => 'refresh()' %></li>
+            <% else %>
+              <li><%= link_to folder.name, folder, :onclick => 'refresh()' %></li>
+            <% end %>
         <% end %>
 
-        <li class="active"> <%= @folder.name unless @folder.nil? %></li>
+        <% if @folder.name == ApplicationHelper::MAIN_FOLDER_NAME %>
+            <li class="active"> <%= t(:mytopbox) %> </li>
+        <% else %>
+            <li class="active"> <%= @folder.name unless @folder.nil? %></li>
+        <% end %>
       </ol>
 
       <table class="table table-hover">
