@@ -40,27 +40,25 @@
           <div class="col-sm-5">
             <% unless get_current_user.nil? %>
               <% if @document.user.id == get_current_user.id || @document.privacy.permissions.any?{|permission| permission.user_id == get_current_user.id && permission.Editar?}%> 
-                <%= link_to edit_document_path(@document)  do %>
-                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil')%>
-                <% end %>
-                <%= t(:edit_doc)%> <br />
+                <%= link_to edit_document_path(@document), tooltip: t(:edit_btn) do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue')%>
+                <% end %> &nbsp&nbsp
      
-              <%= link_to document_download_url(@document), data: { no_turbolink: true }, :target => "_blank" do  %> 
-                <content class='glyphicon glyphicon-download-alt'/> 
-              <% end %> 
-              <%= t(:download_doc)%> ".<%= @document.extension %> " <br />
-
+              <%= link_to document_download_url(@document), data: { no_turbolink: true }, :target => "_blank", tooltip: t(:download_btn) do  %> 
+                <content class='glyphicon glyphicon-download-alt blue'/> 
+              <% end %>  &nbsp&nbsp
+              
               <% if @document.user.id == get_current_user.id %>
-                <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true } do %>
-                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-share') %>
-                <% end %> <%= t(:share_doc)%> <br />
+                <%= link_to new_permission_path + '?p='+@document.privacy.id.to_s, data: { no_turbolink: true }, tooltip: t(:share_btn) do %>
+                  <%= content_tag('i', nil, class: 'glyphicon glyphicon-share blue') %>
+                <% end %>
               <% end %>
-            <% end %>
+            <% end %> &nbsp&nbsp
 
            <% if @document.user.id == get_current_user.id %>
-            <%= link_to document_visibility_url(@document),  data: { no_turbolink: true } do %>
-              <%= content_tag('i', nil, class: 'glyphicon glyphicon-link') %>
-              <% end %> <%= t(:sharing_link)%>
+            <%= link_to document_visibility_url(@document),  data: { no_turbolink: true }, tooltip: t(:share_link_btn) do %>
+              <%= content_tag('i', nil, class: 'glyphicon glyphicon-link blue') %>
+              <% end %>
               <% if @document.privacy.open? %>
                 <span class="label label-success"> <%= t(:activated)%> </span>
                 <span class="input-group-addon" id="basic-addon3"><%= document_url(@document) %></span>

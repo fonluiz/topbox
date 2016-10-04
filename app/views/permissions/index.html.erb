@@ -37,11 +37,11 @@
                 </td>
                 <td><%= User.find(permission.user_id).first_name %>&nbsp &nbsp &nbsp &nbsp</td>
                 <td>
-                <%= link_to edit_permission_path(permission) do %>
+                <%= link_to edit_permission_path(permission), tooltip: t(:edit_btn) do %>
                 <%= content_tag('i', nil, class: 'glyphicon glyphicon-pencil blue') %>
                 <% end %>&nbsp&nbsp
 
-                <%= link_to permission, method: :delete, data: {confirm: 'Você tem certeza?'}  do %>
+                <%= link_to permission, method: :delete, data: {confirm: 'Você tem certeza?'}, tooltip: t(:delete_btn)  do %>
                     <%= content_tag('i', nil, class: 'glyphicon glyphicon-trash blue') %>
                 <% end %>
                 </td>
