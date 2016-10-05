@@ -4,6 +4,7 @@
     <div class="col-sm-offset-2 col-sm-8 pull-center" >
       <div class="document-show"><center>
         <h1><strong><%= @document.name %> </strong></h1></center><br />
+        
   		  <p>
           <% if @document.md? %>
             <%= @document.content.try(:html_safe) %>
@@ -15,10 +16,17 @@
     </div>
   </div>
   <div class="row" >
+
     <div class="col-sm-offset-2 col-sm-8" style="border: none" >
       <div class="list-group-item" >
         <div class="panel-body">
+        <div
+            class="fb-like"
+            data-share="true"
+            data-show-faces="true">
+          </div>
           <div class= "container-fluid"> 
+
             <div class="col-sm-3">
               <b class="subtitle"> <%= t(:authors) %> </b>
   			  	  <p align=left>

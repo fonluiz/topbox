@@ -40,6 +40,7 @@ en:
   login_singup: "Sing up."
   authentication_error: "User or password is invalid."
   logout: "Successfully logout!"
+  login_facebook: "Create an account or Login with Facebook"
 
   # User
   # SHOW
@@ -59,6 +60,9 @@ en:
   new_password: "New password"
   confirm_new_password: "Confirm new password"
   language: "Language"
+  create_account: "Create account"
+  confirm_information: "Confirm your informations"
+
 
   account_msg: "Your account was successfully created!"
   email_used_msg: "This email is already taken. Please chose another."

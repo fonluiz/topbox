@@ -7,6 +7,7 @@
         <%= image_tag('topbox_logo.png', :size => '198x67', :alt => 'logo') %>
       </div>
 
+
       <!--Sign in form-->
       <%= form_for(:session, url: login_path) do |f| %>
           <div class="form-group input-group">
@@ -20,6 +21,8 @@
 
           <!--Sign in button-->
           <%= f.submit t(:login), :class => 'btn btn-login' %>
+          <%= image_tag('facebook_logo.png', :size => '20x20', :alt => 'logo') %>
+          <%= link_to t(:login_facebook), "/auth/facebook" %> 
 
           <!--Flash messages-->
           <% flash.each do |key, value| %>

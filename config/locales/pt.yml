@@ -39,6 +39,7 @@ pt:
   login_singup: "Cadastre-se."
   authentication_error: "Usuário e/ou senha invalídos."
   logout: "Logout realizado com sucesso!"
+  login_facebook: "Crie uma conta ou faça login com o Facebook"
 
   # User
   # SHOW
@@ -58,6 +59,9 @@ pt:
   new_password: "Nova senha"
   confirm_new_password: "Confirmar nova senha"
   language: "Língua"
+  create_account: "Criar conta"
+  confirm_information: "Confirme suas informações"
+
 
   account_msg: 'Sua conta foi criada com sucesso!'
   email_used_msg: 'Esse email já está registrado. Por favor, escolha outro.'

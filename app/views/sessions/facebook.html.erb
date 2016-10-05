@@ -1,0 +1,41 @@
+<%= render 'layouts/navbar' %>
+<body class="login-bg">
+<div class="login-page">
+<div class="container-fluid-ex">
+	<%= form_for(@user) do |f| %>
+		<div>
+			<div>
+				<a class="subtitle"> <%= t(:confirm_information)%> </a>
+
+        <!-- Change idiom -->
+				<div class="dropdown pull-right">
+				  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+            <%= t(:language)%>&nbsp;
+            <i class="glyphicon glyphicon-globe"></i>
+            <span class="caret"></span>
+          </button>
+				  <ul class="dropdown-menu">
+				    <li><a>  <%= link_to 'English (US)', change_locale_path(:en) %>  </a></li>
+				    <li><a>  <%= link_to 'Português (Brasil)', change_locale_path(:pt) %>  </a></li>
+				  </ul>
+				</div>
+
+			</div>
+		    <%= f.text_field :first_name, :placeholder => 'Nome', :autofocus => true, :class => "form-control spc", :value => @user.first_name %>
+		    <%= f.text_field :last_name, :placeholder => 'Sobrenome', :class => "form-control spc", :value => @user.last_name %>
+		    <%= f.text_field :username, :placeholder => 'Nome de usuário', :minlength => 6, :class => "form-control spc", :value => @user.username %>
+		    <%= f.email_field :email, :placeholder => @user.email, :class => "form-control spc"%>
+		</div>
+		<br>
+		<div id="password-fields">
+			<a class="subtitle">  <%= t(:edit_password)%> </a>
+		    <%= f.password_field :password, :placeholder => t(:new_password), :class => "form-control spc", :value => @user.password %>
+		    <%= f.password_field :password_confirmation, :placeholder => t(:confirm_new_password), :class => "form-control spc" %>
+		    <br>
+	    </div>
+	    <%= f.submit t(:create_account), class: 'btn btn-primary pull-right' %>
+	    
+	<% end %>
+</div>
+</div>
+</body>

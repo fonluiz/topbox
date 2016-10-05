@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include UsersHelper, ApplicationHelper
   before_action :has_active_session?, only: [:new, :create]
   skip_before_filter :show_navbar, only: [:new, :create]
+  helper_method :facebook
 
   def new
     @user = User.new
@@ -18,6 +19,8 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+
 
   def edit
     @user = User.find(params[:id])
