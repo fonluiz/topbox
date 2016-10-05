@@ -12,31 +12,22 @@
             <%= sanitize @document.content.gsub(/\n/,"<br/>"), :tags => ['br']  %>
           <% end %>
         </p>
-      </div>
-    </div>
-  </div>
-  <div class="row" >
 
-    <div class="col-sm-offset-2 col-sm-8" style="border: none" >
+        
       <div class="list-group-item" >
-        <div class="panel-body">
-        <div
-            class="fb-like"
-            data-share="true"
-            data-show-faces="true">
-          </div>
+       
           <div class= "container-fluid"> 
 
             <div class="col-sm-3">
               <b class="subtitle"> <%= t(:authors) %> </b>
-  			  	  <p align=left>
+              <p align=left>
                 <%= @document.user.first_name %> <br />
                 <% @document.privacy.permissions.each do |permission| %>
                   <% if permission.status == "Editar" %>
-  			           <%= User.find(permission.user_id).first_name %> <br />
+                   <%= User.find(permission.user_id).first_name %> <br />
                   <% end %>
-  			       <% end %> </p>
-  			     </div>  
+               <% end %> </p>
+             </div>  
 
           <div class="col-sm-4">
             <b class="subtitle"> <%= t(:publication_date)%> </b>
@@ -78,8 +69,20 @@
 
           </div>
         </div>
+  </div><br />
+  <div
+            class="fb-like"
+            data-share="true"
+            data-show-faces="true">
+          </div>
+
       </div>
-  </div>  
+    </div>
+  </div>
+  <div class="row" >
+
+    <div class="col-sm-offset-2 col-sm-8" style="border: none" >
+  
 </div>
 </div>
 </div>
