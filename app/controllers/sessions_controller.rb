@@ -8,20 +8,55 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = find_user(params[:session][:find_user])
-
-    if @user && @user.authenticate(params[:session][:login_password])
-      log_in @user
-      redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
+    if (params[:session].nil?)
+      facebook
     else
-      if empty_field?
-        flash.now[:danger] = t(:empty_field)
+      @user = find_user(params[:session][:find_user])
+      if @user && @user.authenticate(params[:session][:login_password])
+        log_in @user
+        redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
       else
-        flash.now[:danger] = t(:authentication_error)
+        if empty_field?
+          flash.now[:danger] = t(:empty_field)
+        else
+          flash.now[:danger] = t(:authentication_error)
+        end
+        render :new
       end
-      render :new
+    end
+
+  end
+
+
+# FACEBOOK
+  def facebook
+    auth = request.env["omniauth.auth"]
+    @user = User.find_by(email: auth.info.email)
+    if @user.nil? 
+      facebook_sign_in
+      session[:user_id] = @user.id
+      render 'facebook'
+    else
+      session[:user_id] = @user.id
+      redirect_to url_for(:controller => 'folders', :action => ACTION_INDEX)
     end
   end
+
+  def facebook_sign_in
+    auth = request.env["omniauth.auth"]
+    username = auth.info.name + '_'
+    password = SecureRandom.urlsafe_base64
+    @user = User.new({username: username, first_name: auth.info.first_name,last_name: 
+                          auth.info.last_name, email: auth.info.email, password: password,
+                           password_confirmation: password })
+    @user.save!
+    User.create_main_folder(@user)
+    @user
+  end
+
+
+
+
 
   def empty_field?
     if ( (params[:session][:find_user].empty?)    or

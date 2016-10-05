@@ -40,4 +40,7 @@ Rails.application.routes.draw do
 
   get '/change_locale/:locale', to: 'settings#change_locale', as: :change_locale
 
+  match "/auth/:provider/callback" => "sessions#create", as: :auth_callback, via: [:get, :post]
+
+
 end

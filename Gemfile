@@ -67,4 +67,8 @@ gem 'rails_12factor', group: :production
 # Rubyzip is a ruby library for reading and writing zip files.
 gem 'rubyzip'
 
+# gems of Facebook auth
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 ruby '2.3.1'
