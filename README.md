@@ -15,9 +15,9 @@ Departamento de Sistemas e Computação <br/>
   <li>Rafaela Lacerda</li>
 </ul>
 
-<p> A participação dos integrantes e divisão do trabalho está descrita no <a href="https://trello.com/b/mHfHdimU/sprint-2">Trello</a>. Vale ressaltar que essa divisão só se aproxima do real esforço dedicado de cada integrante.  </p>
+<p> A participação dos integrantes e divisão do trabalho está descrita no <a href="https://trello.com/b/YEUmxANh/sprint-3">Trello</a>. Vale ressaltar que essa divisão só se aproxima do real esforço dedicado de cada integrante.  </p>
 
-<p> O documento de decisões para a segunda entrega está acessível por meio <a href="https://docs.google.com/document/d/1LGJvQNwoKSo03mv93JI85PBSIa4ms6oCE8iPMTtTMRU/edit?usp=sharing">deste link</a>.</p>
+<p> O documento de decisões para a última entrega do projeto está acessível por meio <a href="https://docs.google.com/document/d/1A5Fm4HVbFslCYr-yZ2ncXCMFvDGLX4s4KFaRSQ9sb38/edit?usp=sharing">deste link</a>. Nele, links para os outros relatórios estarão disponíveis.</p>
 
 <p> Link para o <a href="https://topboxapp.herokuapp.com/">aplicação</a> hospedada em Heroku.</p>
 
